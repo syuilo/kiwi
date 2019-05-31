@@ -40,8 +40,6 @@ module.exports = {
 						preserveWhitespace: false
 					}
 				}
-			}, {
-				loader: 'vue-svg-inline-loader'
 			}]
 		}, {
 			test: /\.styl(us)?$/,

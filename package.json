@@ -82,6 +82,7 @@
 		"vue-i18n": "8.11.2",
 		"vue-loader": "15.7.0",
 		"vue-router": "3.0.6",
+		"vue-template-compiler": "2.6.10",
 		"webpack": "4.32.2",
 		"webpack-cli": "3.3.2"
 	}
