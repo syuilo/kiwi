@@ -3,7 +3,7 @@ import { Entity, Column, Index, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class User {
 	@PrimaryGeneratedColumn()
-	public id: string;
+	public id: number;
 
 	@Index()
 	@Column('timestamp with time zone', {
