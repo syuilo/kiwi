@@ -3,7 +3,7 @@
 	<header>Kiwi</header>
 	<nav>
 		<ul>
-			<li><router-link v-t="'create-page'"></router-link></li>
+			<li><router-link to="/:new" v-t="'create-page'"></router-link></li>
 		</ul>
 	</nav>
 	<main>

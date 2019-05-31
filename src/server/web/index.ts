@@ -8,7 +8,7 @@ import * as Router from 'koa-router';
 import * as send from 'koa-send';
 //import * as favicon from 'koa-favicon';
 import * as views from 'koa-views';
-
+const locales = require('../../../locales');
 import config from '../../config';
 import { Metas } from '../../models';
 
@@ -36,11 +36,15 @@ app.use(async (ctx, next) => {
 // Init router
 const router = new Router();
 
-router.get('/assets/*', async ctx => {
-	await send(ctx as any, ctx.path, {
-		root:  `${__dirname}/../../`,
+router.get('/_assets/:path+', async ctx => {
+	await send(ctx as any, ctx.params.path, {
+		root:  `${__dirname}/../../assets`,
 		maxage: ms('7 days'),
 	});
+});
+
+router.get('/_locales/:lang', async ctx => {
+	ctx.body = locales[ctx.params.lang];
 });
 
 // Render base html for all requests
