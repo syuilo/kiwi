@@ -10,8 +10,6 @@ import * as cors from '@koa/cors';
 
 import endpoints from './endpoints';
 import handler from './api-handler';
-import signup from './private/signup';
-import signin from './private/signin';
 
 // Init app
 const app = new Koa();
@@ -49,9 +47,6 @@ for (const endpoint of endpoints) {
 		router.post(`/${endpoint.name}`, handler.bind(null, endpoint));
 	}
 }
-
-router.post('/signup', signup);
-router.post('/signin', signin);
 
 // Return 404 for unknown API
 router.all('*', async ctx => {
