@@ -21,8 +21,8 @@ function greet() {
 		const v = `v${pkg.version}`;
 		console.log(' _  ___        _ ');
 		console.log('| |/ (_)_ __ _(_)');
-		console.log('| \' <| \ V  V / |');
-		console.log('|_|\_\_|\_/\_/|_|');
+		console.log('| \' <| \\ V  V / |');
+		console.log('|_|\\_\\_|\\_/\\_/|_|');
 		console.log(chalk.gray(v));
 		//#endregion
 	}

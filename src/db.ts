@@ -4,6 +4,9 @@ import config from './config';
 import { User } from './models/entities/user';
 import { Meta } from './models/entities/meta';
 import { Page } from './models/entities/page';
+import { File } from './models/entities/file';
+import { FileFolder } from './models/entities/file-folder';
+import { Category } from './models/entities/category';
 
 export function initDb(justBorrow = false, sync = false, log = false) {
 	try {
@@ -26,6 +29,9 @@ export function initDb(justBorrow = false, sync = false, log = false) {
 			User,
 			Meta,
 			Page,
+			File,
+			FileFolder,
+			Category,
 		]
 	});
 }
