@@ -13,7 +13,7 @@ export class User {
 
 	@Index({ unique: true })
 	@Column('varchar', {
-		length: 128, unique: true,
+		length: 32, unique: true,
 		comment: 'The name of the User.'
 	})
 	public name: string;
@@ -29,6 +29,12 @@ export class User {
 		comment: 'The native access token of the User.'
 	})
 	public token: string | null;
+
+	@Column('varchar', {
+		length: 128,
+		comment: 'The password hash of the User.'
+	})
+	public password: string;
 
 	constructor(data: Partial<User>) {
 		if (data == null) return;

@@ -13,7 +13,6 @@ type Level = 'error' | 'success' | 'warning' | 'debug' | 'info';
 export default class Logger {
 	private domain: Domain;
 	private parentLogger: Logger | null = null;
-	private store: boolean;
 
 	constructor(domain: string, color?: string) {
 		this.domain = {

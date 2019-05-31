@@ -1,20 +1,3 @@
-import { EndoRelation, Predicate } from './relation';
-
-/**
- * Count the number of elements that satisfy the predicate
- */
-
-export function countIf<T>(f: Predicate<T>, xs: T[]): number {
-	return xs.filter(f).length;
-}
-
-/**
- * Count the number of elements that is equal to the element
- */
-export function count<T>(a: T, xs: T[]): number {
-	return countIf(x => x === a, xs);
-}
-
 /**
  * Concatenate an array of arrays
  */
@@ -61,30 +44,6 @@ export function maximum(xs: number[]): number {
 }
 
 /**
- * Splits an array based on the equivalence relation.
- * The concatenation of the result is equal to the argument.
- */
-export function groupBy<T>(f: EndoRelation<T>, xs: T[]): T[][] {
-	const groups = [] as T[][];
-	for (const x of xs) {
-		if (groups.length !== 0 && f(groups[groups.length - 1][0], x)) {
-			groups[groups.length - 1].push(x);
-		} else {
-			groups.push([x]);
-		}
-	}
-	return groups;
-}
-
-/**
- * Splits an array based on the equivalence relation induced by the function.
- * The concatenation of the result is equal to the argument.
- */
-export function groupOn<T, S>(f: (x: T) => S, xs: T[]): T[][] {
-	return groupBy((a, b) => f(a) === f(b), xs);
-}
-
-/**
  * Compare two arrays by lexicographical order
  */
 export function lessThan(xs: number[], ys: number[]): boolean {
@@ -93,21 +52,6 @@ export function lessThan(xs: number[], ys: number[]): boolean {
 		if (xs[i] > ys[i]) return false;
 	}
 	return xs.length < ys.length;
-}
-
-/**
- * Returns the longest prefix of elements that satisfy the predicate
- */
-export function takeWhile<T>(f: Predicate<T>, xs: T[]): T[] {
-	const ys = [];
-	for (const x of xs) {
-		if (f(x)) {
-			ys.push(x);
-		} else {
-			break;
-		}
-	}
-	return ys;
 }
 
 export function cumulativeSum(xs: number[]): number[] {

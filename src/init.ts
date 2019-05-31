@@ -1,4 +1,4 @@
-import { initDb } from './db/postgre';
+import { initDb } from './db';
 
 console.log('Init database...');
 

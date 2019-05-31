@@ -1,0 +1,14 @@
+extends ./base
+
+block title
+	= `${page.title} | ${wiki.name}`
+
+block desc
+	meta(name='description' content= page.summary)
+
+block og
+	meta(property='og:type'        content='article')
+	meta(property='og:title'       content= page.title)
+	meta(property='og:description' content= page.subTitle)
+	meta(property='og:url'         content= url)
+	meta(property='og:image'       content= page.eyeCatchingImage ? page.eyeCatchingImage.url : wiki.iconUrl)
