@@ -1,0 +1,76 @@
+#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Kiwi configuration
+#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+#   ┌─────┐
+#───┘ URL └─────────────────────────────────────────────────────
+
+# Final accessible URL seen by a user.
+url: https://example.tld/
+
+#   ┌───────────────────────┐
+#───┘ Port and TLS settings └───────────────────────────────────
+
+#
+# Kiwi supports two deployment options for public.
+#
+
+# Option 1: With Reverse Proxy
+#
+#                 +----- https://example.tld/ ------------+
+#   +------+      |+-------------+      +----------------+|
+#   | User | ---> || Proxy (443) | ---> | Kiwi (3000)    ||
+#   +------+      |+-------------+      +----------------+|
+#                 +---------------------------------------+
+#
+#   You need to setup reverse proxy. (eg. nginx)
+#   You do not define 'https' section.
+
+# Option 2: Standalone
+#
+#                 +- https://example.tld/ -+
+#   +------+      |   +---------------+    |
+#   | User | ---> |   | Kiwi (443)    |    |
+#   +------+      |   +---------------+    |
+#                 +------------------------+
+#
+#   You need to run Kiwi as root.
+#   You need to set Certificate in 'https' section.
+
+# To use option 1, uncomment below line.
+#port: 3000    # A port that your Kiwi server should listen.
+
+# To use option 2, uncomment below lines.
+#port: 443
+
+#https:
+#  # path for certification
+#  key: /etc/letsencrypt/live/example.tld/privkey.pem
+#  cert: /etc/letsencrypt/live/example.tld/fullchain.pem
+
+#   ┌──────────────────────────┐
+#───┘ PostgreSQL configuration └────────────────────────────────
+
+db:
+  host: localhost
+  port: 5432
+
+  # Database name
+  db: kiwi
+
+  # Auth
+  user: example-user
+  pass: example-pass
+
+  # Extra Connection options
+  #extra:
+  #  ssl: true
+
+#   ┌─────────────────────┐
+#───┘ Other configuration └─────────────────────────────────────
+
+# Whether disable HSTS
+#disableHsts: true
+
+# Clustering
+#clusterLimit: 1
