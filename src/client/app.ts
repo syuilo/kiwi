@@ -9,3 +9,13 @@ Vue.use(VueRouter);
 Vue.use(VueI18n);
 
 Vue.component('fa', FontAwesomeIcon);
+
+const router = new VueRouter({
+	routes: [
+		{ path: '/:path', component: Page },
+	]
+});
+
+const app = new Vue({
+	router
+}).$mount('#app');

@@ -108,7 +108,7 @@ module.exports = {
 		new webpack.optimize.ModuleConcatenationPlugin()
 	],
 	output: {
-		path: __dirname + '/built/client',
+		path: __dirname + '/built/assets',
 		filename: `[name].js`,
 		publicPath: `/assets/`
 	},
