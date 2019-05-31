@@ -14,7 +14,8 @@
 		"ormconfig": "node ./built/ormconfig.js",
 		"migrate": "npm run ormconfig && ts-node ./node_modules/typeorm/cli.js migration:run",
 		"migrateandstart": "npm run migrate && npm run start",
-		"build": "webpack && tsc",
+		"build": "npm run webpack && npm run tsc",
+		"tsc": "tsc",
 		"webpack": "webpack",
 		"watch": "webpack --watch"
 	},

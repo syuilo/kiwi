@@ -1,5 +1,5 @@
 import * as program from 'commander';
-import * as pkg from '../package.json';
+const pkg = require('../package.json');
 
 program
 	.version(pkg.version)

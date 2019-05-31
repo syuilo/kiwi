@@ -8,7 +8,7 @@ import Logger from '../logger';
 import loadConfig from '../config/load';
 import { Config } from '../config/types';
 import { lessThan } from '../prelude/array';
-import * as pkg from '../../package.json';
+const pkg = require('../../package.json');
 import { program } from '../argv';
 import { initDb } from '../db';
 

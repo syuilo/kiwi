@@ -19,10 +19,10 @@
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"resolveJsonModule": true,
+		"rootDir": "src",
 		"outDir": "built",
 		"typeRoots": [
 			"node_modules/@types",
-			"src/@types"
 		]
 	},
 	"compileOnSave": false,
