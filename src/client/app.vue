@@ -2,11 +2,19 @@
 <div>
 	<header class="ui-header">Kiwi</header>
 	<nav class="ui-nav">
-		<ul>
-			<li><router-link to="/:login" v-t="'login'"></router-link></li>
-			<li><router-link to="/:new" v-t="'createPage'"></router-link></li>
-			<li><router-link to="/:new-category" v-t="'create-category'"></router-link></li>
-		</ul>
+		<section>
+			<p v-t="'menu'"></p>
+			<ul>
+				<li><router-link to="/:login" v-t="'login'"></router-link></li>
+				<li><router-link to="/:signup" v-t="'signup'"></router-link></li>
+				<li><router-link to="/:new" v-t="'createPage'"></router-link></li>
+				<li><router-link to="/:new-category" v-t="'createCategory'"></router-link></li>
+				<li><router-link to="/:recently" v-t="'recentlyUpdatedPages'"></router-link></li>
+			</ul>
+		</section>
+		<section>
+			<p v-t="'categories'"></p>
+		</section>
 	</nav>
 	<main class="ui-main">
 		<router-view></router-view>

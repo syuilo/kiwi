@@ -1,4 +1,10 @@
+menu: "メニュー"
+login: "ログイン"
+signup: "アカウント作成"
 createPage: "ページを作成"
+createCategory: "カテゴリを作成"
+categories: "カテゴリー"
+recentlyUpdatedPages: "最近の更新"
 _newPage:
   title: "タイトル"
   subTitle: "ページの要約"
