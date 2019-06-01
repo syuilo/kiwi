@@ -4,7 +4,7 @@
 	<nav class="ui-nav">
 		<ul>
 			<li><router-link to="/:login" v-t="'login'"></router-link></li>
-			<li><router-link to="/:new" v-t="'create-page'"></router-link></li>
+			<li><router-link to="/:new" v-t="'createPage'"></router-link></li>
 			<li><router-link to="/:new-category" v-t="'create-category'"></router-link></li>
 		</ul>
 	</nav>

@@ -1,11 +1,20 @@
 <template>
 <div>
 	<h1>New</h1>
-	<input v-model="title"/>
-	<input v-model="subTitle"/>
-	<input v-model="name"/>
+	<label>
+		<p v-t="'_newPage.title'"></p>
+		<input v-model="title"/>
+	</label>
+	<label>
+		<p v-t="'_newPage.subTitle'"></p>
+		<input v-model="subTitle"/>
+	</label>
+	<label>
+		<p v-t="'_newPage.url'"></p>
+		<input v-model="name"/>
+	</label>
 	<textarea v-model="content"></textarea>
-	<button v-t="'_new-page.create'" @click="submit()"></button>
+	<button v-t="'_newPage.create'" @click="submit()"></button>
 </div>
 </template>
 

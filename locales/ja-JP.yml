@@ -1,3 +1,6 @@
-create-page: "ページを作成"
-_new-page:
+createPage: "ページを作成"
+_newPage:
+  title: "タイトル"
+  subTitle: "ページの要約"
+  url: "URL"
   create: "作成"
