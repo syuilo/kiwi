@@ -24,12 +24,17 @@ export default define(meta, async (ps) => {
 	// Generate secret
 	const secret = generateUserToken();
 
-	const user = await Users.save(new User({
+	const usersCount = await Users.count();
+
+	await Users.save(new User({
 		createdAt: new Date(),
 		name: ps.name,
 		token: secret,
-		password: hash
+		password: hash,
+		isAdmin: usersCount === 0
 	}));
 
-	return await Users.pack(user);
+	return {
+		token: secret
+	};
 });

@@ -27,9 +27,10 @@ export default async (endpoint: string, user: User | null | undefined, data: any
 
 	const wiki = await Metas.fetch();
 
+	const isAdmin = user ? user.isAdmin : false;
 	const userPermissions = user ? user.permissions : wiki.guestPermissions;
 
-	if (ep.meta.kind && !userPermissions.some(p => p === ep.meta.kind)) {
+	if (ep.meta.kind && !userPermissions.some(p => p === ep.meta.kind) && !isAdmin) {
 		throw new ApiError({
 			message: 'Your app does not have the necessary permissions to use this endpoint.',
 			code: 'PERMISSION_DENIED',

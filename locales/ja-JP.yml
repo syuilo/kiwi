@@ -1,3 +1,4 @@
+home: "ホーム"
 menu: "メニュー"
 login: "ログイン"
 signup: "アカウント作成"
@@ -5,6 +6,14 @@ createPage: "ページを作成"
 createCategory: "カテゴリを作成"
 categories: "カテゴリー"
 recentlyUpdatedPages: "最近の更新"
+_signup:
+  name: "ユーザー名"
+  password: "パスワード"
+  signup: "作成"
+_login:
+  name: "ユーザー名"
+  password: "パスワード"
+  login: "ログイン"
 _newPage:
   title: "タイトル"
   subTitle: "ページの要約"

@@ -36,6 +36,12 @@ export class User {
 	})
 	public password: string;
 
+	@Column('boolean', {
+		default: false,
+		comment: 'Whether the User is the admin.'
+	})
+	public isAdmin: boolean;
+
 	constructor(data: Partial<User>) {
 		if (data == null) return;
 

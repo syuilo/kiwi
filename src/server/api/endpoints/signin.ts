@@ -43,7 +43,9 @@ export default define(meta, async (ps) => {
 	const same = await bcrypt.compare(ps.password, user.password);
 
 	if (same) {
-		return await Users.pack(user);
+		return {
+			token: user.token
+		};
 	} else {
 		throw new ApiError(meta.errors.incorrectPassword);
 	}
