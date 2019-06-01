@@ -11,6 +11,9 @@
 	<main class="ui-main">
 		<router-view></router-view>
 	</main>
+	<footer class="ui-footer">
+		<small>Powerd by <a href="https://github.com/syuilo/kiwi">Kiwi</a></small>
+	</footer>
 </div>
 </template>
 
@@ -42,6 +45,10 @@ export default Vue.extend({});
 }
 
 .ui-main {
+	margin: 48px 0 0 300px;
+}
+
+.ui-footer {
 	margin: 48px 0 0 300px;
 }
 </style>
