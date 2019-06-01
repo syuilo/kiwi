@@ -38,39 +38,20 @@ module.exports = {
 					cssSourceMap: false,
 					compilerOptions: {
 						preserveWhitespace: false
+					},
+					loaders: {
+						scss: 'vue-style-loader!css-loader!sass-loader'
 					}
 				}
 			}]
 		}, {
-			test: /\.styl(us)?$/,
-			exclude: /node_modules/,
-			oneOf: [{
-				resourceQuery: /module/,
-				use: [{
-					loader: 'vue-style-loader'
-				}, {
-					loader: 'css-loader',
-					options: {
-						modules: true
-					}
-				}, postcss, {
-					loader: 'stylus-loader'
-				}]
-			}, {
-				use: [{
-					loader: 'vue-style-loader'
-				}, {
-					loader: 'css-loader'
-				}, postcss, {
-					loader: 'stylus-loader'
-				}]
-			}]
-		}, {
-			test: /\.css$/,
+			test: /\.scss$/,
 			use: [{
 				loader: 'vue-style-loader'
 			}, {
 				loader: 'css-loader'
+			}, {
+				loader: 'sass-loader'
 			}, postcss]
 		}, {
 			test: /\.(eot|woff|woff2|svg|ttf)([?]?.*)$/,
