@@ -1,6 +1,7 @@
 home: "ホーム"
 menu: "メニュー"
 login: "ログイン"
+logout: "ログアウト"
 signup: "アカウント作成"
 createPage: "ページを作成"
 createCategory: "カテゴリを作成"

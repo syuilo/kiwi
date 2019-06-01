@@ -6,8 +6,13 @@
 			<p v-t="'menu'"></p>
 			<ul>
 				<li><router-link to="/" v-t="'home'"></router-link></li>
-				<li><router-link to="/:signin" v-t="'login'"></router-link></li>
-				<li><router-link to="/:signup" v-t="'signup'"></router-link></li>
+				<template v-if="$root.isLoggedin">
+					<li><router-link to="/:signout" v-t="'logout'"></router-link></li>
+				</template>
+				<template v-else>
+					<li><router-link to="/:signin" v-t="'login'"></router-link></li>
+					<li><router-link to="/:signup" v-t="'signup'"></router-link></li>
+				</template>
 				<li><router-link to="/:new" v-t="'createPage'"></router-link></li>
 				<li><router-link to="/:new-category" v-t="'createCategory'"></router-link></li>
 				<li><router-link to="/:recently" v-t="'recentlyUpdatedPages'"></router-link></li>

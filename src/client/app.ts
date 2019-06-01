@@ -23,6 +23,11 @@ async function main() {
 			locale: lang,
 			messages: { [lang]: locale }
 		}),
+		data() {
+			return {
+				isLoggedin: localStorage.getItem('i') != null
+			};
+		},
 		methods: {
 			api
 		}
