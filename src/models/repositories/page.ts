@@ -9,12 +9,17 @@ export type PackedPage = any;
 export class PageRepository extends Repository<Page> {
 	public async pack(
 		src: Page['id'] | Page,
+		detail = false
 	): Promise<PackedPage> {
 		const page = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
 		const packed = {
 			id: page.id,
 			name: page.name,
+			title: page.title,
+			subTitle: page.subTitle,
+			content: detail ? page.content : undefined,
+			ast: detail ? page.ast : undefined,
 		};
 
 		return await awaitAll(packed);
@@ -22,7 +27,8 @@ export class PageRepository extends Repository<Page> {
 
 	public packMany(
 		pages: (Page['id'] | Page)[],
+		detail = false
 	) {
-		return Promise.all(pages.map(u => this.pack(u)));
+		return Promise.all(pages.map(u => this.pack(u, detail)));
 	}
 }

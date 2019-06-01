@@ -20,3 +20,5 @@ _newPage:
   subTitle: "ページの要約"
   url: "URL"
   create: "作成"
+_notFound:
+  notFound: "ページが見つかりません"

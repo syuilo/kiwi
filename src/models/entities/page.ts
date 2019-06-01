@@ -78,6 +78,9 @@ export class Page {
 	})
 	public attributes: Record<string, any>;
 
+	@Column('jsonb')
+	public ast: Record<string, any>;
+
 	constructor(data: Partial<Page>) {
 		if (data == null) return;
 

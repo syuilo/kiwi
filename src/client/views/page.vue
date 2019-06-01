@@ -1,12 +1,24 @@
 <template>
 <div v-if="page">
-	<h1>{{ page.title }}</h1>
+	<header>
+		<h1 class="title">{{ page.title }}</h1>
+		<p class="subTitle">{{ page.subTitle }}</p>
+	</header>
+	<div class="content">
+		<markdown :ast="page.ast"/>
+	</div>
 </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import Markdown from './markdown.ts';
+
 export default Vue.extend({
+	components: {
+		Markdown
+	},
+
 	props: {
 		name: {
 			type: String,

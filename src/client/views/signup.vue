@@ -30,7 +30,7 @@ export default Vue.extend({
 				password: this.password,
 			}).then(({ token }) => {
 				localStorage.setItem('i', token);
-				location.reload();
+				location.href = '/';
 			});
 		}
 	}

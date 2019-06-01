@@ -1,4 +1,6 @@
 import $ from 'cafy';
+import * as unified from 'unified';
+const markdown = require('remark-parse');
 import define from '../../define';
 import { types, bool } from '../../../../misc/schema';
 import { Pages, Files } from '../../../../models';
@@ -55,6 +57,10 @@ export default define(meta, async (ps, user) => {
 		}
 	}
 
+	const ast = unified()
+		.use(markdown)
+		.parse(ps.content);
+
 	const page = await Pages.save(new Page({
 		createdAt: new Date(),
 		updatedAt: new Date(),
@@ -62,8 +68,9 @@ export default define(meta, async (ps, user) => {
 		subTitle: ps.subTitle,
 		name: ps.name,
 		content: ps.content,
+		ast: ast,
 		eyeCatchingImageId: eyeCatchingImage ? eyeCatchingImage.id : null,
 	}));
 
-	return await Pages.pack(page);
+	return await Pages.pack(page, true);
 });

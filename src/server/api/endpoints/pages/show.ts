@@ -46,5 +46,5 @@ export default define(meta, async (ps, user) => {
 		throw new ApiError(meta.errors.noSuchPage);
 	}
 
-	return await Pages.pack(page);
+	return await Pages.pack(page, true);
 });
