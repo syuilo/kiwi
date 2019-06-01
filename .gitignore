@@ -1,6 +1,17 @@
-node_modules
-/built
+# Visual Studio Code
+/.vscode
+
+# Intelij-IDEA
+/.idea
+
+# Node.js
+/node_modules
 
 # config
 /.config/*
 !/.config/example.yml
+
+# kiwi
+/built
+ormconfig.json
+*.log
