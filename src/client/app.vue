@@ -24,7 +24,7 @@ export default Vue.extend({});
 
 <style lang="scss">
 $header-height: 50px;
-$nav-width: 280px;
+$nav-width: 250px;
 
 .ui-header {
 	position: fixed;
@@ -49,6 +49,7 @@ $nav-width: 280px;
 
 .ui-main {
 	margin: $header-height 0 0 $nav-width;
+	max-width: 850px;
 }
 
 .ui-footer {
