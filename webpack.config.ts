@@ -13,17 +13,6 @@ const isProduction = process.env.NODE_ENV == 'production';
 const locales = require('./locales');
 const meta = require('./package.json');
 
-const postcss = {
-	loader: 'postcss-loader',
-	options: {
-		plugins: [
-			require('cssnano')({
-				preset: 'default'
-			})
-		]
-	},
-};
-
 module.exports = {
 	entry: {
 		app: './src/client/app.ts',
@@ -51,8 +40,17 @@ module.exports = {
 			}, {
 				loader: 'css-loader'
 			}, {
+				loader: 'postcss-loader',
+				options: {
+					plugins: [
+						require('cssnano')({
+							preset: 'default'
+						})
+					]
+				},
+			}, {
 				loader: 'sass-loader'
-			}, postcss]
+			}]
 		}, {
 			test: /\.(eot|woff|woff2|svg|ttf)([?]?.*)$/,
 			loader: 'url-loader'

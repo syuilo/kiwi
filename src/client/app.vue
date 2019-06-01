@@ -23,13 +23,16 @@ export default Vue.extend({});
 </script>
 
 <style lang="scss">
+$header-height: 50px;
+$nav-width: 280px;
+
 .ui-header {
 	position: fixed;
 	z-index: 1001;
 	top: 0;
 	left: 0;
 	width: 100%;
-	line-height: 48px;
+	line-height: $header-height;
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;
 	background: #fff;
 }
@@ -37,18 +40,18 @@ export default Vue.extend({});
 .ui-nav {
 	position: fixed;
 	z-index: 1000;
-	top: 48px;
+	top: $header-height;
 	left: 0;
-	width: 300px;
-	height: calc(100% - 48px);
+	width: $nav-width;
+	height: calc(100% - #{$header-height});
 	background: #e2e2e2;
 }
 
 .ui-main {
-	margin: 48px 0 0 300px;
+	margin: $header-height 0 0 $nav-width;
 }
 
 .ui-footer {
-	margin: 48px 0 0 300px;
+	margin: $header-height 0 0 $nav-width;
 }
 </style>
