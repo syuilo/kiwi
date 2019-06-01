@@ -1,12 +1,10 @@
 <template>
-<div v-if="page">
+<div v-if="page" class="page">
 	<header>
 		<h1 class="title">{{ page.title }}</h1>
 		<p class="subTitle">{{ page.subTitle }}</p>
 	</header>
-	<div class="content">
-		<markdown :ast="page.ast"/>
-	</div>
+	<markdown :ast="page.ast" class="content"/>
 </div>
 </template>
 
@@ -53,3 +51,43 @@ export default Vue.extend({
 	}
 });
 </script>
+
+<style lang="scss">
+.page {
+	color: #4e5453;
+
+	> header {
+		padding: 32px;
+		color: #7c928e;
+		border-bottom: solid 1px #eee;
+
+		> .title {
+			margin: 0;
+		}
+
+		> .subTitle {
+			margin: 0;
+			opacity: 0.7;
+		}
+	}
+
+	> .content {
+		> *:not(h1) {
+			margin-left: 32px;
+			margin-right: 32px;
+		}
+
+		h1 {
+			padding: 16px 32px;
+			margin-bottom: 26px;
+			font-size: 1.5em;
+			border-bottom: solid 1px #eee;
+		}
+
+		blockquote {
+			border-left: solid 2px #d7e2df;
+			padding: 8px 16px;
+		}
+	}
+}
+</style>

@@ -40,6 +40,14 @@ export default Vue.extend({});
 $header-height: 50px;
 $nav-width: 250px;
 
+html {
+	font-family: sans-serif;
+}
+
+body {
+	margin: 0;
+}
+
 .ui-header {
 	position: fixed;
 	z-index: 1001;
