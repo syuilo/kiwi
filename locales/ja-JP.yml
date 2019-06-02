@@ -59,6 +59,7 @@ _adminPage:
     user: "ユーザー"
     action: "操作"
     type: "種類"
+    message: "コメント"
     _commitActions:
       create: "作成"
       update: "変更"

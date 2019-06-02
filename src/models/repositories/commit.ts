@@ -21,6 +21,7 @@ export class CommitRepository extends Repository<Commit> {
 			type: commit.type,
 			key: commit.key,
 			user: Users.pack(commit.userId),
+			message: commit.message,
 			data: detail ? commit.data : undefined,
 		};
 
