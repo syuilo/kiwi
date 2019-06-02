@@ -8,6 +8,7 @@ export const router = new VueRouter({
 		{ path: '/\\:signin', component: () => import('./views/signin.vue').then(m => m.default) },
 		{ path: '/\\:new', component: () => import('./views/edit.vue').then(m => m.default) },
 		{ path: '/\\:edit/:pageId', component: () => import('./views/edit.vue').then(m => m.default), props: true },
+		{ path: '/\\:upload', component: () => import('./views/upload.vue').then(m => m.default) },
 		{ path: '/:name*', component: Page, props: true },
 	]
 });

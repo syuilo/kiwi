@@ -17,6 +17,7 @@
 				</template>
 				<li><router-link to="/:new"><fa :icon="faPlus" class="icon"/><span v-t="'createPage'"></span></router-link></li>
 				<li><router-link to="/:new-category"><fa :icon="faPlus" class="icon"/><span v-t="'createCategory'"></span></router-link></li>
+				<li><router-link to="/:upload"><fa :icon="faUpload" class="icon"/><span v-t="'uploadFile'"></span></router-link></li>
 				<li><router-link to="/:recently"><fa :icon="faHistory" class="icon"/><span v-t="'recentlyUpdatedPages'"></span></router-link></li>
 			</ul>
 		</section>
@@ -35,12 +36,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	data() {
 		return {
-			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory
+			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload
 		};
 	}
 });
