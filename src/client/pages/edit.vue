@@ -1,6 +1,8 @@
 <template>
 <kw-container>
 	<template #title>
+		<fa v-if="isEdit" :icon="faEdit" class="icon"/>
+		<fa v-else :icon="faPlus" class="icon"/>
 		<span v-if="isEdit" v-t="{ path: '_pageEdit.editPage', args: { page: page.title } }"></span>
 		<span v-else v-t="'_pageEdit.createPage'"></span>
 	</template>
@@ -19,6 +21,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { faEdit, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { url as local } from '../env';
 import KwContainer from '../components/container.vue';
 import KwInput from '../components/input.vue';
@@ -46,6 +49,7 @@ export default Vue.extend({
 			name: '',
 			content: '',
 			commitMessage: '',
+			faEdit, faPlus,
 		};
 	},
 
