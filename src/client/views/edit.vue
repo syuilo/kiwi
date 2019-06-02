@@ -12,8 +12,8 @@
 	</kw-input>
 	<kw-textarea v-model="content"><span v-t="'_pageEdit.content'"></span></kw-textarea>
 	<kw-input v-if="isEdit" v-model="commitMessage"><span v-t="'_pageEdit.commitMessage'"></span></kw-input>
-	<button v-if="isEdit" v-t="'_pageEdit.update'" @click="submit()"></button>
-	<button v-else v-t="'_pageEdit.create'" @click="submit()"></button>
+	<kw-button v-if="isEdit" v-t="'_pageEdit.update'" @click="submit()"></kw-button>
+	<kw-button v-else v-t="'_pageEdit.create'" @click="submit()"></kw-button>
 </kw-container>
 </template>
 
@@ -23,10 +23,11 @@ import { url as local } from '../env';
 import KwContainer from './container.vue';
 import KwInput from './input.vue';
 import KwTextarea from './textarea.vue';
+import KwButton from './button.vue';
 
 export default Vue.extend({
 	components: {
-		KwContainer, KwInput, KwTextarea
+		KwContainer, KwInput, KwTextarea, KwButton
 	},
 
 	props: {
