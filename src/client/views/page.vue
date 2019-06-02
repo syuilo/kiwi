@@ -114,6 +114,11 @@ $margin: 48px;
 
 		a {
 			color: inherit;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 
 		> .lastUpdated {
