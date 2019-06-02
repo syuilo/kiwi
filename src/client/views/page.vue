@@ -54,11 +54,11 @@ export default Vue.extend({
 
 <style lang="scss">
 .page {
-	color: #4e5453;
+	color: #54514e;
 
 	> header {
 		padding: 32px;
-		color: #7c928e;
+		color: #92827c;
 		border-bottom: solid 1px #eee;
 
 		> .title {
@@ -85,8 +85,9 @@ export default Vue.extend({
 		}
 
 		blockquote {
-			border-left: solid 2px #d7e2df;
+			border-left: solid 2px #e2ded7;
 			padding: 8px 16px;
+			color: #92827c;
 		}
 	}
 }

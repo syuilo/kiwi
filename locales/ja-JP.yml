@@ -7,6 +7,7 @@ createPage: "ページを作成"
 createCategory: "カテゴリを作成"
 categories: "カテゴリー"
 recentlyUpdatedPages: "最近の更新"
+tableOfContents: "目次"
 _signup:
   name: "ユーザー名"
   password: "パスワード"
