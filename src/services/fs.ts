@@ -74,6 +74,10 @@ export class Kwfs {
 
 		return file;
 	}
+
+	public static read(key: string) {
+		return fs.createReadStream(`${Kwfs.BASE}/${key}`);
+	}
 }
 
 async function detectMine(path: string) {

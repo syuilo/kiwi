@@ -20,10 +20,10 @@
 <script lang="ts">
 import Vue from 'vue';
 import { url as local } from '../env';
-import KwContainer from './container.vue';
-import KwInput from './input.vue';
-import KwTextarea from './textarea.vue';
-import KwButton from './button.vue';
+import KwContainer from '../components/container.vue';
+import KwInput from '../components/input.vue';
+import KwTextarea from '../components/textarea.vue';
+import KwButton from '../components/button.vue';
 
 export default Vue.extend({
 	components: {

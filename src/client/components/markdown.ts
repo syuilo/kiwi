@@ -1,5 +1,6 @@
 import Vue, { VNode } from 'vue';
 import KwUrl from './url.vue';
+import KwImage from './image.vue';
 import { concat, sum } from '../../prelude/array';
 
 export default Vue.component('markdown', {
@@ -10,8 +11,6 @@ export default Vue.component('markdown', {
 	},
 
 	render(createElement) {
-		console.log(this.ast);
-
 		const genEl = (ast) => concat(ast.map((token): VNode[] => {
 			switch (token.type) {
 				case 'text': {
@@ -78,6 +77,17 @@ export default Vue.component('markdown', {
 							url: token.url,
 						},
 					}, genEl(token.children))];
+				}
+
+				case 'image': {
+					return [createElement(KwImage, {
+						key: Math.random(),
+						props: {
+							title: token.title,
+							alt: token.alt,
+							url: token.url,
+						},
+					})];
 				}
 
 				/*

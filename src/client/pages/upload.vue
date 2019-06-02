@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import KwContainer from './container.vue';
-import KwButton from './button.vue';
+import KwContainer from '../components/container.vue';
+import KwButton from '../components/button.vue';
 
 export default Vue.extend({
 	components: {
@@ -40,7 +40,8 @@ export default Vue.extend({
 				xhr.open('POST', '/_api/files/create', true);
 				xhr.onload = (e: any) => {
 					const res = JSON.parse(e.target.response);
-					location.href = '/:file/' + res.id;
+					console.log(res);
+					this.$router.push('/:file/' + res.id);
 				};
 
 				xhr.upload.onprogress = e => {
