@@ -5,7 +5,7 @@
 	</template>
 
 	<div style="overflow: auto;">
-		<table class="kiwi">
+		<table class="commits kiwi">
 			<thead>
 				<tr>
 					<th v-t="'_adminPage._commits.date'"></th>
@@ -21,7 +21,7 @@
 					<td class="lastUpdated" :title="new Date(commit.createdAt).toLocaleString()"><timeago :datetime="commit.createdAt"></timeago></td>
 					<td><router-link :to="'/:diff/' + commit.id">{{ commit.id }}</router-link></td>
 					<td>{{ commit.user.name }}</td>
-					<td v-t="'_adminPage._commits._commitActions.' + commit.action"></td>
+					<td class="action" :class="commit.action" v-t="'_adminPage._commits._commitActions.' + commit.action"></td>
 					<td v-t="'_adminPage._commits._commitTypes.' + commit.type"></td>
 					<td>{{ commit.message }}</td>
 				</tr>
@@ -59,3 +59,21 @@ export default Vue.extend({
 	},
 });
 </script>
+
+<style lang="scss" scoped>
+table.commits {
+	td.action {
+		&.create {
+			color: #4a9fea;
+		}
+
+		&.update {
+			color: #99b314;
+		}
+
+		&.delete {
+			color: #b31414;
+		}
+	}
+}
+</style>
