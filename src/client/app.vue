@@ -77,7 +77,6 @@ table.kiwi {
 
 	thead {
 		font-weight: bold;
-		border-bottom: solid 2px #eee;
 
 		tr {
 			th {

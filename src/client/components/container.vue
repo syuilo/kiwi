@@ -1,5 +1,5 @@
 <template>
-<div class="ui-container">
+<div class="ui-container" :class="{ fit }">
 	<header>
 		<h1><slot name="title"></slot></h1>
 	</header>
@@ -12,7 +12,14 @@
 
 <script lang="ts">
 import Vue from 'vue';
-export default Vue.extend({});
+export default Vue.extend({
+	props: {
+		fit: {
+			type: Boolean,
+			required: false
+		}
+	}
+});
 </script>
 
 <style lang="scss" scoped>
@@ -36,8 +43,10 @@ export default Vue.extend({});
 		}
 	}
 
-	> div {
-		padding: 32px;
+	&:not(.fit) {
+		> div {
+			padding: 32px;
+		}
 	}
 }
 </style>

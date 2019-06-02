@@ -1,5 +1,5 @@
 <template>
-<kw-container>
+<kw-container :fit="true">
 	<template #title>
 		<fa :icon="faCog" class="icon"/><span v-t="'_adminPage.commits'"></span>
 	</template>
