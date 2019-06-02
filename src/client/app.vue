@@ -19,7 +19,7 @@
 				<li><router-link to="/:new-category"><fa :icon="faPlus" class="icon"/><span v-t="'createCategory'"></span></router-link></li>
 				<li><router-link to="/:upload"><fa :icon="faUpload" class="icon"/><span v-t="'uploadFile'"></span></router-link></li>
 				<li><router-link to="/:recently"><fa :icon="faHistory" class="icon"/><span v-t="'recentlyUpdatedPages'"></span></router-link></li>
-				<li v-if="$root.user && $root.user.isAdmin"><router-link to="/:admin"><fa :icon="faCog" class="icon"/><span v-t="'wikiSettings'"></span></router-link></li>
+				<li v-if="$root.user && $root.user.isAdmin"><router-link to="/:admin"><fa :icon="faCog" class="icon"/><span v-t="'adminPage'"></span></router-link></li>
 			</ul>
 		</section>
 		<section>
@@ -85,16 +85,15 @@ body {
 	left: 0;
 	width: $nav-width;
 	height: calc(100% - #{$header-height});
-	background: #2f2f2f;
+	background: #353432;
 	font-size: 14px;
 
 	> section {
 		> p {
 			margin: 0;
-			padding: 8px;
-			background: #212121;
+			padding: 8px 16px;
+			background: #484641;
 			color: #9e9e9e;
-			text-align: center;
 		}
 
 		> ul {

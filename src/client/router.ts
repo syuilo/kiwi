@@ -10,6 +10,7 @@ export const router = new VueRouter({
 		{ path: '/\\:edit/:pageId', component: () => import('./pages/edit.vue').then(m => m.default), props: true },
 		{ path: '/\\:upload', component: () => import('./pages/upload.vue').then(m => m.default) },
 		{ path: '/\\:file/:fileId', component: () => import('./pages/file.vue').then(m => m.default), props: true },
+		{ path: '/\\:admin', component: () => import('./pages/admin.vue').then(m => m.default) },
 		{ path: '/:name*', component: Page, props: true },
 	]
 });

@@ -14,7 +14,7 @@ uploadFile: "アップロード"
 viewSource: "ソースを表示"
 viewHistory: "履歴を表示"
 file: "ファイル"
-wikiSettings: "Wikiの管理"
+adminPage: "Wikiの管理"
 _signup:
   name: "ユーザー名"
   password: "パスワード"
@@ -35,3 +35,5 @@ _pageEdit:
   content: "内容"
 _notFound:
   notFound: "ページが見つかりません"
+_adminPage:
+  wikiSettings: "Wikiの設定"
