@@ -19,6 +19,8 @@ create: "作成"
 update: "更新"
 delete: "削除"
 revert: "取り消し"
+pages: "ページ"
+files: "ファイル"
 _permissions:
   "create:page": "ページの作成"
   "update:page": "ページの編集"
@@ -48,6 +50,16 @@ _pageEdit:
 _pageDelete:
   deletePage: "ページ「{page}」の削除"
   commitMessage: "削除の理由"
+_fileDelete:
+  deleteFile: "ファイル「{file}」の削除"
+  commitMessage: "削除の理由"
+_files:
+  _file:
+    date: "日時"
+    name: "名前"
+    size: "サイズ"
+    type: "種類"
+    comment: "説明"
 _notFound:
   notFound: "ページが見つかりません"
 _adminPage:

@@ -18,7 +18,7 @@
 			</thead>
 			<tbody>
 				<tr v-for="commit in commits">
-					<td class="lastUpdated" :title="new Date(commit.createdAt).toLocaleString()"><timeago :datetime="commit.createdAt"></timeago></td>
+					<td :title="new Date(commit.createdAt).toLocaleString()"><timeago :datetime="commit.createdAt"></timeago></td>
 					<td><router-link :to="'/:diff/' + commit.id">{{ commit.id }}</router-link></td>
 					<td>{{ commit.user.name }}</td>
 					<td class="action" :class="commit.action" v-t="'_adminPage._commits._commitActions.' + commit.action"></td>

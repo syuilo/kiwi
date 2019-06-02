@@ -25,6 +25,11 @@ export class FileRepository extends Repository<File> {
 		const packed = {
 			id: file.id,
 			name: file.name,
+			createdAt: file.createdAt,
+			updatedAt: file.updatedAt,
+			comment: file.comment,
+			size: file.size,
+			type: file.type,
 		};
 
 		return await awaitAll(packed);
