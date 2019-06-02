@@ -60,6 +60,12 @@ _files:
     size: "サイズ"
     type: "種類"
     comment: "説明"
+_pages:
+  _page:
+    date: "日時"
+    path: "パス"
+    title: "タイトル"
+    subTitle: "説明"
 _notFound:
   notFound: "ページが見つかりません"
 _adminPage:

@@ -1,7 +1,7 @@
 <template>
 <kw-container :fit="true">
 	<template #title>
-		<fa :icon="faHistory" class="icon"/><span v-t="'files'"></span>
+		<fa :icon="faFileImage" class="icon"/><span v-t="'files'"></span>
 	</template>
 
 	<div style="overflow: auto;">
@@ -31,8 +31,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faHistory, faHashtag, faUser, faMousePointer } from '@fortawesome/free-solid-svg-icons';
-import { faClock, faFile, faCommentAlt } from '@fortawesome/free-regular-svg-icons';
+import { faHashtag } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faFileImage, faCommentAlt } from '@fortawesome/free-regular-svg-icons';
 import KwContainer from '../components/container.vue';
 import KwInput from '../components/input.vue';
 import KwTextarea from '../components/textarea.vue';
@@ -47,7 +47,7 @@ export default Vue.extend({
 	data() {
 		return {
 			files: [],
-			faHistory, faClock, faHashtag, faUser, faMousePointer, faFile, faCommentAlt,
+			faClock, faHashtag, faFileImage, faCommentAlt,
 		};
 	},
 
