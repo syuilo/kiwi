@@ -95,7 +95,12 @@ $margin: 48px;
 			padding: 16px $margin;
 			margin-bottom: 26px;
 			font-size: 1.5em;
+			font-weight: normal;
 			border-bottom: solid 1px #eee;
+		}
+
+		h2 {
+			font-weight: normal;
 		}
 
 		blockquote {

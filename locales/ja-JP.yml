@@ -17,6 +17,7 @@ file: "ファイル"
 adminPage: "Wikiの管理"
 create: "作成"
 update: "更新"
+revert: "取り消し"
 _permissions:
   "create:page": "ページの作成"
   "update:page": "ページの編集"

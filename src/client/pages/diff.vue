@@ -1,10 +1,12 @@
 <template>
-<kw-container>
+<kw-container v-if="commit">
 	<template #title>
 		<fa :icon="faPencilAlt" class="icon"/>#{{ commitId }}
 	</template>
 
 	<div v-html="diffsHtml"/>
+
+	<kw-button v-if="$root.user && $root.user.isAdmin && commit.action === 'update'" @click="revert()">{{ $t('revert') }}</kw-button>
 </kw-container>
 </template>
 
@@ -15,10 +17,11 @@ import { Diff2Html } from 'diff2html';
 import 'diff2html/dist/diff2html.min.css';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import KwContainer from '../components/container.vue';
+import KwButton from '../components/button.vue';
 
 export default Vue.extend({
 	components: {
-		KwContainer
+		KwContainer, KwButton
 	},
 
 	props: {
@@ -73,6 +76,19 @@ export default Vue.extend({
 				this.prev = prev;
 
 				this.diffs = Diff.createTwoFilesPatch(prev.data.name, commit.data.name, prev.data.content, commit.data.content, '', '');
+			});
+		},
+
+		revert() {
+			this.$root.api('pages/update', {
+				id: this.commit.key,
+				name: this.prev.data.name,
+				title: this.prev.data.title,
+				subTitle: this.prev.data.subTitle,
+				content: this.prev.data.content,
+				commit: `This commit reverts #${this.commit.id}`
+			}).then(page => {
+				this.$router.push(`/${this.prev.data.name}`);
 			});
 		}
 	}
