@@ -9,7 +9,7 @@ export const meta = {
 	kind: 'write:pages',
 
 	params: {
-		pageId: {
+		id: {
 			validator: $.num,
 		},
 
@@ -54,7 +54,7 @@ export const meta = {
 };
 
 export default define(meta, async (ps, user) => {
-	const page = await Pages.findOne(ps.pageId);
+	const page = await Pages.findOne(ps.id);
 	if (page == null) {
 		throw new ApiError(meta.errors.noSuchPage);
 	}

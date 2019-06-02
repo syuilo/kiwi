@@ -80,11 +80,12 @@ export default Vue.extend({
 
 		submit() {
 			this.$root.api(this.isEdit ? 'pages/update' : 'pages/create', {
+				id: this.isEdit ? parseInt(this.pageId, 10) : null,
 				name: this.name,
 				title: this.title,
 				subTitle: this.subTitle,
 				content: this.content,
-				commitMessage: this.commitMessage || null
+				commit: this.commitMessage || null
 			}).then(page => {
 				console.log(page);
 			});
