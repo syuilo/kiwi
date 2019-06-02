@@ -4,9 +4,9 @@
 		<fa :icon="faPencilAlt" class="icon"/>#{{ commitId }}
 	</template>
 
-	<div v-html="diffsHtml"/>
+	<div v-if="commit.action === 'update'" v-html="diffsHtml"/>
 
-	<kw-button v-if="$root.user && $root.user.isAdmin && commit.action === 'update'" @click="revert()">{{ $t('revert') }}</kw-button>
+	<kw-button v-if="$root.user && $root.user.isAdmin" @click="revert()">{{ $t('revert') }}</kw-button>
 </kw-container>
 </template>
 
@@ -75,21 +75,35 @@ export default Vue.extend({
 				this.commit = commit;
 				this.prev = prev;
 
-				this.diffs = Diff.createTwoFilesPatch(prev.data.name, commit.data.name, prev.data.content, commit.data.content, '', '');
+				if (commit.action === 'update') {
+					this.diffs = Diff.createTwoFilesPatch(prev.data.name, commit.data.name, prev.data.content, commit.data.content, '', '');
+				}
 			});
 		},
 
 		revert() {
-			this.$root.api('pages/update', {
-				id: this.commit.key,
-				name: this.prev.data.name,
-				title: this.prev.data.title,
-				subTitle: this.prev.data.subTitle,
-				content: this.prev.data.content,
-				commit: `This commit reverts #${this.commit.id}`
-			}).then(page => {
-				this.$router.push(`/${this.prev.data.name}`);
-			});
+			if (this.commit.action === 'update') {
+				this.$root.api('pages/update', {
+					id: this.commit.key,
+					name: this.prev.data.name,
+					title: this.prev.data.title,
+					subTitle: this.prev.data.subTitle,
+					content: this.prev.data.content,
+					commit: `This commit reverts #${this.commit.id}`
+				}).then(page => {
+					this.$router.push(`/${this.prev.data.name}`);
+				});
+			} else if (this.commit.action === 'delete') {
+				this.$root.api('pages/create', {
+					name: this.prev.data.name,
+					title: this.prev.data.title,
+					subTitle: this.prev.data.subTitle,
+					content: this.prev.data.content,
+					commit: `This commit reverts #${this.commit.id}`
+				}).then(page => {
+					this.$router.push(`/${this.prev.data.name}`);
+				});
+			}
 		}
 	}
 });

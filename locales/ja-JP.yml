@@ -17,6 +17,7 @@ file: "ファイル"
 adminPage: "Wikiの管理"
 create: "作成"
 update: "更新"
+delete: "削除"
 revert: "取り消し"
 _permissions:
   "create:page": "ページの作成"
@@ -38,12 +39,15 @@ _login:
   login: "ログイン"
 _pageEdit:
   createPage: "ページを作成"
-  editPage: "ページ「{page}」を編集"
+  editPage: "ページ「{page}」の編集"
   title: "タイトル"
   subTitle: "ページの要約"
   url: "URL"
   commitMessage: "編集の要約"
   content: "内容"
+_pageDelete:
+  deletePage: "ページ「{page}」の削除"
+  commitMessage: "削除の理由"
 _notFound:
   notFound: "ページが見つかりません"
 _adminPage:

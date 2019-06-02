@@ -95,7 +95,6 @@ table.kiwi {
 
 	th, td {
 		padding: 8px 16px;
-		min-width: 128px;
 	}
 }
 

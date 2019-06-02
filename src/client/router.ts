@@ -8,6 +8,7 @@ export const router = new VueRouter({
 		{ path: '/\\:signin', component: () => import('./pages/signin.vue').then(m => m.default) },
 		{ path: '/\\:new', component: () => import('./pages/edit.vue').then(m => m.default) },
 		{ path: '/\\:edit/:pageId', component: () => import('./pages/edit.vue').then(m => m.default), props: true },
+		{ path: '/\\:delete/:pageId', component: () => import('./pages/delete.vue').then(m => m.default), props: true },
 		{ path: '/\\:upload', component: () => import('./pages/upload.vue').then(m => m.default) },
 		{ path: '/\\:file/:fileId', component: () => import('./pages/file.vue').then(m => m.default), props: true },
 		{ path: '/\\:diff/:commitId', component: () => import('./pages/diff.vue').then(m => m.default), props: true },

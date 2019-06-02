@@ -8,12 +8,12 @@
 		<table class="commits kiwi">
 			<thead>
 				<tr>
-					<th v-t="'_adminPage._commits.date'"></th>
-					<th v-t="'_adminPage._commits.id'"></th>
-					<th v-t="'_adminPage._commits.user'"></th>
-					<th v-t="'_adminPage._commits.action'"></th>
-					<th v-t="'_adminPage._commits.type'"></th>
-					<th v-t="'_adminPage._commits.message'"></th>
+					<th><fa :icon="faClock"/> {{ $t('_adminPage._commits.date') }}</th>
+					<th><fa :icon="faHashtag"/> {{ $t('_adminPage._commits.id') }}</th>
+					<th><fa :icon="faUser"/> {{ $t('_adminPage._commits.user') }}</th>
+					<th><fa :icon="faMousePointer"/> {{ $t('_adminPage._commits.action') }}</th>
+					<th><fa :icon="faFile"/> {{ $t('_adminPage._commits.type') }}</th>
+					<th><fa :icon="faCommentAlt"/> {{ $t('_adminPage._commits.message') }}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -33,7 +33,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faHistory } from '@fortawesome/free-solid-svg-icons';
+import { faHistory, faHashtag, faUser, faMousePointer } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faFile, faCommentAlt } from '@fortawesome/free-regular-svg-icons';
 import KwContainer from '../components/container.vue';
 import KwInput from '../components/input.vue';
 import KwTextarea from '../components/textarea.vue';
@@ -48,7 +49,7 @@ export default Vue.extend({
 	data() {
 		return {
 			commits: [],
-			faHistory,
+			faHistory, faClock, faHashtag, faUser, faMousePointer, faFile, faCommentAlt,
 		};
 	},
 
