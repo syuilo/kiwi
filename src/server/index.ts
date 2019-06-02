@@ -44,7 +44,7 @@ if (config.url.startsWith('https') && !config.disableHsts) {
 	});
 }
 
-app.use(mount('/api', apiServer));
+app.use(mount('/_api', apiServer));
 app.use(mount('/files', require('./file')));
 
 // Init router

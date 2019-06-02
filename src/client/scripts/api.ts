@@ -1,7 +1,7 @@
 export function api(endpoint: string, data: Record<string, any> = {}) {
 	if (localStorage.getItem('i')) data['i'] = localStorage.getItem('i');
 	return new Promise((resolve, reject) => {
-		fetch(`/api/${endpoint}`, {
+		fetch(`/_api/${endpoint}`, {
 			method: 'POST',
 			body: JSON.stringify(data),
 			credentials: 'omit',
