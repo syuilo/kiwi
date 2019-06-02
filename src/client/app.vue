@@ -8,6 +8,8 @@
 			<p v-t="'menu'"></p>
 			<ul>
 				<li><router-link to="/"><fa :icon="faHome" class="icon" fixed-width/><span v-t="'home'"></span></router-link></li>
+				<li><router-link to="/:pages"><fa :icon="faBook" class="icon" fixed-width/><span v-t="'pages'"></span></router-link></li>
+				<li><router-link to="/:files"><fa :icon="faFileImage" class="icon" fixed-width/><span v-t="'files'"></span></router-link></li>
 				<li><router-link to="/:recently"><fa :icon="faHistory" class="icon" fixed-width/><span v-t="'recentlyUpdatedPages'"></span></router-link></li>
 			</ul>
 			<ul v-if="$root.isLoggedin">
@@ -43,12 +45,13 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook } from '@fortawesome/free-solid-svg-icons';
+import { faFileImage } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	data() {
 		return {
-			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog
+			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faFileImage,
 		};
 	}
 });
