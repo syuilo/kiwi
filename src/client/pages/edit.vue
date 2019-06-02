@@ -12,8 +12,8 @@
 	</kw-input>
 	<kw-textarea v-model="content"><span v-t="'_pageEdit.content'"></span></kw-textarea>
 	<kw-input v-if="isEdit" v-model="commitMessage"><span v-t="'_pageEdit.commitMessage'"></span></kw-input>
-	<kw-button v-if="isEdit" v-t="'_pageEdit.update'" @click="submit()"></kw-button>
-	<kw-button v-else v-t="'_pageEdit.create'" @click="submit()"></kw-button>
+	<kw-button v-if="isEdit" v-t="'update'" @click="submit()"></kw-button>
+	<kw-button v-else v-t="'create'" @click="submit()"></kw-button>
 </kw-container>
 </template>
 

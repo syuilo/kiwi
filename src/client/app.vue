@@ -1,7 +1,7 @@
 <template>
 <div>
 	<header class="ui-header">
-		<span class="title">Kiwi</span>
+		<span class="title">{{ $root.wiki ? $root.wiki.name : '' }}</span>
 	</header>
 	<nav class="ui-nav">
 		<section>

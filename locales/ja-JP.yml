@@ -15,6 +15,8 @@ viewSource: "ソースを表示"
 viewHistory: "履歴を表示"
 file: "ファイル"
 adminPage: "Wikiの管理"
+create: "作成"
+update: "更新"
 _signup:
   name: "ユーザー名"
   password: "パスワード"
@@ -29,11 +31,12 @@ _pageEdit:
   title: "タイトル"
   subTitle: "ページの要約"
   url: "URL"
-  create: "作成"
-  update: "更新"
   commitMessage: "編集の要約"
   content: "内容"
 _notFound:
   notFound: "ページが見つかりません"
 _adminPage:
   wikiSettings: "Wikiの設定"
+  _wikiSettings:
+    wikiName: "Wikiの名前"
+    wikiDescription: "Wikiの説明"

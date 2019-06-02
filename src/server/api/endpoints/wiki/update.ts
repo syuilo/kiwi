@@ -9,11 +9,18 @@ export const meta = {
 		name: {
 			validator: $.str,
 		},
+
+		description: {
+			validator: $.str,
+		},
 	},
 };
 
 export default define(meta, async (ps, user) => {
 	await Metas.update({}, {
 		name: ps.name,
+		description: ps.description,
 	});
+
+	return Metas.pack(await Metas.fetch());
 });

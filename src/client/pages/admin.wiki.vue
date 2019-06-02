@@ -1,0 +1,54 @@
+<template>
+<kw-container v-if="wiki">
+	<template #title>
+		<fa :icon="faCog" class="icon"/><span v-t="'_adminPage.wikiSettings'"></span>
+	</template>
+
+	<kw-input v-model="name"><span v-t="'_adminPage._wikiSettings.wikiName'"></span></kw-input>
+	<kw-input v-model="description"><span v-t="'_adminPage._wikiSettings.wikiDescription'"></span></kw-input>
+	<kw-button v-t="'update'" @click="update()"></kw-button>
+</kw-container>
+</template>
+
+<script lang="ts">
+import Vue from 'vue';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
+import KwContainer from '../components/container.vue';
+import KwInput from '../components/input.vue';
+import KwTextarea from '../components/textarea.vue';
+import KwButton from '../components/button.vue';
+
+export default Vue.extend({
+	components: {
+		KwContainer, KwInput, KwButton
+	},
+
+	data() {
+		return {
+			wiki: null,
+			name: '',
+			description: '',
+			faCog
+		};
+	},
+
+	created() {
+		this.$root.api('wiki').then(wiki => {
+			this.wiki = wiki;
+			this.name = wiki.name;
+			this.description = wiki.description;
+		});
+	},
+
+	methods: {
+		update() {
+			this.$root.api('wiki/update', {
+				name: this.name,
+				description: this.description,
+			}).then(wiki => {
+				this.$root.wiki = wiki;
+			});
+		}
+	}
+});
+</script>

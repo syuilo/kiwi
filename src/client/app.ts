@@ -34,15 +34,20 @@ async function main() {
 		}),
 		data() {
 			return {
+				wiki: null,
 				user: null,
 				isLoggedin: localStorage.getItem('i') != null
 			};
 		},
 		created() {
+			this.api('wiki').then(wiki => {
+				this.wiki = wiki;
+			});
+
 			if (this.isLoggedin) {
 				this.api('i').then(account => {
 					this.user = account;
-				})
+				});
 			}
 		},
 		methods: {

@@ -11,6 +11,7 @@ export const router = new VueRouter({
 		{ path: '/\\:upload', component: () => import('./pages/upload.vue').then(m => m.default) },
 		{ path: '/\\:file/:fileId', component: () => import('./pages/file.vue').then(m => m.default), props: true },
 		{ path: '/\\:admin', component: () => import('./pages/admin.vue').then(m => m.default) },
+		{ path: '/\\:admin/wiki', component: () => import('./pages/admin.wiki.vue').then(m => m.default) },
 		{ path: '/:name*', component: Page, props: true },
 	]
 });

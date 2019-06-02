@@ -1,6 +1,8 @@
 import { EntityRepository, Repository, getConnection } from 'typeorm';
 import { Meta } from '../entities/meta';
 
+export type PackedMeta = any;
+
 @EntityRepository(Meta)
 export class MetaRepository extends Repository<Meta> {
 	public async fetch(): Promise<Meta> {
@@ -17,5 +19,18 @@ export class MetaRepository extends Repository<Meta> {
 				}) as Meta;
 			}
 		});
+	}
+
+
+	public async pack(
+		src: Meta,
+	): Promise<PackedMeta> {
+		const packed = {
+			name: src.name,
+			description: src.description,
+			guestPermissions: src.guestPermissions,
+		};
+
+		return packed;
 	}
 }
