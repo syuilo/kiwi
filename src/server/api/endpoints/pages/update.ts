@@ -10,7 +10,7 @@ export const meta = {
 
 	params: {
 		id: {
-			validator: $.num,
+			validator: $.str,
 		},
 
 		commit: {
@@ -34,7 +34,7 @@ export const meta = {
 		},
 
 		eyeCatchingImageId: {
-			validator: $.optional.nullable.num,
+			validator: $.optional.nullable.str,
 		},
 	},
 
@@ -82,7 +82,7 @@ export default define(meta, async (ps, user) => {
 		eyeCatchingImageId: eyeCatchingImage ? eyeCatchingImage.id : null,
 	});
 
-	await Kwr.commit(user, ps.commit, 'page', {
+	await Kwr.commit(user, ps.commit, 'update', 'page', page.id, {
 		title: page.title,
 		subTitle: page.subTitle,
 		name: page.name,

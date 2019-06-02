@@ -1,9 +1,9 @@
-import { JoinColumn, ManyToOne, Entity, Index, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { JoinColumn, ManyToOne, Entity, Index, Column, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class FileFolder {
-	@PrimaryGeneratedColumn()
-	public id: number;
+	@PrimaryColumn('varchar')
+	public id: string;
 
 	@Index()
 	@Column('timestamp with time zone', {

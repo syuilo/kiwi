@@ -6,7 +6,7 @@ import { Files } from '../../../../models';
 export const meta = {
 	params: {
 		id: {
-			validator: $.num,
+			validator: $.str,
 		},
 	},
 

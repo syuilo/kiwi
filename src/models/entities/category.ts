@@ -1,9 +1,9 @@
-import { Entity, Index, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Index, Column, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Category {
-	@PrimaryGeneratedColumn()
-	public id: number;
+	@PrimaryColumn('varchar')
+	public id: string;
 
 	@Column('varchar', {
 		length: 256, unique: true,

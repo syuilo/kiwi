@@ -45,7 +45,7 @@ export default Vue.extend({
 	methods: {
 		fetch() {
 			this.$root.api('files/show', {
-				id: parseInt(this.fileId, 10)
+				id: this.fileId
 			}).then(file => {
 				this.file = file;
 			});

@@ -18,6 +18,18 @@ export class Commit {
 	})
 	public type: string;
 
+	@Index()
+	@Column('varchar', {
+		length: 16,
+	})
+	public action: string;
+
+	@Index()
+	@Column('varchar', {
+		length: 32,
+	})
+	public key: string;
+
 	@Column('varchar', {
 		length: 512, nullable: true,
 		comment: 'The comment of the Commit.'
@@ -27,7 +39,7 @@ export class Commit {
 	@Column('jsonb', {
 		default: {},
 	})
-	public content: Record<string, any>;
+	public data: Record<string, any>;
 
 	@Index()
 	@Column('integer')

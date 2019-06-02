@@ -4,6 +4,7 @@ import define from '../define';
 import { Users, Metas } from '../../../models';
 import generateUserToken from '../common/generate-native-user-token';
 import { User } from '../../../models/entities/user';
+import { ulid } from 'ulid';
 
 export const meta = {
 	params: {
@@ -29,6 +30,7 @@ export default define(meta, async (ps) => {
 	const usersCount = await Users.count();
 
 	await Users.save(new User({
+		id: ulid().toLowerCase(),
 		createdAt: new Date(),
 		name: ps.name,
 		token: secret,

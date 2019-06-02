@@ -19,7 +19,7 @@ router.get('/:id', async ctx => {
 	const id = ctx.params.id;
 
 	// Fetch file
-	const file = await Files.findOne(parseInt(id, 10));
+	const file = await Files.findOne(id);
 
 	if (file == null) {
 		ctx.status = 404;

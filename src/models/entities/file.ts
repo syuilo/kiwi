@@ -1,10 +1,10 @@
-import { Entity, Index, JoinColumn, Column, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Index, JoinColumn, Column, ManyToOne, PrimaryColumn } from 'typeorm';
 import { FileFolder } from './file-folder';
 
 @Entity()
 export class File {
-	@PrimaryGeneratedColumn()
-	public id: number;
+	@PrimaryColumn('varchar')
+	public id: string;
 
 	@Index()
 	@Column('timestamp with time zone', {

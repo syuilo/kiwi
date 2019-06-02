@@ -6,6 +6,7 @@ import { Page } from '../../../../models/entities/page';
 import { ApiError } from '../../error';
 import { parseMd } from '../../common/parse-md';
 import { Kwr } from '../../../../services/repository';
+import { ulid } from 'ulid';
 
 export const meta = {
 	permission: 'create:page',
@@ -28,7 +29,7 @@ export const meta = {
 		},
 
 		eyeCatchingImageId: {
-			validator: $.optional.nullable.num,
+			validator: $.optional.nullable.str,
 		},
 	},
 
@@ -62,6 +63,7 @@ export default define(meta, async (ps, user) => {
 	// todo: transaction
 
 	const page = await Pages.save(new Page({
+		id: ulid().toLowerCase(),
 		createdAt: new Date(),
 		updatedAt: new Date(),
 		title: ps.title,
@@ -72,7 +74,7 @@ export default define(meta, async (ps, user) => {
 		eyeCatchingImageId: eyeCatchingImage ? eyeCatchingImage.id : null,
 	}));
 
-	await Kwr.commit(user, 'Initial commit', 'page', {
+	await Kwr.commit(user, 'Initial commit', 'create', 'page', page.id, {
 		title: page.title,
 		subTitle: page.subTitle,
 		name: page.name,

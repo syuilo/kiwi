@@ -2,6 +2,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { Commit } from '../entities/commit';
 import { ensure } from '../../prelude/ensure';
 import { awaitAll } from '../../prelude/await-all';
+import { Users } from '..';
 
 export type PackedCommit = any;
 
@@ -14,6 +15,10 @@ export class CommitRepository extends Repository<Commit> {
 
 		const packed = {
 			id: commit.id,
+			createdAt: commit.createdAt,
+			action: commit.action,
+			type: commit.type,
+			user: Users.pack(commit.userId)
 		};
 
 		return await awaitAll(packed);

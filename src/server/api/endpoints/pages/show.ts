@@ -8,7 +8,7 @@ import { Page } from '../../../../models/entities/page';
 export const meta = {
 	params: {
 		id: {
-			validator: $.optional.num,
+			validator: $.optional.str,
 		},
 
 		name: {

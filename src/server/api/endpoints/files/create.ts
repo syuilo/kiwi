@@ -12,7 +12,7 @@ export const meta = {
 
 	params: {
 		folderId: {
-			validator: $.optional.nullable.num,
+			validator: $.optional.nullable.str,
 			default: null as any,
 		},
 	},

@@ -1,9 +1,9 @@
-import { Entity, Column, Index, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, Index, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class User {
-	@PrimaryGeneratedColumn()
-	public id: number;
+	@PrimaryColumn('varchar')
+	public id: string;
 
 	@Index()
 	@Column('timestamp with time zone', {

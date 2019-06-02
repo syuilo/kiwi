@@ -47,26 +47,27 @@ export class Kwfs {
 		// detect name
 		const detectedName = name || (ext ? `untitled.${ext}` : 'untitled');
 
-		const key = ulid().toLowerCase();
+		const fileKey = ulid().toLowerCase();
 
 		fs.mkdirSync(Kwfs.BASE, { recursive: true });
-		fs.copyFileSync(path, `${Kwfs.BASE}/${key}`);
+		fs.copyFileSync(path, `${Kwfs.BASE}/${fileKey}`);
 
 		// todo: transaction
 
 		const file = await Files.save(new File({
+			id: ulid().toLowerCase(),
 			createdAt: new Date(),
 			updatedAt: new Date(),
 			name: detectedName,
-			file: key,
+			file: fileKey,
 			md5: hash,
 			type: mime,
 			size: size,
 		}));
 
-		await Kwr.commit(user, 'Initial commit', 'file', {
+		await Kwr.commit(user, 'Initial commit', 'create', 'file', file.id, {
 			name: detectedName,
-			file: key,
+			file: fileKey,
 			md5: hash,
 			type: mime,
 			size: size,

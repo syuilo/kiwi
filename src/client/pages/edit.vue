@@ -69,7 +69,7 @@ export default Vue.extend({
 		fetch() {
 			if (this.pageId == null) return;
 			this.$root.api('pages/show', {
-				id: parseInt(this.pageId, 10)
+				id: this.pageId
 			}).then(page => {
 				this.page = page;
 				this.title = page.title;
@@ -81,7 +81,7 @@ export default Vue.extend({
 
 		submit() {
 			this.$root.api(this.isEdit ? 'pages/update' : 'pages/create', {
-				id: this.isEdit ? parseInt(this.pageId, 10) : null,
+				id: this.isEdit ? this.pageId : null,
 				name: this.name,
 				title: this.title,
 				subTitle: this.subTitle,

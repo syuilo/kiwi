@@ -5,6 +5,7 @@
 	</template>
 
 	<router-link to="/:admin/wiki" v-t="'_adminPage.wikiSettings'"></router-link>
+	<router-link to="/:admin/commits" v-t="'_adminPage.commits'"></router-link>
 </kw-container>
 </template>
 

@@ -67,6 +67,39 @@ body {
 	margin: 0;
 }
 
+
+table {
+	width: 100%;
+	max-width: 100%;
+	overflow: auto;
+	border-spacing: 0;
+	border-collapse: collapse;
+
+	thead {
+		font-weight: bold;
+		border-bottom: solid 2px #eee;
+
+		tr {
+			th {
+				text-align: left;
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			&:nth-child(odd) {
+				background: #fbfbfb;
+			}
+		}
+	}
+
+	th, td {
+		padding: 8px 16px;
+		min-width: 128px;
+	}
+}
+
 .ui-header {
 	position: fixed;
 	z-index: 1001;
