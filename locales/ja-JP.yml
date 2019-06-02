@@ -8,6 +8,8 @@ createCategory: "カテゴリを作成"
 categories: "カテゴリー"
 recentlyUpdatedPages: "最近の更新"
 tableOfContents: "目次"
+editThisPage: "このページを編集"
+lastUpdated: "最終更新"
 _signup:
   name: "ユーザー名"
   password: "パスワード"

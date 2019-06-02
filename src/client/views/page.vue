@@ -5,11 +5,16 @@
 		<p class="subTitle">{{ page.subTitle }}</p>
 	</header>
 	<markdown :ast="page.ast" class="content"/>
+	<footer>
+		<router-link :to="`/:edit/${page.id}`"><fa :icon="faEdit"/> <span v-t="'editThisPage'"></span></router-link>
+		<span><span v-t="'lastUpdated'"></span>: <timeago :datetime="page.updatedAt"></timeago></span>
+	</footer>
 </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import Markdown from './markdown.ts';
 
 export default Vue.extend({
@@ -26,7 +31,8 @@ export default Vue.extend({
 
 	data() {
 		return {
-			page: null
+			page: null,
+			faEdit
 		};
 	},
 
@@ -94,6 +100,20 @@ $margin: 48px;
 			border-left: solid 2px #e2ded7;
 			padding: 8px 16px;
 			color: #92827c;
+		}
+	}
+
+	> footer {
+		padding: 32px $margin;
+		font-size: 15px;
+		border-top: solid 1px #eee;
+
+		> * {
+			margin-right: 16px;
+		}
+
+		a {
+			color: inherit;
 		}
 	}
 }
