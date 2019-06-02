@@ -89,6 +89,8 @@ export default Vue.extend({
 					title: this.prev.data.title,
 					subTitle: this.prev.data.subTitle,
 					content: this.prev.data.content,
+					tags: this.prev.data.tags,
+					category: this.prev.data.category,
 					commit: `This commit reverts #${this.commit.id}`
 				}).then(page => {
 					this.$router.push(`/${this.prev.data.name}`);
@@ -99,6 +101,8 @@ export default Vue.extend({
 					title: this.prev.data.title,
 					subTitle: this.prev.data.subTitle,
 					content: this.prev.data.content,
+					tags: this.prev.data.tags,
+					category: this.prev.data.category,
 					commit: `This commit reverts #${this.commit.id}`
 				}).then(page => {
 					this.$router.push(`/${this.prev.data.name}`);

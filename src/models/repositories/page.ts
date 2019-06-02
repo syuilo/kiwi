@@ -19,6 +19,8 @@ export class PageRepository extends Repository<Page> {
 			name: page.name,
 			title: page.title,
 			subTitle: page.subTitle,
+			category: page.category,
+			tags: page.tags,
 			content: detail ? page.content : undefined,
 			ast: detail ? page.ast : undefined,
 		};

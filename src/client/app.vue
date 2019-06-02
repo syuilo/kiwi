@@ -14,7 +14,7 @@
 			</ul>
 			<ul v-if="$root.isLoggedin">
 				<li><router-link to="/:new"><fa :icon="faPlus" class="icon" fixed-width/><span v-t="'createPage'"></span></router-link></li>
-				<li><router-link to="/:new-category"><fa :icon="faPlus" class="icon" fixed-width/><span v-t="'createCategory'"></span></router-link></li>
+				<li><router-link to="/:new-template"><fa :icon="faPlus" class="icon" fixed-width/><span v-t="'createTemplate'"></span></router-link></li>
 				<li><router-link to="/:upload"><fa :icon="faUpload" class="icon" fixed-width/><span v-t="'uploadFile'"></span></router-link></li>
 			</ul>
 			<ul v-if="$root.user && $root.user.isAdmin">
@@ -33,6 +33,12 @@
 		<section>
 			<p v-t="'categories'"></p>
 		</section>
+		<section>
+			<p v-t="'tags'"></p>
+			<ul>
+				<li v-for="tag in tags"><router-link :to="'/:tags/' + tag[0]"><fa :icon="faTag" class="icon" fixed-width/><span>{{ tag[0] }}</span></router-link></li>
+			</ul>
+		</section>
 	</nav>
 	<main class="ui-main">
 		<router-view></router-view>
@@ -45,14 +51,21 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faTag } from '@fortawesome/free-solid-svg-icons';
 import { faFileImage } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	data() {
 		return {
-			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faFileImage,
+			tags: [],
+			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faFileImage, faTag,
 		};
+	},
+
+	created() {
+		this.$root.api('tags').then(tags => {
+			this.tags = Object.entries(tags);
+		});
 	}
 });
 </script>

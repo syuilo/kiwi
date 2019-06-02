@@ -12,7 +12,9 @@
 	<kw-input v-model="name"><span v-t="'_pageEdit.url'"></span>
 		<template #info>{{ local }}/{{ name }}</template>
 	</kw-input>
+	<kw-input v-model="category"><span v-t="'_pageEdit.category'"></span></kw-input>
 	<kw-textarea v-model="content"><span v-t="'_pageEdit.content'"></span></kw-textarea>
+	<kw-input v-model="tags"><span v-t="'_pageEdit.tags'"></span></kw-input>
 	<kw-input v-if="isEdit" v-model="commitMessage"><span v-t="'_pageEdit.commitMessage'"></span></kw-input>
 	<kw-button v-if="isEdit" v-t="'update'" @click="submit()"></kw-button>
 	<kw-button v-else v-t="'create'" @click="submit()"></kw-button>
@@ -48,6 +50,8 @@ export default Vue.extend({
 			subTitle: '',
 			name: '',
 			content: '',
+			tags: '',
+			category: '',
 			commitMessage: '',
 			faEdit, faPlus,
 		};
@@ -80,6 +84,8 @@ export default Vue.extend({
 				this.subTitle = page.subTitle;
 				this.name = page.name;
 				this.content = page.content;
+				this.category = page.category;
+				this.tags = page.tags.join(' ');
 			});
 		},
 
@@ -90,6 +96,8 @@ export default Vue.extend({
 				title: this.title,
 				subTitle: this.subTitle,
 				content: this.content,
+				tags: this.tags.split(' '),
+				category: this.category,
 				commit: this.commitMessage || null
 			}).then(page => {
 				this.$router.push(`/${this.name}`);

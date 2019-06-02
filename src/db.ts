@@ -6,7 +6,7 @@ import { Meta } from './models/entities/meta';
 import { Page } from './models/entities/page';
 import { File } from './models/entities/file';
 import { FileFolder } from './models/entities/file-folder';
-import { Category } from './models/entities/category';
+import { Template } from './models/entities/template';
 import { Commit } from './models/entities/commit';
 
 export function initDb(justBorrow = false, sync = false, log = false) {
@@ -32,7 +32,7 @@ export function initDb(justBorrow = false, sync = false, log = false) {
 			Page,
 			File,
 			FileFolder,
-			Category,
+			Template,
 			Commit,
 		]
 	});

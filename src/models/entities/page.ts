@@ -39,6 +39,18 @@ export class Page {
 	})
 	public content: string;
 
+	@Index()
+	@Column('varchar', {
+		length: 256, default: ''
+	})
+	public category: string;
+
+	@Index()
+	@Column('varchar', {
+		length: 128, array: true, default: '{}'
+	})
+	public tags: string[];
+
 	@Column({
 		type: 'integer',
 		nullable: true,
@@ -52,7 +64,7 @@ export class Page {
 	public eyeCatchingImage: File | null;
 
 	/**
-	 * "category": {
+	 * "tag": {
 	 *   "a": "foo",
 	 *   "b": "bar",
 	 *   "c": "baz",

@@ -16,9 +16,9 @@ const permissions = [
 	'create:file',
 	'update:file',
 	'delete:file',
-	'create:category',
-	'update:category',
-	'delete:category',
+	'create:template',
+	'update:template',
+	'delete:template',
 ];
 
 export default Vue.extend({

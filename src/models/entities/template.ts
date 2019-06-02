@@ -1,14 +1,9 @@
 import { Entity, Index, Column, PrimaryColumn } from 'typeorm';
 
 @Entity()
-export class Category {
+export class Template {
 	@PrimaryColumn('varchar')
 	public id: string;
-
-	@Column('varchar', {
-		length: 256, unique: true,
-	})
-	public title: string;
 
 	@Index()
 	@Column('varchar', {
@@ -16,21 +11,12 @@ export class Category {
 	})
 	public name: string;
 
-	/**
-	 * [{
-	 *   "title": "a",
-	 * }, {
-	 *   "title": "b",
-	 * }, {
-	 *   "title": "c",
-	 * }]
-	 */
-	@Column('jsonb', {
-		default: []
+	@Column('varchar', {
+		length: 128, array: true, default: '{}'
 	})
-	public attributes: Record<string, any>[];
+	public attributes: string[];
 
-	constructor(data: Partial<Category>) {
+	constructor(data: Partial<Template>) {
 		if (data == null) return;
 
 		for (const [k, v] of Object.entries(data)) {
