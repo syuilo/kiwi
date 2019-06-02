@@ -18,10 +18,15 @@ _login:
   name: "ユーザー名"
   password: "パスワード"
   login: "ログイン"
-_newPage:
+_pageEdit:
+  createPage: "ページを作成"
+  editPage: "ページ「{page}」を編集"
   title: "タイトル"
   subTitle: "ページの要約"
   url: "URL"
   create: "作成"
+  update: "更新"
+  commitMessage: "編集の要約"
+  content: "内容"
 _notFound:
   notFound: "ページが見つかりません"

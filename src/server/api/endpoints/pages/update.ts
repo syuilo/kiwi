@@ -1,16 +1,22 @@
 import $ from 'cafy';
 import define from '../../define';
-import { types, bool } from '../../../../misc/schema';
-import { Pages, Files, Commits } from '../../../../models';
-import { Page } from '../../../../models/entities/page';
 import { ApiError } from '../../error';
-import { Commit } from '../../../../models/entities/commit';
+import { Pages, Files, Commits } from '../../../../models';
 import { parseMd } from '../../common/parse-md';
+import { Commit } from '../../../../models/entities/commit';
 
 export const meta = {
 	kind: 'write:pages',
 
 	params: {
+		pageId: {
+			validator: $.num,
+		},
+
+		commit: {
+			validator: $.nullable.str,
+		},
+
 		title: {
 			validator: $.str,
 		},
@@ -32,22 +38,27 @@ export const meta = {
 		},
 	},
 
-	res: {
-		type: types.object,
-		optional: bool.false, nullable: bool.false,
-		ref: 'Page',
-	},
-
 	errors: {
+		noSuchPage: {
+			message: 'No such page.',
+			code: 'NO_SUCH_PAGE',
+			id: 'a7148941-2313-4e81-a53e-bfa1a272bd7f'
+		},
+
 		noSuchFile: {
 			message: 'No such file.',
 			code: 'NO_SUCH_FILE',
-			id: 'b9a357b9-8014-42b8-9fb8-40043b9f0c91'
+			id: '42071042-025e-4ae0-b54c-169af6d02c33'
 		},
 	}
 };
 
 export default define(meta, async (ps, user) => {
+	const page = await Pages.findOne(ps.pageId);
+	if (page == null) {
+		throw new ApiError(meta.errors.noSuchPage);
+	}
+
 	let eyeCatchingImage = null;
 	if (ps.eyeCatchingImageId != null) {
 		eyeCatchingImage = await Files.findOne(ps.eyeCatchingImageId);
@@ -61,22 +72,21 @@ export default define(meta, async (ps, user) => {
 
 	// todo: transaction
 
-	const page = await Pages.save(new Page({
-		createdAt: new Date(),
+	await Pages.update(page.id, {
 		updatedAt: new Date(),
 		title: ps.title,
 		subTitle: ps.subTitle,
 		name: ps.name,
 		content: ps.content,
-		ast: ast,
+		ast: ast as Record<string, any>,
 		eyeCatchingImageId: eyeCatchingImage ? eyeCatchingImage.id : null,
-	}));
+	});
 
 	await Commits.save(new Commit({
 		createdAt: new Date(),
-		userId: user ? user.id : null,
 		type: 'page',
-		message: 'Initial commit',
+		userId: user ? user.id : null,
+		message: ps.commit,
 		content: {
 			title: page.title,
 			subTitle: page.subTitle,
@@ -85,6 +95,4 @@ export default define(meta, async (ps, user) => {
 			eyeCatchingImageId: page.eyeCatchingImageId,
 		},
 	}));
-
-	return await Pages.pack(page, true);
 });

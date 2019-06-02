@@ -6,7 +6,8 @@ export const router = new VueRouter({
 	routes: [
 		{ path: '/\\:signup', component: () => import('./views/signup.vue').then(m => m.default) },
 		{ path: '/\\:signin', component: () => import('./views/signin.vue').then(m => m.default) },
-		{ path: '/\\:new', component: () => import('./views/new.vue').then(m => m.default) },
+		{ path: '/\\:new', component: () => import('./views/edit.vue').then(m => m.default) },
+		{ path: '/\\:edit/:pageId', component: () => import('./views/edit.vue').then(m => m.default), props: true },
 		{ path: '/:name*', component: Page, props: true },
 	]
 });
