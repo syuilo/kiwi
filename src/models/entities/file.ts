@@ -13,11 +13,23 @@ export class File {
 	public createdAt: Date;
 
 	@Index()
+	@Column('timestamp with time zone', {
+		comment: 'The updated date of the File.'
+	})
+	public updatedAt: Date;
+
+	@Index()
 	@Column('varchar', {
 		length: 32,
 		comment: 'The MD5 hash of the File.'
 	})
 	public md5: string;
+
+	@Index()
+	@Column('varchar', {
+		length: 32,
+	})
+	public file: string;
 
 	@Column('varchar', {
 		length: 256,
@@ -62,4 +74,12 @@ export class File {
 	})
 	@JoinColumn()
 	public folder: FileFolder | null;
+
+	constructor(data: Partial<File>) {
+		if (data == null) return;
+
+		for (const [k, v] of Object.entries(data)) {
+			(this as any)[k] = v;
+		}
+	}
 }

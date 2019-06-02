@@ -7,6 +7,16 @@ export type PackedFile = any;
 
 @EntityRepository(File)
 export class FileRepository extends Repository<File> {
+	public validateFileName(name: string): boolean {
+		return (
+			(name.trim().length > 0) &&
+			(name.length <= 200) &&
+			(name.indexOf('\\') === -1) &&
+			(name.indexOf('/') === -1) &&
+			(name.indexOf('..') === -1)
+		);
+	}
+
 	public async pack(
 		src: File['id'] | File,
 	): Promise<PackedFile> {

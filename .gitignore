@@ -13,5 +13,6 @@
 
 # kiwi
 /built
+/files
 ormconfig.json
 *.log
