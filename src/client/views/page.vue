@@ -7,7 +7,7 @@
 	<markdown :ast="page.ast" class="content"/>
 	<footer>
 		<router-link :to="`/:edit/${page.id}`"><fa :icon="faEdit"/> <span v-t="'editThisPage'"></span></router-link>
-		<span><span v-t="'lastUpdated'"></span>: <timeago :datetime="page.updatedAt"></timeago></span>
+		<span class="lastUpdated"><span v-t="'lastUpdated'"></span>: <timeago :datetime="page.updatedAt"></timeago></span>
 	</footer>
 </div>
 </template>
@@ -105,7 +105,7 @@ $margin: 48px;
 
 	> footer {
 		padding: 32px $margin;
-		font-size: 15px;
+		font-size: 14px;
 		border-top: solid 1px #eee;
 
 		> * {
@@ -114,6 +114,10 @@ $margin: 48px;
 
 		a {
 			color: inherit;
+		}
+
+		> .lastUpdated {
+			opacity: 0.7;
 		}
 	}
 }

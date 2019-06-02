@@ -133,7 +133,7 @@ body {
 	background: #eee;
 
 	> small {
-		opacity: 0.7;
+		opacity: 0.6;
 
 		> a {
 			color: inherit;
