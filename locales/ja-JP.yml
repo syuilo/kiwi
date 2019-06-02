@@ -21,6 +21,7 @@ delete: "削除"
 revert: "取り消し"
 pages: "ページ"
 files: "ファイル"
+loadMore: "さらに読み込む"
 _permissions:
   "create:page": "ページの作成"
   "update:page": "ページの編集"

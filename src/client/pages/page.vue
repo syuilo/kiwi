@@ -116,7 +116,7 @@ $margin: 48px;
 		border-top: solid 1px #eee;
 
 		> * {
-			margin-right: 16px;
+			margin-right: 28px;
 		}
 
 		a {

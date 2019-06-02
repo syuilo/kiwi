@@ -16,7 +16,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="file in files">
+				<tr v-for="file in pager.items">
 					<td :title="new Date(file.updatedAt).toLocaleString()"><timeago :datetime="file.updatedAt"></timeago></td>
 					<td><router-link :to="'/:file/' + file.id">{{ file.name }}</router-link></td>
 					<td>{{ file.size }}</td>
@@ -26,6 +26,8 @@
 			</tbody>
 		</table>
 	</div>
+
+	<kw-button style="margin: 16px;" v-if="pager.more" @click="pager.fetch()">{{ $t('loadMore') }}</kw-button>
 </kw-container>
 </template>
 
@@ -38,6 +40,7 @@ import KwInput from '../components/input.vue';
 import KwTextarea from '../components/textarea.vue';
 import KwButton from '../components/button.vue';
 import KwPermissions from '../components/permissions.vue';
+import { Pager } from '../scripts/pager';
 
 export default Vue.extend({
 	components: {
@@ -46,15 +49,9 @@ export default Vue.extend({
 
 	data() {
 		return {
-			files: [],
+			pager: new Pager(this.$root, 'files'),
 			faClock, faHashtag, faFileImage, faCommentAlt,
 		};
-	},
-
-	created() {
-		this.$root.api('files').then(files => {
-			this.files = files;
-		});
 	},
 });
 </script>

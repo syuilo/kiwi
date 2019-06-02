@@ -15,7 +15,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="page in pages">
+				<tr v-for="page in pager.items">
 					<td :title="new Date(page.updatedAt).toLocaleString()"><timeago :datetime="page.updatedAt"></timeago></td>
 					<td><router-link :to="'/' + page.name">{{ page.name }}</router-link></td>
 					<td>{{ page.title }}</td>
@@ -24,6 +24,8 @@
 			</tbody>
 		</table>
 	</div>
+
+	<kw-button style="margin: 16px;" v-if="pager.more" @click="pager.fetch()">{{ $t('loadMore') }}</kw-button>
 </kw-container>
 </template>
 
@@ -36,6 +38,7 @@ import KwInput from '../components/input.vue';
 import KwTextarea from '../components/textarea.vue';
 import KwButton from '../components/button.vue';
 import KwPermissions from '../components/permissions.vue';
+import { Pager } from '../scripts/pager';
 
 export default Vue.extend({
 	components: {
@@ -44,15 +47,9 @@ export default Vue.extend({
 
 	data() {
 		return {
-			pages: [],
+			pager: new Pager(this.$root, 'pages'),
 			faClock, faHashtag, faBook, faCommentAlt,
 		};
-	},
-
-	created() {
-		this.$root.api('pages').then(pages => {
-			this.pages = pages;
-		});
 	},
 });
 </script>
