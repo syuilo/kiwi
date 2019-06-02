@@ -12,16 +12,23 @@
 		<span class="lastUpdated" :title="new Date(page.updatedAt).toLocaleString()"><span v-t="'lastUpdated'"></span>: <timeago :datetime="page.updatedAt"></timeago></span>
 	</footer>
 </div>
+<kw-container v-else-if="notFound">
+	<template #title>
+		<fa :icon="faExclamationTriangle" class="icon"/><span v-t="'_notFound.notFound'"></span>
+	</template>
+</kw-container>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { faEdit, faCode, faHistory } from '@fortawesome/free-solid-svg-icons';
-import Markdown from '../components/markdown.ts';
+import { faEdit, faCode, faHistory, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import Markdown from '../components/markdown';
+import KwContainer from '../components/container.vue';
+import Progress from '../scripts/progress';
 
 export default Vue.extend({
 	components: {
-		Markdown
+		Markdown, KwContainer
 	},
 
 	props: {
@@ -34,7 +41,8 @@ export default Vue.extend({
 	data() {
 		return {
 			page: null,
-			faEdit, faCode, faHistory
+			notFound: false,
+			faEdit, faCode, faHistory, faExclamationTriangle,
 		};
 	},
 
@@ -50,10 +58,18 @@ export default Vue.extend({
 
 	methods: {
 		fetch() {
+			Progress.start();
+			this.page = null;
 			this.$root.api('pages/show', {
 				name: this.name ? this.name : 'home'
 			}).then(page => {
 				this.page = page;
+				Progress.done();
+			}).catch(e => {
+				Progress.done();
+				if (e.id === '1d5731c3-c4cd-4b32-a148-67c8fde1c181') {
+					this.notFound = true;
+				}
 			});
 		}
 	}

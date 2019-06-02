@@ -184,4 +184,38 @@ table.kiwi {
 		}
 	}
 }
+
+#nprogress {
+	$color: #ffb21f;
+
+	pointer-events: none;
+
+	position: absolute;
+	z-index: 65536;
+
+	.bar {
+		background: $color;
+
+		position: fixed;
+		z-index: 65537;
+		top: 0;
+		left: 0;
+
+		width: 100%;
+		height: 2px;
+	}
+
+	/* Fancy blur effect */
+	.peg {
+		display: block;
+		position: absolute;
+		right: 0;
+		width: 100px;
+		height: 100%;
+		box-shadow: 0 0 10px $color, 0 0 5px $color;
+		opacity: 1;
+
+		transform: rotate(3deg) translate(0px, -4px);
+	}
+}
 </style>
