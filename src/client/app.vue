@@ -67,13 +67,13 @@ body {
 	margin: 0;
 }
 
-
-table {
+table.kiwi {
 	width: 100%;
 	max-width: 100%;
 	overflow: auto;
 	border-spacing: 0;
 	border-collapse: collapse;
+	font-size: 14px;
 
 	thead {
 		font-weight: bold;

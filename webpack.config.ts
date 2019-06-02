@@ -52,6 +52,22 @@ module.exports = {
 				loader: 'sass-loader'
 			}]
 		}, {
+			test: /\.css$/,
+			use: [{
+				loader: 'vue-style-loader'
+			}, {
+				loader: 'css-loader'
+			}, {
+				loader: 'postcss-loader',
+				options: {
+					plugins: [
+						require('cssnano')({
+							preset: 'default'
+						})
+					]
+				},
+			}]
+		}, {
 			test: /\.(eot|woff|woff2|svg|ttf)([?]?.*)$/,
 			loader: 'url-loader'
 		}, {

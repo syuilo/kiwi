@@ -4,7 +4,7 @@
 		<fa :icon="faCog" class="icon"/><span v-t="'_adminPage.commits'"></span>
 	</template>
 
-	<table>
+	<table class="kiwi">
 		<thead>
 			<tr>
 				<th v-t="'_adminPage._commits.date'"></th>
@@ -17,7 +17,7 @@
 		<tbody>
 			<tr v-for="commit in commits">
 				<td class="lastUpdated" :title="new Date(commit.createdAt).toLocaleString()"><timeago :datetime="commit.createdAt"></timeago></td>
-				<td>{{ commit.id }}</td>
+				<td><router-link :to="'/:diff/' + commit.id">{{ commit.id }}</router-link></td>
 				<td>{{ commit.user.name }}</td>
 				<td v-t="'_adminPage._commits._commitActions.' + commit.action"></td>
 				<td v-t="'_adminPage._commits._commitTypes.' + commit.type"></td>

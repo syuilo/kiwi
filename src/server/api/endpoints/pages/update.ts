@@ -83,10 +83,10 @@ export default define(meta, async (ps, user) => {
 	});
 
 	await Kwr.commit(user, ps.commit, 'update', 'page', page.id, {
-		title: page.title,
-		subTitle: page.subTitle,
-		name: page.name,
-		content: page.content,
-		eyeCatchingImageId: page.eyeCatchingImageId,
+		title: ps.title,
+		subTitle: ps.subTitle,
+		name: ps.name,
+		content: ps.content,
+		eyeCatchingImageId: eyeCatchingImage ? eyeCatchingImage.id : null,
 	});
 });

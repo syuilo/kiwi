@@ -55,6 +55,8 @@
 		"css-loader": "2.1.1",
 		"cssnano": "4.1.10",
 		"dateformat": "3.0.3",
+		"diff": "4.0.1",
+		"diff2html": "2.9.0",
 		"file-type": "11.1.0",
 		"glob": "7.1.4",
 		"is-root": "2.1.0",

@@ -10,6 +10,7 @@ export type PackedCommit = any;
 export class CommitRepository extends Repository<Commit> {
 	public async pack(
 		src: Commit['id'] | Commit,
+		detail: boolean = false
 	): Promise<PackedCommit> {
 		const commit = typeof src === 'object' ? src : await this.findOne(src).then(ensure);
 
@@ -18,7 +19,8 @@ export class CommitRepository extends Repository<Commit> {
 			createdAt: commit.createdAt,
 			action: commit.action,
 			type: commit.type,
-			user: Users.pack(commit.userId)
+			user: Users.pack(commit.userId),
+			data: detail ? commit.data : undefined,
 		};
 
 		return await awaitAll(packed);
@@ -26,7 +28,8 @@ export class CommitRepository extends Repository<Commit> {
 
 	public packMany(
 		commits: (Commit['id'] | Commit)[],
+		detail: boolean = false
 	) {
-		return Promise.all(commits.map(u => this.pack(u)));
+		return Promise.all(commits.map(u => this.pack(u, detail)));
 	}
 }
