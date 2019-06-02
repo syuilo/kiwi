@@ -34,8 +34,16 @@ async function main() {
 		}),
 		data() {
 			return {
+				user: null,
 				isLoggedin: localStorage.getItem('i') != null
 			};
+		},
+		created() {
+			if (this.isLoggedin) {
+				this.api('i').then(account => {
+					this.user = account;
+				})
+			}
 		},
 		methods: {
 			api

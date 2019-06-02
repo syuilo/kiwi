@@ -14,6 +14,7 @@ uploadFile: "アップロード"
 viewSource: "ソースを表示"
 viewHistory: "履歴を表示"
 file: "ファイル"
+wikiSettings: "Wikiの管理"
 _signup:
   name: "ユーザー名"
   password: "パスワード"

@@ -15,6 +15,7 @@ export class UserRepository extends Repository<User> {
 		const packed = {
 			id: user.id,
 			name: user.name,
+			isAdmin: user.isAdmin,
 		};
 
 		return await awaitAll(packed);
