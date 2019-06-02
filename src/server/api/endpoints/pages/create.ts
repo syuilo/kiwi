@@ -1,11 +1,11 @@
 import $ from 'cafy';
 import define from '../../define';
 import { types, bool } from '../../../../misc/schema';
-import { Pages, Files, Commits } from '../../../../models';
+import { Pages, Files } from '../../../../models';
 import { Page } from '../../../../models/entities/page';
 import { ApiError } from '../../error';
-import { Commit } from '../../../../models/entities/commit';
 import { parseMd } from '../../common/parse-md';
+import { Kwr } from '../../../../services/repository';
 
 export const meta = {
 	kind: 'write:pages',
@@ -72,19 +72,13 @@ export default define(meta, async (ps, user) => {
 		eyeCatchingImageId: eyeCatchingImage ? eyeCatchingImage.id : null,
 	}));
 
-	await Commits.save(new Commit({
-		createdAt: new Date(),
-		userId: user ? user.id : null,
-		type: 'page',
-		message: 'Initial commit',
-		content: {
-			title: page.title,
-			subTitle: page.subTitle,
-			name: page.name,
-			content: page.content,
-			eyeCatchingImageId: page.eyeCatchingImageId,
-		},
-	}));
+	await Kwr.commit(user, 'Initial commit', 'page', {
+		title: page.title,
+		subTitle: page.subTitle,
+		name: page.name,
+		content: page.content,
+		eyeCatchingImageId: page.eyeCatchingImageId,
+	});
 
 	return await Pages.pack(page, true);
 });
