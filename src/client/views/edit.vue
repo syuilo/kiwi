@@ -87,7 +87,7 @@ export default Vue.extend({
 				content: this.content,
 				commit: this.commitMessage || null
 			}).then(page => {
-				console.log(page);
+				this.$router.push(`/${this.name}`);
 			});
 		}
 	}
