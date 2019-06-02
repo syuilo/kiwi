@@ -28,7 +28,7 @@ export class MetaRepository extends Repository<Meta> {
 		const packed = {
 			name: src.name,
 			description: src.description,
-			guestPermissions: src.guestPermissions,
+			defaultPermissions: src.defaultPermissions,
 		};
 
 		return packed;

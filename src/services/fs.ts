@@ -15,7 +15,7 @@ import { File } from '../models/entities/file';
 export class Kwfs {
 	private static readonly BASE = Path.resolve(`${__dirname}/../../files`);
 
-	public static async create(user: User | null, path: string, name: string | null = null, comment: string | null = null) {
+	public static async create(user: User, path: string, name: string | null = null, comment: string | null = null) {
 		// Calc md5 hash
 		const calcHash = new Promise<string>((res, rej) => {
 			const readable = fs.createReadStream(path);

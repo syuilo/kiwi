@@ -8,7 +8,7 @@ import { Kwfs } from '../../../../services/fs';
 export const meta = {
 	requireFile: true,
 
-	kind: 'write:files',
+	permission: 'create:file',
 
 	params: {
 		folderId: {

@@ -30,10 +30,8 @@ export class Commit {
 	public content: Record<string, any>;
 
 	@Index()
-	@Column('integer', {
-		nullable: true,
-	})
-	public userId: User['id'] | null;
+	@Column('integer')
+	public userId: User['id'];
 
 	@ManyToOne(type => User, {
 		onDelete: 'SET NULL'

@@ -1,25 +1,31 @@
 <template>
 <div>
 	<header class="ui-header">
-		<span class="title">{{ $root.wiki ? $root.wiki.name : '' }}</span>
+		<router-link class="title" to="/">{{ $root.wiki ? $root.wiki.name : '' }}</router-link>
 	</header>
 	<nav class="ui-nav">
 		<section>
 			<p v-t="'menu'"></p>
 			<ul>
-				<li><router-link to="/"><fa :icon="faHome" class="icon"/><span v-t="'home'"></span></router-link></li>
+				<li><router-link to="/"><fa :icon="faHome" class="icon" fixed-width/><span v-t="'home'"></span></router-link></li>
+				<li><router-link to="/:recently"><fa :icon="faHistory" class="icon" fixed-width/><span v-t="'recentlyUpdatedPages'"></span></router-link></li>
+			</ul>
+			<ul v-if="$root.isLoggedin">
+				<li><router-link to="/:new"><fa :icon="faPlus" class="icon" fixed-width/><span v-t="'createPage'"></span></router-link></li>
+				<li><router-link to="/:new-category"><fa :icon="faPlus" class="icon" fixed-width/><span v-t="'createCategory'"></span></router-link></li>
+				<li><router-link to="/:upload"><fa :icon="faUpload" class="icon" fixed-width/><span v-t="'uploadFile'"></span></router-link></li>
+			</ul>
+			<ul v-if="$root.user && $root.user.isAdmin">
+				<li><router-link to="/:admin"><fa :icon="faCog" class="icon" fixed-width/><span v-t="'adminPage'"></span></router-link></li>
+			</ul>
+			<ul>
 				<template v-if="$root.isLoggedin">
-					<li><router-link to="/:signout"><fa :icon="faPowerOff" class="icon"/><span v-t="'logout'"></span></router-link></li>
+					<li><router-link to="/:signout"><fa :icon="faPowerOff" class="icon" fixed-width/><span v-t="'logout'"></span></router-link></li>
 				</template>
 				<template v-else>
-					<li><router-link to="/:signin"><fa :icon="faSignInAlt" class="icon"/><span v-t="'login'"></span></router-link></li>
-					<li><router-link to="/:signup"><fa :icon="faUserPlus" class="icon"/><span v-t="'signup'"></span></router-link></li>
+					<li><router-link to="/:signin"><fa :icon="faSignInAlt" class="icon" fixed-width/><span v-t="'login'"></span></router-link></li>
+					<li><router-link to="/:signup"><fa :icon="faUserPlus" class="icon" fixed-width/><span v-t="'signup'"></span></router-link></li>
 				</template>
-				<li><router-link to="/:new"><fa :icon="faPlus" class="icon"/><span v-t="'createPage'"></span></router-link></li>
-				<li><router-link to="/:new-category"><fa :icon="faPlus" class="icon"/><span v-t="'createCategory'"></span></router-link></li>
-				<li><router-link to="/:upload"><fa :icon="faUpload" class="icon"/><span v-t="'uploadFile'"></span></router-link></li>
-				<li><router-link to="/:recently"><fa :icon="faHistory" class="icon"/><span v-t="'recentlyUpdatedPages'"></span></router-link></li>
-				<li v-if="$root.user && $root.user.isAdmin"><router-link to="/:admin"><fa :icon="faCog" class="icon"/><span v-t="'adminPage'"></span></router-link></li>
 			</ul>
 		</section>
 		<section>
@@ -75,6 +81,7 @@ body {
 		padding: 0 16px;
 		color: #fff;
 		font-weight: bold;
+		text-decoration: none;
 	}
 }
 
@@ -97,14 +104,16 @@ body {
 		}
 
 		> ul {
-			margin: 0;
-			padding: 12px 16px;
+			margin: 12px 0;
+			padding: 0;
 			list-style: none;
 
 			> li {
-				margin: 6px;
+				margin: 0;
 
 				> a {
+					display: block;
+					padding: 4px 16px;
 					color: #ccc;
 					text-decoration: none;
 

@@ -17,6 +17,16 @@ file: "ファイル"
 adminPage: "Wikiの管理"
 create: "作成"
 update: "更新"
+_permissions:
+  "create:page": "ページの作成"
+  "update:page": "ページの編集"
+  "delete:page": "ページの削除"
+  "create:file": "ファイルの作成"
+  "update:file": "ファイルの編集"
+  "delete:file": "ファイルの削除"
+  "create:category": "カテゴリの作成"
+  "update:category": "カテゴリの編集"
+  "delete:category": "カテゴリの削除"
 _signup:
   name: "ユーザー名"
   password: "パスワード"
@@ -40,3 +50,4 @@ _adminPage:
   _wikiSettings:
     wikiName: "Wikiの名前"
     wikiDescription: "Wikiの説明"
+    defaultPermissions: "デフォルトの権限"

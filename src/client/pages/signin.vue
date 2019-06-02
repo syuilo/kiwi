@@ -1,6 +1,9 @@
 <template>
-<div>
-	<h1 v-t="'login'"></h1>
+<kw-container>
+	<template #title>
+		<span v-t="'login'"></span>
+	</template>
+
 	<label>
 		<p v-t="'_login.name'"></p>
 		<input v-model="name"/>
@@ -10,12 +13,18 @@
 		<input type="password" v-model="password"/>
 	</label>
 	<button v-t="'_login.login'" @click="submit()"></button>
-</div>
+</kw-container>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import KwContainer from '../components/container.vue';
+
 export default Vue.extend({
+	components: {
+		KwContainer,
+	},
+
 	data() {
 		return {
 			name: '',

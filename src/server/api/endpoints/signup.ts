@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import * as bcrypt from 'bcryptjs';
 import define from '../define';
-import { Users } from '../../../models';
+import { Users, Metas } from '../../../models';
 import generateUserToken from '../common/generate-native-user-token';
 import { User } from '../../../models/entities/user';
 
@@ -24,6 +24,8 @@ export default define(meta, async (ps) => {
 	// Generate secret
 	const secret = generateUserToken();
 
+	const wiki = await Metas.fetch();
+
 	const usersCount = await Users.count();
 
 	await Users.save(new User({
@@ -31,7 +33,8 @@ export default define(meta, async (ps) => {
 		name: ps.name,
 		token: secret,
 		password: hash,
-		isAdmin: usersCount === 0
+		isAdmin: usersCount === 0,
+		permissions: wiki.defaultPermissions,
 	}));
 
 	return {

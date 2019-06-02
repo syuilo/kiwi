@@ -39,11 +39,7 @@ export interface IEndpointMeta {
 	 */
 	requireFile?: boolean;
 
-	/**
-	 * エンドポイントの種類
-	 * パーミッションの実現に利用されます。
-	 */
-	kind?: string;
+	permission?: string;
 }
 
 export interface IEndpoint {

@@ -16,6 +16,7 @@ export class UserRepository extends Repository<User> {
 			id: user.id,
 			name: user.name,
 			isAdmin: user.isAdmin,
+			permissions: user.permissions,
 		};
 
 		return await awaitAll(packed);

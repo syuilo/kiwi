@@ -2,7 +2,6 @@ import { User } from '../../models/entities/user';
 import endpoints from './endpoints';
 import { ApiError } from './error';
 import { apiLogger } from './logger';
-import { Metas } from '../../models';
 
 export default async (endpoint: string, user: User | null | undefined, data: any, file?: any) => {
 	const ep = endpoints.find(e => e.name === endpoint);
@@ -25,12 +24,10 @@ export default async (endpoint: string, user: User | null | undefined, data: any
 		});
 	}
 
-	const wiki = await Metas.fetch();
-
 	const isAdmin = user ? user.isAdmin : false;
-	const userPermissions = user ? user.permissions : wiki.guestPermissions;
+	const userPermissions = user ? user.permissions : [];
 
-	if (ep.meta.kind && !userPermissions.some(p => p === ep.meta.kind) && !isAdmin) {
+	if (ep.meta.permission && !userPermissions.some(p => p === ep.meta.permission) && !isAdmin) {
 		throw new ApiError({
 			message: 'Your app does not have the necessary permissions to use this endpoint.',
 			code: 'PERMISSION_DENIED',

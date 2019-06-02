@@ -18,5 +18,5 @@ export class Meta {
 	@Column('varchar', {
 		length: 512, array: true, default: '{}'
 	})
-	public guestPermissions: string[];
+	public defaultPermissions: string[];
 }

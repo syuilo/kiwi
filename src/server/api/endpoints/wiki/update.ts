@@ -3,7 +3,7 @@ import define from '../../define';
 import { Metas } from '../../../../models';
 
 export const meta = {
-	kind: 'admin',
+	permission: 'update:wiki',
 
 	params: {
 		name: {
@@ -13,6 +13,10 @@ export const meta = {
 		description: {
 			validator: $.str,
 		},
+
+		defaultPermissions: {
+			validator: $.arr($.str),
+		},
 	},
 };
 
@@ -20,6 +24,7 @@ export default define(meta, async (ps, user) => {
 	await Metas.update({}, {
 		name: ps.name,
 		description: ps.description,
+		defaultPermissions: ps.defaultPermissions,
 	});
 
 	return Metas.pack(await Metas.fetch());

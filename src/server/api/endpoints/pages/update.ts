@@ -6,7 +6,7 @@ import { parseMd } from '../../common/parse-md';
 import { Kwr } from '../../../../services/repository';
 
 export const meta = {
-	kind: 'write:pages',
+	permission: 'update:page',
 
 	params: {
 		id: {
