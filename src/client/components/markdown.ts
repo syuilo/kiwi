@@ -1,6 +1,7 @@
 import Vue, { VNode } from 'vue';
 import KwUrl from './url.vue';
 import KwImage from './image.vue';
+import KwSection from './section.vue';
 import { concat, sum } from '../../prelude/array';
 
 export default Vue.component('markdown', {
@@ -29,8 +30,15 @@ export default Vue.component('markdown', {
 					return [createElement('br')];
 				}
 
-				case 'heading': {
-					return [createElement('h' + token.depth, genEl(token.children))];
+				case 'section': {
+					return [createElement(KwSection, {
+						props: {
+							depth: token.heading.depth
+						},
+						scopedSlots: {
+							heading: () => genEl(token.heading.children)
+						}
+					}, genEl(token.children))];
 				}
 
 				case 'strong': {
@@ -125,6 +133,6 @@ export default Vue.component('markdown', {
 		}));
 
 		// Parse ast to DOM
-		return createElement('div', genEl(this.ast.children));
+		return createElement('div', genEl(this.ast));
 	}
 });

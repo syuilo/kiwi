@@ -1,10 +1,7 @@
 import { Entity, Index, JoinColumn, Column, ManyToOne, PrimaryColumn } from 'typeorm';
 import { File } from './file';
-import { Category } from './category';
 
 @Entity()
-@Index(['categoryId', 'name'], { unique: true })
-@Index(['categoryId', 'title'], { unique: true })
 export class Page {
 	@PrimaryColumn('varchar')
 	public id: string;
@@ -54,20 +51,8 @@ export class Page {
 	@JoinColumn()
 	public eyeCatchingImage: File | null;
 
-	@Column({
-		type: 'integer',
-		nullable: true,
-	})
-	public categoryId: Category['id'] | null;
-
-	@ManyToOne(type => Category, {
-		onDelete: 'SET NULL'
-	})
-	@JoinColumn()
-	public category: Category | null;
-
 	/**
-	 * "categoryId": {
+	 * "category": {
 	 *   "a": "foo",
 	 *   "b": "bar",
 	 *   "c": "baz",
@@ -79,7 +64,7 @@ export class Page {
 	public attributes: Record<string, any>;
 
 	@Column('jsonb')
-	public ast: Record<string, any>;
+	public ast: any[];
 
 	constructor(data: Partial<Page>) {
 		if (data == null) return;

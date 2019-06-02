@@ -70,6 +70,10 @@ body {
 	margin: 0;
 }
 
+a {
+	color: #e05d44;
+}
+
 table.kiwi {
 	width: 100%;
 	max-width: 100%;

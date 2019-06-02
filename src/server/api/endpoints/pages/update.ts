@@ -78,7 +78,7 @@ export default define(meta, async (ps, user) => {
 		subTitle: ps.subTitle,
 		name: ps.name,
 		content: ps.content,
-		ast: ast as Record<string, any>,
+		ast: ast,
 		eyeCatchingImageId: eyeCatchingImage ? eyeCatchingImage.id : null,
 	});
 

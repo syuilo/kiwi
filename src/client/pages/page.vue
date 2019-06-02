@@ -102,7 +102,12 @@ $margin: 48px;
 	> .content {
 		padding: 16px 0;
 
-		> *:not(h1) {
+		> *:not(section) {
+			margin-left: $margin;
+			margin-right: $margin;
+		}
+
+		> section > *:not(.header) {
 			margin-left: $margin;
 			margin-right: $margin;
 		}
@@ -122,6 +127,7 @@ $margin: 48px;
 		blockquote {
 			border-left: solid 2px #e2ded7;
 			padding: 8px 16px;
+			margin: 0;
 			color: #92827c;
 		}
 	}

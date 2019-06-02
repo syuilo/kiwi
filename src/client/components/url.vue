@@ -40,7 +40,6 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .url {
 	word-break: break-all;
-	color: #e05d44;
 	text-decoration: none;
 
 	&:hover {
