@@ -52,6 +52,7 @@ $nav-width: 250px;
 
 html {
 	font-family: sans-serif;
+	background: #f7f7f7;
 }
 
 body {
@@ -83,7 +84,7 @@ body {
 	width: $nav-width;
 	height: calc(100% - #{$header-height});
 	background: #2f2f2f;
-	font-size: 15px;
+	font-size: 14px;
 
 	> section {
 		> p {
@@ -100,7 +101,7 @@ body {
 			list-style: none;
 
 			> li {
-				margin: 4px;
+				margin: 6px;
 
 				> a {
 					color: #ccc;
@@ -123,11 +124,11 @@ body {
 
 .ui-main {
 	margin: $header-height 0 0 $nav-width;
-	max-width: 850px;
+	max-width: 900px;
 }
 
 .ui-footer {
-	margin: $header-height 0 0 $nav-width;
+	margin: 0 0 0 $nav-width;
 	padding: 32px;
 	background: #eee;
 

@@ -53,11 +53,15 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+$margin: 48px;
+
 .page {
 	color: #54514e;
+	background: #fff;
+	overflow: hidden;
 
 	> header {
-		padding: 32px;
+		padding: 32px $margin;
 		color: #92827c;
 		border-bottom: solid 1px #eee;
 
@@ -72,13 +76,15 @@ export default Vue.extend({
 	}
 
 	> .content {
+		padding: 16px 0;
+
 		> *:not(h1) {
-			margin-left: 32px;
-			margin-right: 32px;
+			margin-left: $margin;
+			margin-right: $margin;
 		}
 
 		h1 {
-			padding: 16px 32px;
+			padding: 16px $margin;
 			margin-bottom: 26px;
 			font-size: 1.5em;
 			border-bottom: solid 1px #eee;
