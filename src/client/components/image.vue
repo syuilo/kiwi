@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="image">
 	<img :src="url" :title="title" :alt="alt"/>
 </div>
 </template>
@@ -26,4 +26,10 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.image {
+	> img {
+		max-width: 100%;
+		max-height: 200px;
+	}
+}
 </style>
