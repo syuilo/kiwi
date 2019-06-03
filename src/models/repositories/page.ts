@@ -22,6 +22,7 @@ export class PageRepository extends Repository<Page> {
 			category: page.category,
 			tags: page.tags,
 			attributes: page.attributes,
+			commitMessage: page.commitMessage,
 			content: detail ? page.content : undefined,
 			ast: detail ? page.ast : undefined,
 		};

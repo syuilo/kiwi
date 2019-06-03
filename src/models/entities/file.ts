@@ -75,6 +75,11 @@ export class File {
 	@JoinColumn()
 	public folder: FileFolder | null;
 
+	@Column('varchar', {
+		length: 512, nullable: true,
+	})
+	public commitMessage: string | null;
+
 	constructor(data: Partial<File>) {
 		if (data == null) return;
 

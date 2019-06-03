@@ -6,14 +6,14 @@ import { Commit } from '../models/entities/commit';
  * Repository
  */
 export class Kwr {
-	public static commit(user: User, message: string | null, action: string, type: string, key: string, data: any) {
+	public static commit(user: User, message: string | null | undefined, action: string, type: string, key: string, data: any) {
 		return Commits.save(new Commit({
 			createdAt: new Date(),
 			key: key,
 			action: action,
 			type: type,
 			userId: user.id,
-			message: message,
+			message: message || null,
 			data: data,
 		}));
 	}

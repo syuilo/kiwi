@@ -2,7 +2,7 @@
 <div v-if="page" class="page">
 	<header>
 		<h1 class="title">{{ page.title }}</h1>
-		<p class="subTitle">{{ page.subTitle }}</p>
+		<p class="subTitle" v-if="page.subTitle.length > 0">{{ page.subTitle }}</p>
 	</header>
 	<div class="infoboxes" v-if="templates.length > 0">
 		<div v-for="template in templates" class="infobox">

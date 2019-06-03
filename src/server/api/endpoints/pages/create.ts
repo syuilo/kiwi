@@ -21,7 +21,7 @@ export const meta = {
 		},
 
 		name: {
-			validator: $.str,
+			validator: $.str.min(1),
 		},
 
 		content: {
@@ -45,7 +45,7 @@ export const meta = {
 		},
 
 		commit: {
-			validator: $.nullable.str,
+			validator: $.optional.nullable.str,
 			default: 'Initial commit'
 		},
 	},
@@ -77,30 +77,33 @@ export default define(meta, async (ps, user) => {
 
 	const ast = parseMd(ps.content);
 
+	const tags = ps.tags.filter(tag => tag.length > 0).map(tag => tag.trim());
+
 	// todo: transaction
 
 	const page = await Pages.save(new Page({
 		id: ulid().toLowerCase(),
 		createdAt: new Date(),
 		updatedAt: new Date(),
-		title: ps.title,
-		subTitle: ps.subTitle,
-		name: ps.name,
-		content: ps.content,
+		title: ps.title.trim(),
+		subTitle: ps.subTitle.trim(),
+		name: ps.name.trim(),
+		content: ps.content.trim(),
 		ast: ast,
-		category: ps.category,
-		tags: ps.tags,
+		category: ps.category.trim(),
+		tags: tags,
 		attributes: ps.attributes,
 		eyeCatchingImageId: eyeCatchingImage ? eyeCatchingImage.id : null,
+		commitMessage: ps.commit,
 	}));
 
 	await Kwr.commit(user, ps.commit, 'create', 'page', page.id, {
-		title: page.title,
-		subTitle: page.subTitle,
-		name: page.name,
-		content: page.content,
-		category: ps.category,
-		tags: ps.tags,
+		title: ps.title.trim(),
+		subTitle: ps.subTitle.trim(),
+		name: ps.name.trim(),
+		content: ps.content.trim(),
+		category: ps.category.trim(),
+		tags: tags,
 		attributes: ps.attributes,
 		eyeCatchingImageId: page.eyeCatchingImageId,
 	});

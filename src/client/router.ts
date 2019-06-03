@@ -7,6 +7,7 @@ export const router = new VueRouter({
 		{ path: '/\\:signup', component: () => import('./pages/signup.vue').then(m => m.default) },
 		{ path: '/\\:signin', component: () => import('./pages/signin.vue').then(m => m.default) },
 		{ path: '/\\:pages', component: () => import('./pages/pages.vue').then(m => m.default) },
+		{ path: '/\\:recently', component: () => import('./pages/recently.vue').then(m => m.default) },
 		{ path: '/\\:new', component: () => import('./pages/edit.vue').then(m => m.default) },
 		{ path: '/\\:new-template', component: () => import('./pages/edit-template.vue').then(m => m.default) },
 		{ path: '/\\:edit/:pageId', component: () => import('./pages/edit.vue').then(m => m.default), props: true },

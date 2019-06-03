@@ -18,7 +18,7 @@ export const meta = {
 		},
 
 		commit: {
-			validator: $.nullable.str,
+			validator: $.optional.nullable.str,
 			default: 'Initial commit'
 		},
 	},

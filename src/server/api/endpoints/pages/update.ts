@@ -26,7 +26,7 @@ export const meta = {
 		},
 
 		name: {
-			validator: $.str,
+			validator: $.str.min(1),
 		},
 
 		content: {
@@ -82,29 +82,32 @@ export default define(meta, async (ps, user) => {
 
 	const ast = parseMd(ps.content);
 
+	const tags = ps.tags.filter(tag => tag.length > 0).map(tag => tag.trim());
+
 	// todo: transaction
 
 	await Pages.update(page.id, {
 		updatedAt: new Date(),
-		title: ps.title,
-		subTitle: ps.subTitle,
-		name: ps.name,
-		content: ps.content,
+		title: ps.title.trim(),
+		subTitle: ps.subTitle.trim(),
+		name: ps.name.trim(),
+		content: ps.content.trim(),
 		ast: ast,
-		tags: ps.tags,
+		tags: tags,
 		attributes: ps.attributes,
-		category: ps.category,
+		category: ps.category.trim(),
 		eyeCatchingImageId: eyeCatchingImage ? eyeCatchingImage.id : null,
+		commitMessage: ps.commit,
 	});
 
 	await Kwr.commit(user, ps.commit, 'update', 'page', page.id, {
-		title: ps.title,
-		subTitle: ps.subTitle,
-		name: ps.name,
-		content: ps.content,
-		tags: ps.tags,
+		title: ps.title.trim(),
+		subTitle: ps.subTitle.trim(),
+		name: ps.name.trim(),
+		content: ps.content.trim(),
+		tags: tags,
 		attributes: ps.attributes,
-		category: ps.category,
+		category: ps.category.trim(),
 		eyeCatchingImageId: eyeCatchingImage ? eyeCatchingImage.id : null,
 	});
 });

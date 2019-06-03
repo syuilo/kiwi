@@ -24,9 +24,9 @@ export class Page {
 	public title: string;
 
 	@Column('varchar', {
-		length: 256, nullable: true
+		length: 256,
 	})
-	public subTitle: string | null;
+	public subTitle: string;
 
 	@Index()
 	@Column('varchar', {
@@ -74,6 +74,11 @@ export class Page {
 		default: {},
 	})
 	public attributes: Record<string, any>;
+
+	@Column('varchar', {
+		length: 512, nullable: true,
+	})
+	public commitMessage: string | null;
 
 	@Column('jsonb')
 	public ast: any[];

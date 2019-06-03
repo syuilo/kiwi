@@ -111,7 +111,7 @@ export default Vue.extend({
 				tags: this.tags.split(' '),
 				category: this.category,
 				attributes: this.attributes,
-				commit: this.commitMessage || null
+				commit: this.commitMessage || undefined
 			}).then(page => {
 				this.$router.push(`/${this.name}`);
 			});
