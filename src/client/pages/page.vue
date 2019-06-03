@@ -90,6 +90,7 @@ export default Vue.extend({
 		fetch() {
 			Progress.start();
 			this.page = null;
+			this.notFound = false;
 			this.$root.api('pages/show', {
 				path: this.path ? this.path : 'home'
 			}).then(page => {

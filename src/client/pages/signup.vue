@@ -5,7 +5,7 @@
 	</template>
 
 	<kw-input v-model="name"><p v-t="'_signup.name'"></p></kw-input>
-	<kw-input v-model="password"><p v-t="'_signup.password'"></p></kw-input>
+	<kw-input v-model="password" type="password"><p v-t="'_signup.password'"></p></kw-input>
 	<vue-recaptcha v-if="$root.wiki && $root.wiki.recaptchaSiteKey" :sitekey="$root.wiki.recaptchaSiteKey" @verify="onVerify"></vue-recaptcha>
 	<kw-button v-t="'_signup.signup'" @click="submit()"></kw-button>
 </kw-container>
