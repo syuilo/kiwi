@@ -6,7 +6,10 @@
 
 	<div v-if="commit.action === 'update'" v-html="diffsHtml"/>
 
-	<kw-button v-if="$root.user && $root.user.isAdmin" @click="revert()">{{ $t('revert') }}</kw-button>
+	<template v-if="$root.user && $root.user.isAdmin">
+		<vue-recaptcha v-if="$root.wiki && $root.wiki.recaptchaSiteKey" :sitekey="$root.wiki.recaptchaSiteKey" @verify="onVerify"></vue-recaptcha>
+		<kw-button @click="revert()">{{ $t('revert') }}</kw-button>
+	</template>
 </kw-container>
 </template>
 
@@ -36,6 +39,7 @@ export default Vue.extend({
 			commit: null,
 			prev: null,
 			diffs: null,
+			recaptcha: null,
 			faPencilAlt,
 		};
 	},
@@ -91,6 +95,7 @@ export default Vue.extend({
 					content: this.prev.data.content,
 					tags: this.prev.data.tags,
 					category: this.prev.data.category,
+					_recaptcha: this.recaptcha,
 					commit: `This commit reverts #${this.commit.id}`
 				}).then(page => {
 					this.$router.push(`/${this.prev.data.name}`);
@@ -103,11 +108,16 @@ export default Vue.extend({
 					content: this.prev.data.content,
 					tags: this.prev.data.tags,
 					category: this.prev.data.category,
+					_recaptcha: this.recaptcha,
 					commit: `This commit reverts #${this.commit.id}`
 				}).then(page => {
 					this.$router.push(`/${this.prev.data.name}`);
 				});
 			}
+		},
+
+		onVerify(res) {
+			this.recaptcha = res;
 		}
 	}
 });

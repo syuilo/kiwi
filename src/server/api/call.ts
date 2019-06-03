@@ -1,7 +1,9 @@
+const recaptcha = require('recaptcha-promise');
 import { User } from '../../models/entities/user';
 import endpoints from './endpoints';
 import { ApiError } from './error';
 import { apiLogger } from './logger';
+import { Metas } from '../../models';
 
 export default async (endpoint: string, user: User | null | undefined, data: any, file?: any) => {
 	const ep = endpoints.find(e => e.name === endpoint);
@@ -22,6 +24,26 @@ export default async (endpoint: string, user: User | null | undefined, data: any
 			id: '663d5361-25f8-4973-ac18-f5e2e291b594',
 			httpStatusCode: 401
 		});
+	}
+
+	if (ep.meta.requireRecaptcha) {
+		const meta = await Metas.fetch();
+
+		if (meta.recaptchaSiteKey !== '' && meta.recaptchaSecretKey !== '') {
+			recaptcha.init({
+				secret_key: meta.recaptchaSecretKey
+			});
+
+			const success = await recaptcha(data['_recaptcha']);
+
+			if (!success) {
+				throw new ApiError({
+					message: 'You are a bot?',
+					code: 'RECAPTCHA_FAILED',
+					id: 'b14005e4-6233-406c-86d5-d74a03303496',
+				});
+			}
+		}
 	}
 
 	const isAdmin = user ? user.isAdmin : false;

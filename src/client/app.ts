@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueI18n from 'vue-i18n';
 import VueTimeago from 'vue-timeago';
+import VueRecaptcha from 'vue-recaptcha';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './app.vue';
 import { api } from './scripts/api';
@@ -23,6 +24,7 @@ async function main() {
 			'ja-JP': require('date-fns/locale/ja')
 		}
 	});
+	Vue.component('vue-recaptcha', VueRecaptcha);
 	Vue.component('fa', FontAwesomeIcon);
 
 	new Vue({

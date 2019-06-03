@@ -8,6 +8,10 @@ import { Kwr } from '../../../../services/repository';
 export const meta = {
 	permission: 'update:page',
 
+	requireCredential: true,
+
+	requireRecaptcha: true,
+
 	params: {
 		id: {
 			validator: $.str,

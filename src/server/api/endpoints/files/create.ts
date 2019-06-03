@@ -8,6 +8,10 @@ import { Kwfs } from '../../../../services/fs';
 export const meta = {
 	requireFile: true,
 
+	requireCredential: true,
+
+	requireRecaptcha: true,
+
 	permission: 'create:file',
 
 	params: {

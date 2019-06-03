@@ -5,6 +5,6 @@ export const meta = {
 	params: {},
 };
 
-export default define(meta, async (ps) => {
-	return Metas.pack(await Metas.fetch());
+export default define(meta, async (ps, user) => {
+	return Metas.pack(await Metas.fetch(), user && user.isAdmin);
 });

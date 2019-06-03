@@ -7,6 +7,8 @@ import { User } from '../../../models/entities/user';
 import { ulid } from 'ulid';
 
 export const meta = {
+	requireRecaptcha: true,
+
 	params: {
 		name: {
 			validator: $.str.range(1, 32).match(/^[a-z0-9_]+$/),

@@ -23,6 +23,7 @@
 		<kw-input v-for="attr in template.attributes" v-model="attributes[template.name + '.' + attr]" :key="template.name + '.' + attr"><span>{{ template.name }}: {{ attr }}</span></kw-input>
 	</div>
 	<kw-input v-if="isEdit" v-model="commitMessage"><span v-t="'_pageEdit.commitMessage'"></span></kw-input>
+	<vue-recaptcha v-if="$root.wiki && $root.wiki.recaptchaSiteKey" :sitekey="$root.wiki.recaptchaSiteKey" @verify="onVerify"></vue-recaptcha>
 	<kw-button v-if="isEdit" v-t="'update'" @click="submit()"></kw-button>
 	<kw-button v-else v-t="'create'" @click="submit()"></kw-button>
 </kw-container>
@@ -62,6 +63,7 @@ export default Vue.extend({
 			attributes: {},
 			commitMessage: '',
 			templates: [],
+			recaptcha: null,
 			faEdit, faPlus,
 		};
 	},
@@ -115,11 +117,16 @@ export default Vue.extend({
 				tags: this.tags.split(' '),
 				category: this.category,
 				attributes: this.attributes,
+				_recaptcha: this.recaptcha,
 				commit: this.commitMessage || undefined
 			}).then(page => {
 				this.$router.push(`/${this.name}`);
 			});
 		},
+
+		onVerify(res) {
+			this.recaptcha = res;
+		}
 	}
 });
 </script>

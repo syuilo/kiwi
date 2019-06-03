@@ -7,6 +7,10 @@ import { Kwr } from '../../../../services/repository';
 export const meta = {
 	permission: 'delete:page',
 
+	requireCredential: true,
+
+	requireRecaptcha: true,
+
 	params: {
 		id: {
 			validator: $.str,

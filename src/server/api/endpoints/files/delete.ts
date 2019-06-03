@@ -5,6 +5,10 @@ import { Files } from '../../../../models';
 import { Kwr } from '../../../../services/repository';
 
 export const meta = {
+	requireRecaptcha: true,
+
+	requireCredential: true,
+
 	permission: 'delete:file',
 
 	params: {

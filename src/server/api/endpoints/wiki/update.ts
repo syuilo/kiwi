@@ -17,6 +17,14 @@ export const meta = {
 		defaultPermissions: {
 			validator: $.arr($.str),
 		},
+
+		recaptchaSiteKey: {
+			validator: $.str,
+		},
+
+		recaptchaSecretKey: {
+			validator: $.str,
+		},
 	},
 };
 
@@ -25,6 +33,8 @@ export default define(meta, async (ps, user) => {
 		name: ps.name,
 		description: ps.description,
 		defaultPermissions: ps.defaultPermissions,
+		recaptchaSiteKey: ps.recaptchaSiteKey,
+		recaptchaSecretKey: ps.recaptchaSecretKey,
 	});
 
 	return Metas.pack(await Metas.fetch());

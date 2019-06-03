@@ -19,4 +19,14 @@ export class Meta {
 		length: 512, array: true, default: '{}'
 	})
 	public defaultPermissions: string[];
+
+	@Column('varchar', {
+		length: 64, default: '',
+	})
+	public recaptchaSiteKey: string;
+
+	@Column('varchar', {
+		length: 64, default: '',
+	})
+	public recaptchaSecretKey: string;
 }

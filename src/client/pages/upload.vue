@@ -5,6 +5,7 @@
 	</template>
 
 	<input ref="file" type="file" accept="*/*"/>
+	<vue-recaptcha v-if="$root.wiki && $root.wiki.recaptchaSiteKey" :sitekey="$root.wiki.recaptchaSiteKey" @verify="onVerify"></vue-recaptcha>
 	<kw-button v-t="'_upload.upload'" @click="upload()"></kw-button>
 </kw-container>
 </template>
@@ -23,6 +24,7 @@ export default Vue.extend({
 		return {
 			progressMax: null,
 			progressValue: null,
+			recaptcha: null,
 		};
 	},
 
@@ -34,6 +36,7 @@ export default Vue.extend({
 			reader.onload = e => {
 				const data = new FormData();
 				if (this.$root.isLoggedin) data.append('i', localStorage.getItem('i'));
+				data.append('_recaptcha', this.recaptcha);
 				data.append('file', file);
 
 				const xhr = new XMLHttpRequest();
@@ -55,6 +58,10 @@ export default Vue.extend({
 			};
 
 			reader.readAsArrayBuffer(file);
+		},
+
+		onVerify(res) {
+			this.recaptcha = res;
 		}
 	}
 });

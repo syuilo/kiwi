@@ -11,6 +11,10 @@ import { ulid } from 'ulid';
 export const meta = {
 	permission: 'create:page',
 
+	requireCredential: true,
+
+	requireRecaptcha: true,
+
 	params: {
 		title: {
 			validator: $.str,

@@ -50,6 +50,10 @@ export default Vue.extend({
 
 	> .label {
 		display: block;
+
+		> * {
+			margin: 0;
+		}
 	}
 
 	> input {
@@ -59,6 +63,11 @@ export default Vue.extend({
 		box-sizing: border-box;
 		border: solid 1px #ddd;
 		border-radius: 4px;
+	}
+
+	> .info {
+		font-size: 80%;
+		opacity: 0.7;
 	}
 }
 </style>

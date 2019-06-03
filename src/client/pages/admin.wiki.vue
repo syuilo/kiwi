@@ -8,6 +8,8 @@
 	<kw-input v-model="description"><span v-t="'_adminPage._wikiSettings.wikiDescription'"></span></kw-input>
 	<span v-t="'_adminPage._wikiSettings.defaultPermissions'"></span>
 	<kw-permissions v-model="defaultPermissions"/>
+	<kw-input v-model="recaptchaSiteKey"><span v-t="'_adminPage._wikiSettings.recaptchaSiteKey'"></span></kw-input>
+	<kw-input v-model="recaptchaSecretKey"><span v-t="'_adminPage._wikiSettings.recaptchaSecretKey'"></span></kw-input>
 	<kw-button v-t="'update'" @click="update()"></kw-button>
 </kw-container>
 </template>
@@ -32,6 +34,8 @@ export default Vue.extend({
 			name: '',
 			description: '',
 			defaultPermissions: [],
+			recaptchaSiteKey: '',
+			recaptchaSecretKey: '',
 			faCog
 		};
 	},
@@ -42,6 +46,8 @@ export default Vue.extend({
 			this.name = wiki.name;
 			this.description = wiki.description;
 			this.defaultPermissions = wiki.defaultPermissions;
+			this.recaptchaSiteKey = wiki.recaptchaSiteKey;
+			this.recaptchaSecretKey = wiki.recaptchaSecretKey;
 		});
 	},
 
@@ -51,6 +57,8 @@ export default Vue.extend({
 				name: this.name,
 				description: this.description,
 				defaultPermissions: this.defaultPermissions,
+				recaptchaSiteKey: this.recaptchaSiteKey,
+				recaptchaSecretKey: this.recaptchaSecretKey,
 			}).then(wiki => {
 				this.$root.wiki = wiki;
 			});

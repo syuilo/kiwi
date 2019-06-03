@@ -21,14 +21,18 @@ export class MetaRepository extends Repository<Meta> {
 		});
 	}
 
-
 	public async pack(
-		src: Meta,
+		meta: Meta,
+		secret = false
 	): Promise<PackedMeta> {
 		const packed = {
-			name: src.name,
-			description: src.description,
-			defaultPermissions: src.defaultPermissions,
+			name: meta.name,
+			description: meta.description,
+			defaultPermissions: meta.defaultPermissions,
+			recaptchaSiteKey: meta.recaptchaSiteKey,
+			...(secret ? {
+				recaptchaSecretKey: meta.recaptchaSecretKey
+			} : {})
 		};
 
 		return packed;

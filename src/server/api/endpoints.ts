@@ -33,6 +33,8 @@ export interface IEndpointMeta {
 	 */
 	requireCredential?: boolean;
 
+	requireRecaptcha?: boolean;
+
 	/**
 	 * ファイルの添付を必要とするか否か
 	 * 省略した場合は false として解釈されます。
