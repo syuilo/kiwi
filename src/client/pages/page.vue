@@ -4,6 +4,13 @@
 		<h1 class="title">{{ page.title }}</h1>
 		<p class="subTitle" v-if="page.subTitle.length > 0">{{ page.subTitle }}</p>
 	</header>
+	<div class="category" v-if="page.category">
+		<span>{{ $t('category') }}:</span>
+		<template v-for="(c, i) in page.category.split('/')">
+			<fa v-if="i > 0" :icon="faAngleRight" class="icon"/>
+			<router-link :to="'/:categories/' + page.category.split('/').slice(0, i + 1).join('/')">{{ c }}</router-link>
+		</template>
+	</div>
 	<div class="infoboxes" v-if="templates.length > 0">
 		<div v-for="template in templates" class="infobox">
 			<header><router-link :to="'/:tags/' + template.name">{{ template.name }}</router-link></header>
@@ -33,7 +40,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faEdit, faCode, faHistory, faExclamationTriangle, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import Markdown from '../components/markdown';
 import KwContainer from '../components/container.vue';
 import Progress from '../scripts/progress';
@@ -55,7 +62,7 @@ export default Vue.extend({
 			page: null,
 			templates: [],
 			notFound: false,
-			faEdit, faCode, faHistory, faExclamationTriangle, faTag,
+			faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight,
 		};
 	},
 
@@ -119,6 +126,17 @@ $margin: 48px;
 		> .subTitle {
 			margin: 0;
 			opacity: 0.7;
+		}
+	}
+
+	> .category {
+		margin-top: -1px;
+		padding: 8px $margin;
+		background: #eee;
+
+		> * {
+			margin-right: 16px;
+			vertical-align: middle;
 		}
 	}
 

@@ -4,6 +4,10 @@
 		<fa :icon="faFolderOpen" class="icon"/><span>{{ category }}</span>
 	</template>
 
+	<ul>
+		<li v-for="c in childCategories"><router-link :to="'/:categories/' + category + '/' + c"><fa :icon="faFolder" class="icon"/><span>{{ c }}</span></router-link></li>
+	</ul>
+
 	<div style="overflow: auto;">
 		<table class="kiwi">
 			<thead>
@@ -57,14 +61,32 @@ export default Vue.extend({
 			pager: new Pager(this.$root, 'pages/find-by-category', () => ({
 				category: this.category
 			})),
+			categories: null,
 			faClock, faFolderOpen, faCommentAlt,
 		};
+	},
+
+	computed: {
+		childCategories(): string[] {
+			if (this.categories == null) return [];
+			let c = this.categories;
+			for (const part of this.category.split('/')) {
+				c = c[part].children;
+			}
+			return Object.keys(c);
+		}
 	},
 
 	watch: {
 		category() {
 			this.pager.init();
 		}
+	},
+
+	created() {
+		this.$root.api('categories').then(categories => {
+			this.categories = categories;
+		});
 	}
 });
 </script>
