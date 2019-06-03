@@ -11,16 +11,25 @@ export default define(meta, async (ps, user) => {
 		.select(['page.category'])
 		.getMany();
 
-	const res = {} as Record<string, number>;
+	const dic = {
+		pages: 0,
+		children: {},
+	} as Record<string, any>;
 
 	for (const page of pages) {
-		const c = page.category.split('/')[0];
-		if (res[c]) {
-			res[c]++;
-		} else {
-			res[c] = 1;
+		let x = dic.children;
+		for (const part of page.category.split('/').filter(p => p.length > 0)) {
+			if (x[part]) {
+				x[part].pages++;
+			} else {
+				x[part] = {
+					pages: 1,
+					children: {},
+				};
+			}
+			x = x[part].children;
 		}
 	}
 
-	return res;
+	return dic.children;
 });

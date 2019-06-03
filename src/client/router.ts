@@ -18,6 +18,7 @@ export const router = new VueRouter({
 		{ path: '/\\:files', component: () => import('./pages/files.vue').then(m => m.default) },
 		{ path: '/\\:file/:fileId', component: () => import('./pages/file.vue').then(m => m.default), props: true },
 		{ path: '/\\:tags/:tag', component: () => import('./pages/tag.vue').then(m => m.default), props: true },
+		{ path: '/\\:categories/:category', component: () => import('./pages/category.vue').then(m => m.default), props: true },
 		{ path: '/\\:diff/:commitId', component: () => import('./pages/diff.vue').then(m => m.default), props: true },
 		{ path: '/\\:admin', component: () => import('./pages/admin.vue').then(m => m.default) },
 		{ path: '/\\:admin/wiki', component: () => import('./pages/admin.wiki.vue').then(m => m.default) },

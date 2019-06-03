@@ -30,8 +30,11 @@
 				</template>
 			</ul>
 		</section>
-		<section>
+		<section v-if="categories.length > 0">
 			<p><fa :icon="faFolderOpen" class="icon" fixed-width/> {{ $t('categories') }}</p>
+			<ul>
+				<li v-for="category in categories"><router-link :to="'/:categories/' + category[0]"><fa :icon="faFolder" class="icon" fixed-width/><span>{{ category[0] }}</span><small>({{ category[1].pages }})</small></router-link></li>
+			</ul>
 		</section>
 		<section v-if="tags.length > 0">
 			<p><fa :icon="faTags" class="icon" fixed-width/> {{ $t('tags') }}</p>
@@ -52,19 +55,24 @@
 <script lang="ts">
 import Vue from 'vue';
 import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faTag, faTags, faFolderOpen, faBars } from '@fortawesome/free-solid-svg-icons';
-import { faFileImage } from '@fortawesome/free-regular-svg-icons';
+import { faFileImage, faFolder } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	data() {
 		return {
 			tags: [],
-			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faFileImage, faTag, faTags, faFolderOpen, faBars,
+			categories: [],
+			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faFileImage, faTag, faTags, faFolderOpen, faBars, faFolder,
 		};
 	},
 
 	created() {
 		this.$root.api('tags').then(tags => {
 			this.tags = Object.entries(tags);
+		});
+
+		this.$root.api('categories').then(categories => {
+			this.categories = Object.entries(categories);
 		});
 	}
 });
