@@ -16,7 +16,7 @@ export class PageRepository extends Repository<Page> {
 		const packed = {
 			id: page.id,
 			updatedAt: page.updatedAt,
-			name: page.name,
+			path: page.path,
 			title: page.title,
 			subTitle: page.subTitle,
 			category: page.category,

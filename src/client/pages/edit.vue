@@ -9,8 +9,8 @@
 
 	<kw-input v-model="title"><span v-t="'_pageEdit.title'"></span></kw-input>
 	<kw-input v-model="subTitle"><span v-t="'_pageEdit.subTitle'"></span></kw-input>
-	<kw-input v-model="name"><span v-t="'_pageEdit.url'"></span>
-		<template #info>{{ local }}/{{ name }}</template>
+	<kw-input v-model="path"><span v-t="'_pageEdit.url'"></span>
+		<template #info>{{ local }}/{{ path }}</template>
 	</kw-input>
 	<kw-input v-model="category"><span v-t="'_pageEdit.category'"></span>
 		<template #info>{{ $t('_pageEdit.categoryInfo') }}</template>
@@ -56,7 +56,7 @@ export default Vue.extend({
 			page: null,
 			title: '',
 			subTitle: '',
-			name: '',
+			path: '',
 			content: '',
 			tags: '',
 			category: '',
@@ -99,7 +99,7 @@ export default Vue.extend({
 				this.page = page;
 				this.title = page.title;
 				this.subTitle = page.subTitle;
-				this.name = page.name;
+				this.path = page.path;
 				this.content = page.content;
 				this.category = page.category;
 				this.attributes = page.attributes;
@@ -110,7 +110,7 @@ export default Vue.extend({
 		submit() {
 			this.$root.api(this.isEdit ? 'pages/update' : 'pages/create', {
 				id: this.isEdit ? this.pageId : null,
-				name: this.name,
+				path: this.path,
 				title: this.title,
 				subTitle: this.subTitle,
 				content: this.content,
@@ -120,7 +120,7 @@ export default Vue.extend({
 				_recaptcha: this.recaptcha,
 				commit: this.commitMessage || undefined
 			}).then(page => {
-				this.$router.push(`/${this.name}`);
+				this.$router.push(`/${this.path}`);
 			});
 		},
 

@@ -25,7 +25,7 @@ export const meta = {
 			validator: $.str,
 		},
 
-		name: {
+		path: {
 			validator: $.str.min(1).notInclude(['.', ':']),
 		},
 
@@ -81,7 +81,7 @@ export default define(meta, async (ps, user) => {
 	}
 
 	const ast = parseMd(ps.content);
-	const links = extractLinks(ps.name, ast);
+	const links = extractLinks(ps.path, ast);
 
 	const tags = ps.tags.filter(tag => tag.length > 0).map(tag => tag.trim());
 
@@ -93,7 +93,7 @@ export default define(meta, async (ps, user) => {
 		updatedAt: new Date(),
 		title: ps.title.trim(),
 		subTitle: ps.subTitle.trim(),
-		name: ps.name.trim(),
+		path: ps.path.trim(),
 		content: ps.content.trim(),
 		ast: ast,
 		links: links,
@@ -107,7 +107,7 @@ export default define(meta, async (ps, user) => {
 	await Kwr.commit(user, ps.commit, 'create', 'page', page.id, {
 		title: ps.title.trim(),
 		subTitle: ps.subTitle.trim(),
-		name: ps.name.trim(),
+		path: ps.path.trim(),
 		content: ps.content.trim(),
 		category: ps.category.trim(),
 		tags: tags,

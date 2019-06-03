@@ -51,7 +51,7 @@ export default Vue.extend({
 	},
 
 	props: {
-		name: {
+		path: {
 			type: String,
 			required: false,
 		}
@@ -67,7 +67,7 @@ export default Vue.extend({
 	},
 
 	watch: {
-		name() {
+		path() {
 			this.fetch();
 		},
 
@@ -91,7 +91,7 @@ export default Vue.extend({
 			Progress.start();
 			this.page = null;
 			this.$root.api('pages/show', {
-				name: this.name ? this.name : 'home'
+				path: this.path ? this.path : 'home'
 			}).then(page => {
 				this.page = page;
 				Progress.done();

@@ -11,7 +11,7 @@ export const meta = {
 			validator: $.optional.str,
 		},
 
-		name: {
+		path: {
 			validator: $.optional.str,
 		},
 	},
@@ -36,9 +36,9 @@ export default define(meta, async (ps, user) => {
 
 	if (ps.id) {
 		page = await Pages.findOne(ps.id);
-	} else if (ps.name) {
+	} else if (ps.path) {
 		page = await Pages.findOne({
-			name: ps.name
+			path: ps.path
 		});
 	}
 

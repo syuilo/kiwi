@@ -80,7 +80,7 @@ export default Vue.extend({
 				this.prev = prev;
 
 				if (commit.action === 'update') {
-					this.diffs = Diff.createTwoFilesPatch(prev.data.name, commit.data.name, prev.data.content, commit.data.content, '', '');
+					this.diffs = Diff.createTwoFilesPatch(prev.data.path, commit.data.path, prev.data.content, commit.data.content, '', '');
 				}
 			});
 		},
@@ -89,7 +89,7 @@ export default Vue.extend({
 			if (this.commit.action === 'update') {
 				this.$root.api('pages/update', {
 					id: this.commit.key,
-					name: this.prev.data.name,
+					path: this.prev.data.path,
 					title: this.prev.data.title,
 					subTitle: this.prev.data.subTitle,
 					content: this.prev.data.content,
@@ -98,11 +98,11 @@ export default Vue.extend({
 					_recaptcha: this.recaptcha,
 					commit: `This commit reverts #${this.commit.id}`
 				}).then(page => {
-					this.$router.push(`/${this.prev.data.name}`);
+					this.$router.push(`/${this.prev.data.path}`);
 				});
 			} else if (this.commit.action === 'delete') {
 				this.$root.api('pages/create', {
-					name: this.prev.data.name,
+					path: this.prev.data.path,
 					title: this.prev.data.title,
 					subTitle: this.prev.data.subTitle,
 					content: this.prev.data.content,
@@ -111,7 +111,7 @@ export default Vue.extend({
 					_recaptcha: this.recaptcha,
 					commit: `This commit reverts #${this.commit.id}`
 				}).then(page => {
-					this.$router.push(`/${this.prev.data.name}`);
+					this.$router.push(`/${this.prev.data.path}`);
 				});
 			}
 		},

@@ -17,7 +17,7 @@
 			<tbody>
 				<tr v-for="page in pager.items">
 					<td :title="new Date(page.updatedAt).toLocaleString()"><timeago :datetime="page.updatedAt"></timeago></td>
-					<td><router-link :to="'/' + page.name">{{ page.name }}</router-link></td>
+					<td><router-link :to="'/' + page.path">{{ page.path }}</router-link></td>
 					<td>{{ page.title }}</td>
 					<td>{{ page.subTitle }}</td>
 				</tr>

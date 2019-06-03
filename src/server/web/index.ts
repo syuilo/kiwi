@@ -38,7 +38,7 @@ const router = new Router();
 
 router.get('/_assets/:path+', async ctx => {
 	await send(ctx as any, ctx.params.path, {
-		root:  `${__dirname}/../../assets`,
+		root: `${__dirname}/../../assets`,
 		maxage: ms('7 days'),
 	});
 });

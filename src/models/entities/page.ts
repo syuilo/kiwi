@@ -32,7 +32,7 @@ export class Page {
 	@Column('varchar', {
 		length: 256,
 	})
-	public name: string;
+	public path: string;
 
 	@Column('varchar', {
 		length: 65536,
