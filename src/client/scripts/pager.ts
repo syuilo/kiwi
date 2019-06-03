@@ -15,10 +15,11 @@ export class Pager {
 	}
 
 	public fetch() {
+		const params = typeof this.params === 'function' ? this.params() : this.params;
 		this.root.api(this.endpoint, {
 			untilId: this.more ? this.items[this.items.length - 1].id : undefined,
 			limit: this.limit + 1,
-			...this.params
+			...params
 		}).then(items => {
 			if (items.length === this.limit + 1) {
 				items.pop();
@@ -28,5 +29,11 @@ export class Pager {
 			}
 			this.items = items;
 		});
+	}
+
+	public init() {
+		this.items = [];
+		this.more = false;
+		this.fetch();
 	}
 }

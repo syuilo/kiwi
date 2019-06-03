@@ -54,11 +54,17 @@ export default Vue.extend({
 
 	data() {
 		return {
-			pager: new Pager(this.$root, 'pages/find-by-category', {
+			pager: new Pager(this.$root, 'pages/find-by-category', () => ({
 				category: this.category
-			}),
+			})),
 			faClock, faFolderOpen, faCommentAlt,
 		};
 	},
+
+	watch: {
+		category() {
+			this.pager.init();
+		}
+	}
 });
 </script>
