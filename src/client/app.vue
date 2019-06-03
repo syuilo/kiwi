@@ -33,10 +33,10 @@
 		<section>
 			<p><fa :icon="faFolderOpen" class="icon" fixed-width/> {{ $t('categories') }}</p>
 		</section>
-		<section>
+		<section v-if="tags.length > 0">
 			<p><fa :icon="faTags" class="icon" fixed-width/> {{ $t('tags') }}</p>
 			<ul>
-				<li v-for="tag in tags"><router-link :to="'/:tags/' + tag[0]"><fa :icon="faTag" class="icon" fixed-width/><span>{{ tag[0] }}</span></router-link></li>
+				<li v-for="tag in tags"><router-link :to="'/:tags/' + tag[0]"><fa :icon="faTag" class="icon" fixed-width/><span>{{ tag[0] }}</span><small>({{ tag[1] }})</small></router-link></li>
 			</ul>
 		</section>
 	</nav>
@@ -176,6 +176,12 @@ table.kiwi {
 						opacity: 0.7;
 						margin-right: 6px;
 						color: #bcbd88;
+					}
+
+					> small {
+						margin-left: 6px;
+						font-size: 100%;
+						opacity: 0.5;
 					}
 				}
 			}
