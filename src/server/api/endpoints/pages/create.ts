@@ -36,6 +36,10 @@ export const meta = {
 			validator: $.arr($.str),
 		},
 
+		attributes: {
+			validator: $.obj(),
+		},
+
 		eyeCatchingImageId: {
 			validator: $.optional.nullable.str,
 		},
@@ -86,6 +90,7 @@ export default define(meta, async (ps, user) => {
 		ast: ast,
 		category: ps.category,
 		tags: ps.tags,
+		attributes: ps.attributes,
 		eyeCatchingImageId: eyeCatchingImage ? eyeCatchingImage.id : null,
 	}));
 
@@ -96,6 +101,7 @@ export default define(meta, async (ps, user) => {
 		content: page.content,
 		category: ps.category,
 		tags: ps.tags,
+		attributes: ps.attributes,
 		eyeCatchingImageId: page.eyeCatchingImageId,
 	});
 

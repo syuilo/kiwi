@@ -90,6 +90,7 @@
 		"typescript": "3.5.1",
 		"ulid": "2.3.0",
 		"unified": "7.1.0",
+		"v-debounce": "0.1.2",
 		"vue": "2.6.10",
 		"vue-i18n": "8.11.2",
 		"vue-loader": "15.7.0",

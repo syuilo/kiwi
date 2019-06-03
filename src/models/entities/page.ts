@@ -64,10 +64,10 @@ export class Page {
 	public eyeCatchingImage: File | null;
 
 	/**
-	 * "tag": {
-	 *   "a": "foo",
-	 *   "b": "bar",
-	 *   "c": "baz",
+	 * {
+	 *   "tag.a": "foo",
+	 *   "tag.b": "bar",
+	 *   "tag.c": "baz",
 	 * }
 	 */
 	@Column('jsonb', {

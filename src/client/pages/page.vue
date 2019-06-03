@@ -5,6 +5,9 @@
 		<p class="subTitle">{{ page.subTitle }}</p>
 	</header>
 	<markdown :ast="page.ast" class="content"/>
+	<ul class="tags">
+		<li v-for="tag in page.tags"><router-link :to="'/:tags/' + tag"><fa :icon="faTag" class="icon" fixed-width/><span>{{ tag }}</span></router-link></li>
+	</ul>
 	<footer>
 		<router-link :to="`/:edit/${page.id}`"><fa :icon="faEdit"/><span v-t="'editThisPage'"></span></router-link>
 		<router-link :to="`/:source/${page.id}`"><fa :icon="faCode"/><span v-t="'viewSource'"></span></router-link>
@@ -21,7 +24,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faEdit, faCode, faHistory, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faCode, faHistory, faExclamationTriangle, faTag } from '@fortawesome/free-solid-svg-icons';
 import Markdown from '../components/markdown';
 import KwContainer from '../components/container.vue';
 import Progress from '../scripts/progress';
@@ -42,7 +45,7 @@ export default Vue.extend({
 		return {
 			page: null,
 			notFound: false,
-			faEdit, faCode, faHistory, faExclamationTriangle,
+			faEdit, faCode, faHistory, faExclamationTriangle, faTag,
 		};
 	},
 
@@ -101,6 +104,7 @@ $margin: 48px;
 
 	> .content {
 		padding: 16px 0;
+		border-bottom: solid 2px #eee;
 
 		> *:not(section) {
 			margin-left: $margin;
@@ -132,10 +136,17 @@ $margin: 48px;
 		}
 	}
 
+	> .tags {
+		display: block;
+		margin: 0;
+		padding: 32px $margin;
+		list-style: none;
+		border-bottom: solid 1px #eee;
+	}
+
 	> footer {
 		padding: 32px $margin;
 		font-size: 14px;
-		border-top: solid 1px #eee;
 
 		> * {
 			margin-right: 28px;

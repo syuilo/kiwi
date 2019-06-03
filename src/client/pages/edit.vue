@@ -14,7 +14,10 @@
 	</kw-input>
 	<kw-input v-model="category"><span v-t="'_pageEdit.category'"></span></kw-input>
 	<kw-textarea v-model="content"><span v-t="'_pageEdit.content'"></span></kw-textarea>
-	<kw-input v-model="tags"><span v-t="'_pageEdit.tags'"></span></kw-input>
+	<kw-input v-model="tags" :debounce="true"><span v-t="'_pageEdit.tags'"></span></kw-input>
+	<div v-for="template in templates">
+		<kw-input v-for="attr in template.attributes" v-model="attributes[template.name + '.' + attr]" :key="template.name + '.' + attr"><span>{{ template.name }}: {{ attr }}</span></kw-input>
+	</div>
 	<kw-input v-if="isEdit" v-model="commitMessage"><span v-t="'_pageEdit.commitMessage'"></span></kw-input>
 	<kw-button v-if="isEdit" v-t="'update'" @click="submit()"></kw-button>
 	<kw-button v-else v-t="'create'" @click="submit()"></kw-button>
@@ -52,7 +55,9 @@ export default Vue.extend({
 			content: '',
 			tags: '',
 			category: '',
+			attributes: {},
 			commitMessage: '',
+			templates: [],
 			faEdit, faPlus,
 		};
 	},
@@ -66,6 +71,12 @@ export default Vue.extend({
 	watch: {
 		pageId() {
 			this.fetch();
+		},
+
+		tags() {
+			Promise.all(this.tags.split(' ').map(tag => this.$root.api('templates/show', { name: tag }).catch(() => null))).then(templates => {
+				this.templates = templates.filter(x => x != null);
+			});
 		}
 	},
 
@@ -85,6 +96,7 @@ export default Vue.extend({
 				this.name = page.name;
 				this.content = page.content;
 				this.category = page.category;
+				this.attributes = page.attributes;
 				this.tags = page.tags.join(' ');
 			});
 		},
@@ -98,11 +110,12 @@ export default Vue.extend({
 				content: this.content,
 				tags: this.tags.split(' '),
 				category: this.category,
+				attributes: this.attributes,
 				commit: this.commitMessage || null
 			}).then(page => {
 				this.$router.push(`/${this.name}`);
 			});
-		}
+		},
 	}
 });
 </script>

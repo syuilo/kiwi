@@ -8,18 +8,17 @@ export const meta = {
 
 export default define(meta, async (ps, user) => {
 	const pages = await Pages.createQueryBuilder('page')
-		.select(['page.tags'])
+		.select(['page.category'])
 		.getMany();
 
 	const res = {} as Record<string, number>;
 
 	for (const page of pages) {
-		for (const tag of page.tags) {
-			if (res[tag]) {
-				res[tag]++;
-			} else {
-				res[tag] = 1;
-			}
+		const c = page.category.split('/')[0];
+		if (res[c]) {
+			res[c]++;
+		} else {
+			res[c] = 1;
 		}
 	}
 
