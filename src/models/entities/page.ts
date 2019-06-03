@@ -30,7 +30,7 @@ export class Page {
 
 	@Index()
 	@Column('varchar', {
-		length: 256,
+		length: 256, unique: true,
 	})
 	public path: string;
 
