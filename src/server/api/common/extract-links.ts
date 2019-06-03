@@ -1,8 +1,11 @@
 import config from '../../../config';
 import { URL } from 'url';
+import * as path from 'path';
 
-export function extractLinks(ast: any[]): string[] {
+export function extractLinks(pagePath: string, ast: any[]): string[] {
 	const links: string[] = [];
+
+	const pageDir = pagePath.split('/').slice(0, pagePath.split('/').length - 1).join('/');
 
 	function x(tokens: any[]) {
 		for (const token of tokens) {
@@ -10,7 +13,22 @@ export function extractLinks(ast: any[]): string[] {
 				const url = token.url;
 				const isExternal = (url.startsWith('http://') || url.startsWith('https://')) && !url.startsWith(config.url);
 				if (!isExternal) {
-					const link = url.startsWith(config.url) ? new URL(url).pathname.substr(1) : url;
+					let link = url.startsWith(config.url) ? new URL(url).pathname : url;
+					if (link.startsWith('/')) {
+						link = link.substr(1);
+					} else {
+						link = path.normalize(pageDir + '/' + link).replace(/\\/g, '/');
+
+						if (link.startsWith('/')) {
+							link = link.substr(1);
+						}
+
+						// invalid path
+						if (link.startsWith('.')) {
+							link = null;
+						}
+					}
+
 					if (!links.includes(link)) links.push(link);
 				}
 			}
@@ -22,5 +40,5 @@ export function extractLinks(ast: any[]): string[] {
 
 	x(ast);
 
-	return links;
+	return links.filter(x => x != null);
 }

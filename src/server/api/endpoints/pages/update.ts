@@ -31,7 +31,7 @@ export const meta = {
 		},
 
 		name: {
-			validator: $.str.min(1),
+			validator: $.str.min(1).notInclude(['.', ':']),
 		},
 
 		content: {
@@ -86,7 +86,7 @@ export default define(meta, async (ps, user) => {
 	}
 
 	const ast = parseMd(ps.content);
-	const links = extractLinks(ast);
+	const links = extractLinks(ps.name, ast);
 
 	const tags = ps.tags.filter(tag => tag.length > 0).map(tag => tag.trim());
 
