@@ -5,7 +5,7 @@
 	</header>
 	<nav class="ui-nav">
 		<section>
-			<p v-t="'menu'"></p>
+			<p><fa :icon="faBars" class="icon" fixed-width/> {{ $t('menu') }}</p>
 			<ul>
 				<li><router-link to="/"><fa :icon="faHome" class="icon" fixed-width/><span v-t="'home'"></span></router-link></li>
 				<li><router-link to="/:pages"><fa :icon="faBook" class="icon" fixed-width/><span v-t="'pages'"></span></router-link></li>
@@ -31,10 +31,10 @@
 			</ul>
 		</section>
 		<section>
-			<p v-t="'categories'"></p>
+			<p><fa :icon="faFolderOpen" class="icon" fixed-width/> {{ $t('categories') }}</p>
 		</section>
 		<section>
-			<p v-t="'tags'"></p>
+			<p><fa :icon="faTags" class="icon" fixed-width/> {{ $t('tags') }}</p>
 			<ul>
 				<li v-for="tag in tags"><router-link :to="'/:tags/' + tag[0]"><fa :icon="faTag" class="icon" fixed-width/><span>{{ tag[0] }}</span></router-link></li>
 			</ul>
@@ -51,14 +51,14 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faTag, faTags, faFolderOpen, faBars } from '@fortawesome/free-solid-svg-icons';
 import { faFileImage } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	data() {
 		return {
 			tags: [],
-			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faFileImage, faTag,
+			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faFileImage, faTag, faTags, faFolderOpen, faBars,
 		};
 	},
 

@@ -6,7 +6,7 @@
 	</header>
 	<markdown :ast="page.ast" class="content"/>
 	<ul class="tags">
-		<li v-for="tag in page.tags"><router-link :to="'/:tags/' + tag"><fa :icon="faTag" class="icon" fixed-width/><span>{{ tag }}</span></router-link></li>
+		<li v-for="tag in page.tags"><router-link :to="'/:tags/' + tag">{{ tag }}</router-link></li>
 	</ul>
 	<footer>
 		<router-link :to="`/:edit/${page.id}`"><fa :icon="faEdit"/><span v-t="'editThisPage'"></span></router-link>
@@ -142,6 +142,53 @@ $margin: 48px;
 		padding: 32px $margin;
 		list-style: none;
 		border-bottom: solid 1px #eee;
+
+		> li {
+			display: inline-block;
+
+			> a {
+				display: inline-block;
+				position: relative;
+				color: #fff;
+				background: #a9b979;
+				text-decoration: none;
+				padding: 0 12px;
+				line-height: 32px;
+				border-radius: 0 4px 4px 0;
+
+				&:hover {
+					background: #bdce8a;
+
+					&:before {
+						border-right-color: #bdce8a;
+					}
+				}
+
+				&:before {
+					content: "";
+					display: block;
+					position: absolute;
+					left: -32px;
+					top: 0;
+					border-top: solid 16px transparent;
+					border-right: solid 16px #a9b979;
+					border-bottom: solid 16px transparent;
+					border-left: solid 16px transparent;
+				}
+
+				&:after {
+					content: "";
+					display: block;
+					position: absolute;
+					left: -4px;
+					top: 13px;
+					width: 6px;
+					height: 6px;
+					background: #fff;
+					border-radius: 100%;
+				}
+			}
+		}
 	}
 
 	> footer {
