@@ -48,6 +48,7 @@
 		"@types/vue": "2.0.0",
 		"@types/vue-router": "2.0.0",
 		"@types/webpack": "4.4.32",
+		"acorn": "6.1.1",
 		"bcryptjs": "2.4.3",
 		"cafy": "15.1.1",
 		"chalk": "2.4.2",
@@ -101,5 +102,9 @@
 		"vue-timeago": "5.1.2",
 		"webpack": "4.32.2",
 		"webpack-cli": "3.3.2"
+	},
+	"resolutions": {
+		"@types/webpack/acorn": "6.1.1",
+		"webpack/acorn": "6.1.1"
 	}
 }
