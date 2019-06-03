@@ -5,7 +5,7 @@
 		<p class="subTitle">{{ page.subTitle }}</p>
 	</header>
 	<markdown :ast="page.ast" class="content"/>
-	<ul class="tags">
+	<ul class="tags" v-if="page.tags.length > 0">
 		<li v-for="tag in page.tags"><router-link :to="'/:tags/' + tag">{{ tag }}</router-link></li>
 	</ul>
 	<footer>
@@ -145,6 +145,7 @@ $margin: 48px;
 
 		> li {
 			display: inline-block;
+			margin-right: 24px;
 
 			> a {
 				display: inline-block;
@@ -153,6 +154,7 @@ $margin: 48px;
 				background: #a9b979;
 				text-decoration: none;
 				padding: 0 12px;
+				margin-left: 8px;
 				line-height: 32px;
 				border-radius: 0 4px 4px 0;
 
