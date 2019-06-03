@@ -62,7 +62,7 @@ export default Vue.extend({
 	},
 
 	watch: {
-		category() {
+		tag() {
 			this.pager.init();
 		}
 	}
