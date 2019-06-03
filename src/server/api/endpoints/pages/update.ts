@@ -4,6 +4,7 @@ import { ApiError } from '../../error';
 import { Pages, Files } from '../../../../models';
 import { parseMd } from '../../common/parse-md';
 import { Kwr } from '../../../../services/repository';
+import { extractLinks } from '../../common/extract-links';
 
 export const meta = {
 	permission: 'update:page',
@@ -85,6 +86,7 @@ export default define(meta, async (ps, user) => {
 	}
 
 	const ast = parseMd(ps.content);
+	const links = extractLinks(ast);
 
 	const tags = ps.tags.filter(tag => tag.length > 0).map(tag => tag.trim());
 
@@ -97,6 +99,7 @@ export default define(meta, async (ps, user) => {
 		name: ps.name.trim(),
 		content: ps.content.trim(),
 		ast: ast,
+		links: links,
 		tags: tags,
 		attributes: ps.attributes,
 		category: ps.category.trim(),

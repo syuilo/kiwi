@@ -51,6 +51,12 @@ export class Page {
 	})
 	public tags: string[];
 
+	@Index()
+	@Column('varchar', {
+		length: 1024, array: true, default: '{}'
+	})
+	public links: string[];
+
 	@Column({
 		type: 'integer',
 		nullable: true,
