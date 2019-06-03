@@ -12,9 +12,13 @@
 	<kw-input v-model="name"><span v-t="'_pageEdit.url'"></span>
 		<template #info>{{ local }}/{{ name }}</template>
 	</kw-input>
-	<kw-input v-model="category"><span v-t="'_pageEdit.category'"></span></kw-input>
+	<kw-input v-model="category"><span v-t="'_pageEdit.category'"></span>
+		<template #info>{{ $t('_pageEdit.categoryInfo') }}</template>
+	</kw-input>
 	<kw-textarea v-model="content"><span v-t="'_pageEdit.content'"></span></kw-textarea>
-	<kw-input v-model="tags" :debounce="true"><span v-t="'_pageEdit.tags'"></span></kw-input>
+	<kw-input v-model="tags" :debounce="true"><span v-t="'_pageEdit.tags'"></span>
+		<template #info>{{ $t('_pageEdit.tagsInfo') }}</template>
+	</kw-input>
 	<div v-for="template in templates">
 		<kw-input v-for="attr in template.attributes" v-model="attributes[template.name + '.' + attr]" :key="template.name + '.' + attr"><span>{{ template.name }}: {{ attr }}</span></kw-input>
 	</div>
