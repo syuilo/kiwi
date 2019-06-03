@@ -4,6 +4,15 @@
 		<h1 class="title">{{ page.title }}</h1>
 		<p class="subTitle">{{ page.subTitle }}</p>
 	</header>
+	<div class="infoboxes" v-if="templates.length > 0">
+		<div v-for="template in templates" class="infobox">
+			<header><router-link :to="'/:tags/' + template.name">{{ template.name }}</router-link></header>
+			<dl v-for="attr in template.attributes">
+				<dt>{{ attr }}</dt>
+				<dd>{{ page.attributes[template.name + '.' + attr] }}</dd>
+			</dl>
+		</div>
+	</div>
 	<markdown :ast="page.ast" class="content"/>
 	<ul class="tags" v-if="page.tags.length > 0">
 		<li v-for="tag in page.tags"><router-link :to="'/:tags/' + tag">{{ tag }}</router-link></li>
@@ -44,6 +53,7 @@ export default Vue.extend({
 	data() {
 		return {
 			page: null,
+			templates: [],
 			notFound: false,
 			faEdit, faCode, faHistory, faExclamationTriangle, faTag,
 		};
@@ -52,6 +62,16 @@ export default Vue.extend({
 	watch: {
 		name() {
 			this.fetch();
+		},
+
+		page() {
+			if (this.page == null || this.page.tags.length == 0) {
+				this.templates = [];
+				return;
+			}
+			Promise.all(this.page.tags.map(tag => this.$root.api('templates/show', { name: tag }).catch(() => null))).then(templates => {
+				this.templates = templates.filter(x => x != null);
+			});
 		}
 	},
 
@@ -99,6 +119,40 @@ $margin: 48px;
 		> .subTitle {
 			margin: 0;
 			opacity: 0.7;
+		}
+	}
+
+	> .infoboxes {
+		> .infobox {
+			margin: 16px $margin;
+			border: solid 2px #eee;
+			border-radius: 6px;
+			overflow: hidden;
+
+			> header {
+				background: #eee;
+				text-align: center;
+				padding: 8px;
+			}
+
+			> dl {
+				padding: 0 8px;
+
+				> dt, > dd {
+					display: inline-block;
+					margin: 0;
+				}
+
+				> dt {
+					width: 30%;
+					font-weight: bold;
+					text-align: center;
+				}
+
+				> dd {
+					width: 70%;
+				}
+			}
 		}
 	}
 
