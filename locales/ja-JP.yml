@@ -37,6 +37,7 @@ _permissions:
   "delete:template": "テンプレートの削除"
 _signup:
   name: "ユーザー名"
+  nameInfo: "小文字の英数字、および _ (アンダーバー) が使えます"
   password: "パスワード"
   signup: "作成"
 _login:
