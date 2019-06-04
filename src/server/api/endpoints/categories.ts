@@ -11,5 +11,5 @@ export default define(meta, async (ps, user) => {
 		.select(['page.category'])
 		.getMany();
 
-	return [...new Set(pages.map(page => page.category))];
+	return [...new Set(pages.map(page => page.category).filter(x => x !== ''))];
 });

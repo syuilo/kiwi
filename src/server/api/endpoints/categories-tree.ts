@@ -16,7 +16,7 @@ export default define(meta, async (ps, user) => {
 		children: {},
 	} as Record<string, any>;
 
-	for (const page of pages) {
+	for (const page of pages.filter(p => p.category !== '')) {
 		let x = dic.children;
 		for (const part of page.category.split('/').filter(p => p.length > 0)) {
 			if (x[part]) {
