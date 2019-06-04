@@ -151,6 +151,7 @@ table.kiwi {
 	left: 0;
 	width: $nav-width;
 	height: calc(100% - #{$header-height});
+	overflow: auto;
 	background: #353432;
 	font-size: 14px;
 
