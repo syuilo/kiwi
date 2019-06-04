@@ -9,7 +9,7 @@ export function extractLinks(pagePath: string, ast: any[]): string[] {
 				const url = token.url;
 				try {
 					const link = resolvePath(url, pagePath);
-					if (!links.includes(link)) links.push(link);
+					if ((link !== pagePath) && !links.includes(link)) links.push(link);
 				} catch (e) {}
 			}
 			if (token.children) {

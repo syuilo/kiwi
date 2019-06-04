@@ -4,6 +4,7 @@
 		<h1 class="title"><router-link :to="page.path">{{ page.title }}</router-link></h1>
 		<p class="subTitle" v-if="page.subTitle.length > 0">{{ page.subTitle }}</p>
 	</header>
+
 	<div class="category" v-if="page.category">
 		<span>{{ $t('category') }}:</span>
 		<template v-for="(c, i) in page.category.split('/')">
@@ -11,6 +12,7 @@
 			<router-link :to="'/:categories/' + page.category.split('/').slice(0, i + 1).join('/')">{{ c }}</router-link>
 		</template>
 	</div>
+
 	<div class="infoboxes" v-if="templates.length > 0">
 		<div v-for="template in templates" class="infobox">
 			<header><router-link :to="'/:tags/' + template.name">{{ template.name }}</router-link></header>
@@ -20,23 +22,37 @@
 			</dl>
 		</div>
 	</div>
+
 	<div class="toc" v-if="toc.length > 0">
 		<header><fa :icon="faBookOpen" class="icon"/>{{ $t('tableOfContents') }}</header>
 		<div v-for="content in toc" class="item">
 			<a :href="'#' + content.id" aria-hidden="true"><span :style="'padding-left: '+ content.depth * 8 + 'px;'">{{ content.text }}</span></a>
 		</div>
 	</div>
+
 	<markdown :ast="page.ast" class="content"/>
+
 	<ul class="tags" v-if="page.tags.length > 0">
 		<li v-for="tag in page.tags"><router-link :to="'/:tags/' + tag">{{ tag }}</router-link></li>
 	</ul>
+
 	<footer>
 		<router-link :to="`/:edit/${page.id}`"><fa :icon="faEdit"/><span v-t="'editThisPage'"></span></router-link>
 		<router-link :to="`/:source/${page.id}`"><fa :icon="faCode"/><span v-t="'viewSource'"></span></router-link>
 		<router-link :to="`/:history/${page.id}`"><fa :icon="faHistory"/><span v-t="'viewHistory'"></span></router-link>
 		<span class="lastUpdated" :title="new Date(page.updatedAt).toLocaleString()"><span v-t="'lastUpdated'"></span>: <timeago :datetime="page.updatedAt"></timeago></span>
 	</footer>
+
+	<ul class="links" v-if="links.length > 0">
+		<li v-for="link in links">
+			<router-link :to="'/' + link.path">
+				<h1>{{ page.title }}</h1>
+				<p>{{ page.subTitle }}</p>
+			</router-link>
+		</li>
+	</ul>
 </div>
+
 <kw-container v-else-if="notFound">
 	<template #title>
 		<fa :icon="faExclamationTriangle" class="icon"/><span v-t="'_notFound.notFound'"></span>
@@ -68,6 +84,7 @@ export default Vue.extend({
 			page: null,
 			toc: [],
 			templates: [],
+			links: [],
 			notFound: false,
 			faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight, faBookOpen,
 		};
@@ -82,6 +99,7 @@ export default Vue.extend({
 			if (this.page == null) {
 				this.toc = [];
 				this.templates = [];
+				this.links = [];
 				return;
 			}
 
@@ -113,6 +131,10 @@ export default Vue.extend({
 					this.templates = templates.filter(x => x != null);
 				});
 			}
+
+			this.$root.api('pages/links', { id: this.page.id }).then(links => {
+				this.links = links;
+			});
 		}
 	},
 
@@ -374,6 +396,44 @@ $margin: 48px;
 
 		> .lastUpdated {
 			opacity: 0.7;
+		}
+	}
+
+	> .links {
+		display: block;
+		margin: 0;
+		padding: 32px $margin;
+		list-style: none;
+		background: #eee;
+		border-bottom: solid 1px #ddd;
+		overflow: auto;
+
+		> li {
+			display: inline-block;
+			background: #fff;
+			border-radius: 6px;
+
+			&:not(:last-child) {
+				margin-right: 24px;
+			}
+
+			> a {
+				display: inline-block;
+				padding: 16px;
+				color: inherit;
+				text-decoration: none;
+
+				> h1 {
+					font-size: 16px;
+					margin: 0;
+				}
+
+				> p {
+					margin: 0;
+					opacity: 0.5;
+					font-size: 15px;
+				}
+			}
 		}
 	}
 }
