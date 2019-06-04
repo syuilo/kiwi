@@ -4,25 +4,23 @@
 		<span v-t="'login'"></span>
 	</template>
 
-	<label>
-		<p v-t="'_login.name'"></p>
-		<input v-model="name"/>
-	</label>
-	<label>
-		<p v-t="'_login.password'"></p>
-		<input type="password" v-model="password"/>
-	</label>
-	<button v-t="'_login.login'" @click="submit()"></button>
+	<form @submit.prevent="submit()">
+		<kw-input v-model="name" pattern="^[a-z0-9_]+$" required><p v-t="'_login.name'"></p></kw-input>
+		<kw-input v-model="password" type="password" required><p v-t="'_login.password'"></p></kw-input>
+		<kw-button v-t="'_login.login'" type="submit"></kw-button>
+	</form>
 </kw-container>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import KwContainer from '../components/container.vue';
+import KwInput from '../components/input.vue';
+import KwButton from '../components/button.vue';
 
 export default Vue.extend({
 	components: {
-		KwContainer,
+		KwContainer, KwInput, KwButton
 	},
 
 	data() {

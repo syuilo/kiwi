@@ -8,16 +8,16 @@
 	</template>
 
 	<form @submit.prevent="submit()">
-		<kw-input v-model="title"><span v-t="'_pageEdit.title'"></span></kw-input>
+		<kw-input v-model="title" required><span v-t="'_pageEdit.title'"></span></kw-input>
 		<kw-input v-model="subTitle"><span v-t="'_pageEdit.subTitle'"></span></kw-input>
-		<kw-input v-model="path" pattern="^[^\.]+$">
+		<kw-input v-model="path" pattern="^[^\.]+$" required>
 			<span v-t="'_pageEdit.url'"></span>
 			<template #info>{{ local }}/{{ path }}</template>
 		</kw-input>
 		<kw-input v-model="category"><span v-t="'_pageEdit.category'"></span>
 			<template #info>{{ $t('_pageEdit.categoryInfo') }}</template>
 		</kw-input>
-		<kw-textarea v-model="content"><span v-t="'_pageEdit.content'"></span></kw-textarea>
+		<kw-textarea v-model="content" required><span v-t="'_pageEdit.content'"></span></kw-textarea>
 		<kw-input v-model="tags" :debounce="true"><span v-t="'_pageEdit.tags'"></span>
 			<template #info>{{ $t('_pageEdit.tagsInfo') }}</template>
 		</kw-input>
@@ -94,12 +94,21 @@ export default Vue.extend({
 			});
 		},
 
-		content() {
-			this.ieEdited = true;
+		content(content) {
+			if (this.isEdit) {
+				if (this.page.content !== content) this.ieEdited = true;
+			} else {
+				this.ieEdited = true;
+			}
 		}
 	},
 
 	created() {
+		if (!this.$root.isLoggedin) {
+			this.$swal(this.$t('loginRequired')).then(() => {
+				this.$router.push(`/:signin`);
+			});
+		}
 		this.fetch();
 	},
 

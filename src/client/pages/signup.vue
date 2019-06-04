@@ -4,12 +4,15 @@
 		<span v-t="'signup'"></span>
 	</template>
 
-	<kw-input v-model="name" pattern="^[a-z0-9_]+$"><p v-t="'_signup.name'"></p>
-		<template #info>{{ $t('_signup.nameInfo') }}</template>
-	</kw-input>
-	<kw-input v-model="password" type="password"><p v-t="'_signup.password'"></p></kw-input>
-	<vue-recaptcha v-if="$root.wiki && $root.wiki.recaptchaSiteKey" :sitekey="$root.wiki.recaptchaSiteKey" @verify="onVerify"></vue-recaptcha>
-	<kw-button v-t="'_signup.signup'" @click="submit()"></kw-button>
+	<form @submit.prevent="submit()">
+		<kw-input v-model="name" pattern="^[a-z0-9_]+$" required>
+			<p v-t="'_signup.name'"></p>
+			<template #info>{{ $t('_signup.nameInfo') }}</template>
+		</kw-input>
+		<kw-input v-model="password" type="password" required><p v-t="'_signup.password'"></p></kw-input>
+		<vue-recaptcha v-if="$root.wiki && $root.wiki.recaptchaSiteKey" :sitekey="$root.wiki.recaptchaSiteKey" @verify="onVerify"></vue-recaptcha>
+		<kw-button v-t="'_signup.signup'" type="submit"></kw-button>
+	</form>
 </kw-container>
 </template>
 
