@@ -9,6 +9,7 @@ export const router = new VueRouter({
 		{ path: '/\\:pages', component: () => import('./pages/pages.vue').then(m => m.default) },
 		{ path: '/\\:recently', component: () => import('./pages/recently.vue').then(m => m.default) },
 		{ path: '/\\:new', component: () => import('./pages/edit.vue').then(m => m.default) },
+		{ path: '/\\:new/:initPath*', component: () => import('./pages/edit.vue').then(m => m.default), props: true },
 		{ path: '/\\:new-template', component: () => import('./pages/edit-template.vue').then(m => m.default) },
 		{ path: '/\\:edit/:pageId', component: () => import('./pages/edit.vue').then(m => m.default), props: true },
 		{ path: '/\\:edit-template/:templateId', component: () => import('./pages/edit-template.vue').then(m => m.default), props: true },

@@ -76,6 +76,7 @@ _pages:
     subTitle: "説明"
 _notFound:
   notFound: "ページが見つかりません"
+  createThatPage: "このページを作成する"
 _adminPage:
   wikiSettings: "Wikiの設定"
   _wikiSettings:

@@ -57,6 +57,8 @@
 	<template #title>
 		<fa :icon="faExclamationTriangle" class="icon"/><span v-t="'_notFound.notFound'"></span>
 	</template>
+
+	<router-link :to="'/:new/' + path" v-t="'_notFound.createThatPage'"></router-link>
 </kw-container>
 </template>
 

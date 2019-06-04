@@ -50,6 +50,10 @@ export default Vue.extend({
 		pageId: {
 			type: String,
 			required: false
+		},
+		initPath: {
+			type: String,
+			required: false
 		}
 	},
 
@@ -59,7 +63,7 @@ export default Vue.extend({
 			page: null,
 			title: '',
 			subTitle: '',
-			path: '',
+			path: this.initPath || '',
 			content: '',
 			tags: '',
 			category: '',
