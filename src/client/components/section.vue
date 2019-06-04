@@ -40,6 +40,17 @@ section {
 	> .header {
 		position: relative;
 
+		> .title {
+			> a {
+				color: inherit;
+				opacity: 0.5;
+
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+
 		> button {
 			position: absolute;
 			top: 0;
