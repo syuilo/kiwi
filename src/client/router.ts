@@ -3,6 +3,13 @@ import Page from './pages/page.vue';
 
 export const router = new VueRouter({
 	mode: 'history',
+	scrollBehavior(to, from, savedPosition) {
+		if (savedPosition) {
+			return savedPosition;
+		} else {
+			return { x: 0, y: 0 };
+		}
+	},
 	routes: [
 		{ path: '/\\:signup', component: () => import('./pages/signup.vue').then(m => m.default) },
 		{ path: '/\\:signin', component: () => import('./pages/signin.vue').then(m => m.default) },
