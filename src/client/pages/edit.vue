@@ -7,7 +7,7 @@
 		<span v-else v-t="'_pageEdit.createPage'"></span>
 	</template>
 
-	<form>
+	<form onsubmit="event.preventDefault();">
 		<kw-input v-model="title"><span v-t="'_pageEdit.title'"></span></kw-input>
 		<kw-input v-model="subTitle"><span v-t="'_pageEdit.subTitle'"></span></kw-input>
 		<kw-input v-model="path" pattern="^[^\.]+$">
