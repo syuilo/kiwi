@@ -7,7 +7,9 @@ const slugger = new GithubSlugger();
 
 export function parseMd(md: string) {
 	const ast = unified()
-		.use(markdown)
+		.use(markdown, {
+			footnotes: true
+		})
 		.parse(md);
 
 	slugger.reset();

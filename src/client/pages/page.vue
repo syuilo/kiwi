@@ -43,6 +43,8 @@
 		<span class="lastUpdated" :title="new Date(page.updatedAt).toLocaleString()"><span v-t="'lastUpdated'"></span>: <timeago :datetime="page.updatedAt"></timeago></span>
 	</footer>
 
+	<kw-defs :ast="page.ast" class="defs"/>
+
 	<ul class="links" v-if="links.length > 0">
 		<li v-for="link in links">
 			<router-link :to="'/' + link.path">
@@ -66,12 +68,13 @@
 import Vue from 'vue';
 import { faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight, faBookOpen } from '@fortawesome/free-solid-svg-icons';
 import Markdown from '../components/markdown';
+import KwDefs from '../components/defs';
 import KwContainer from '../components/container.vue';
 import Progress from '../scripts/progress';
 
 export default Vue.extend({
 	components: {
-		Markdown, KwContainer
+		Markdown, KwDefs, KwContainer
 	},
 
 	props: {
@@ -398,6 +401,23 @@ $margin: 48px;
 		}
 
 		> .lastUpdated {
+			opacity: 0.7;
+		}
+	}
+
+	> .defs {
+		display: block;
+		margin: 0;
+		padding: 16px $margin;
+		background: #eee;
+		border-bottom: solid 1px #ddd;
+		font-size: 90%;
+
+		&:empty {
+			display: none;
+		}
+
+		> * {
 			opacity: 0.7;
 		}
 	}

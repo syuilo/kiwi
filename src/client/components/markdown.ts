@@ -2,13 +2,22 @@ import Vue, { VNode } from 'vue';
 import KwUrl from './url.vue';
 import KwImage from './image.vue';
 import KwSection from './section.vue';
+import KwRef from './ref.vue';
 import { concat } from '../../prelude/array';
 
-export default Vue.component('markdown', {
+export default Vue.component('kw-markdown', {
 	props: {
 		ast: {
 			required: true
 		},
+		tag: {
+			type: String,
+			required: false
+		},
+		id: {
+			type: String,
+			required: false
+		}
 	},
 
 	render(createElement) {
@@ -40,6 +49,19 @@ export default Vue.component('markdown', {
 							heading: () => genEl(token.heading.children)
 						}
 					}, genEl(token.children))];
+				}
+
+				case 'footnoteReference': {
+					return [createElement(KwRef, {
+						props: {
+							identifier: token.identifier,
+							label: token.label
+						},
+					})];
+				}
+
+				case 'footnoteDefinition': {
+					return []; // noop
 				}
 
 				case 'strong': {
@@ -134,6 +156,10 @@ export default Vue.component('markdown', {
 		}));
 
 		// Parse ast to DOM
-		return createElement('div', genEl(this.ast));
+		return createElement(this.tag || 'div', {
+			attrs: {
+				id: this.id
+			}
+		}, genEl(this.ast));
 	}
 });
