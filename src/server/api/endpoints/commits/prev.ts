@@ -28,8 +28,13 @@ export default define(meta, async (ps, user) => {
 	}
 
 	const prev = await Commits.findOne({
-		id: LessThan(commit.id),
-		type: commit.type,
+		where: {
+			id: LessThan(commit.id),
+			type: commit.type,
+		},
+		order: {
+			id: 'DESC'
+		}
 	});
 
 	if (prev == null) {
