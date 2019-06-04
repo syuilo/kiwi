@@ -227,6 +227,7 @@ $margin: 48px;
 		overflow: hidden;
 		display: table;
 		font-size: 95%;
+		float: left;
 
 		> header {
 			background: #eee;
