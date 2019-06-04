@@ -12,7 +12,7 @@
 		<kw-input v-model="subTitle"><span v-t="'_pageEdit.subTitle'"></span></kw-input>
 		<kw-input v-model="path" pattern="^[^:#]+$" required>
 			<span v-t="'_pageEdit.url'"></span>
-			<template #info>{{ local }}/{{ path }}</template>
+			<template #info>{{ local }}/{{ path.toLowerCase() }}</template>
 		</kw-input>
 		<kw-textarea v-model="content" required><span v-t="'_pageEdit.content'"></span></kw-textarea>
 		<kw-input v-model="category" list="categories">

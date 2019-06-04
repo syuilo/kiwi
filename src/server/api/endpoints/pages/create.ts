@@ -27,6 +27,7 @@ export const meta = {
 
 		path: {
 			validator: Pages.pathValidator,
+			transform: (x: string) => x.trim().toLowerCase(),
 		},
 
 		content: {

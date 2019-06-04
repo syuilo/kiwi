@@ -58,7 +58,7 @@ export default define(meta, async (ps, user) => {
 			});
 		} else {
 			page = await Pages.findOne({
-				path: ps.path
+				path: ps.path.toLowerCase()
 			});
 		}
 	}

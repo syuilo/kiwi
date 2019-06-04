@@ -2,6 +2,9 @@ import * as path from 'path';
 import config from '../../../config';
 
 export function resolvePath(url: string, current: string): string {
+	url = url.toLowerCase();
+	current = current.toLowerCase();
+
 	const currentDir = current.split('/').slice(0, current.split('/').length - 1).join('/');
 
 	const isExternal = (url.startsWith('http://') || url.startsWith('https://')) && !url.startsWith(config.url);
