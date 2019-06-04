@@ -407,6 +407,7 @@ $margin: 48px;
 		background: #eee;
 		border-bottom: solid 1px #ddd;
 		overflow: auto;
+		white-space: nowrap;
 
 		> li {
 			display: inline-block;
@@ -425,13 +426,15 @@ $margin: 48px;
 
 				> h1 {
 					font-size: 16px;
-					margin: 0;
+					line-height: 16px;
+					margin: 0 0 4px 0;
 				}
 
 				> p {
 					margin: 0;
 					opacity: 0.5;
-					font-size: 15px;
+					font-size: 14px;
+					line-height: 14px;
 				}
 			}
 		}
