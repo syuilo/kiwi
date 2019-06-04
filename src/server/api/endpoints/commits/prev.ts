@@ -30,7 +30,7 @@ export default define(meta, async (ps, user) => {
 	const prev = await Commits.findOne({
 		where: {
 			id: LessThan(commit.id),
-			type: commit.type,
+			key: commit.key,
 		},
 		order: {
 			id: 'DESC'
