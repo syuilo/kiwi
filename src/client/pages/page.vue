@@ -46,8 +46,8 @@
 	<ul class="links" v-if="links.length > 0">
 		<li v-for="link in links">
 			<router-link :to="'/' + link.path">
-				<h1>{{ page.title }}</h1>
-				<p>{{ page.subTitle }}</p>
+				<h1>{{ link.title }}</h1>
+				<p>{{ link.subTitle }}</p>
 			</router-link>
 		</li>
 	</ul>
