@@ -82,6 +82,10 @@ export default Vue.extend({
 $header-height: 50px;
 $nav-width: 250px;
 
+* {
+	-webkit-overflow-scrolling: touch;
+}
+
 html {
 	font-family: sans-serif;
 	background: #f7f7f7;
