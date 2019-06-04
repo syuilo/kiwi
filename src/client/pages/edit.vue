@@ -14,6 +14,7 @@
 			<span v-t="'_pageEdit.url'"></span>
 			<template #info>{{ local }}/{{ path }}</template>
 		</kw-input>
+		<kw-textarea v-model="content" required><span v-t="'_pageEdit.content'"></span></kw-textarea>
 		<kw-input v-model="category" list="categories">
 			<span v-t="'_pageEdit.category'"></span>
 			<template #info>{{ $t('_pageEdit.categoryInfo') }}</template>
@@ -21,7 +22,6 @@
 		<datalist id="categories">
 			<option v-for="category in categories" :value="category"/>
 		</datalist>
-		<kw-textarea v-model="content" required><span v-t="'_pageEdit.content'"></span></kw-textarea>
 		<kw-input v-model="tags" :debounce="true"><span v-t="'_pageEdit.tags'"></span>
 			<template #info>{{ $t('_pageEdit.tagsInfo') }}</template>
 		</kw-input>
