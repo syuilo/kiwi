@@ -9,6 +9,10 @@
 		<kw-input v-model="password" type="password" required><p v-t="'_login.password'"></p></kw-input>
 		<kw-button v-t="'_login.login'" type="submit"></kw-button>
 	</form>
+
+	<template #footer>
+		<span v-t="'_login.haveNoAccount'" style="margin-right: 16px;"></span><router-link to="/:signup" v-t="'signup'"></router-link>
+	</template>
 </kw-container>
 </template>
 

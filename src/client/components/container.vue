@@ -7,6 +7,10 @@
 	<div>
 		<slot></slot>
 	</div>
+
+	<footer>
+		<slot name="footer"></slot>
+	</footer>
 </div>
 </template>
 
@@ -47,6 +51,11 @@ export default Vue.extend({
 		> div {
 			padding: 32px;
 		}
+	}
+
+	> footer:not(:empty) {
+		padding: 32px;
+		border-top: solid 1px #eee;
 	}
 }
 </style>

@@ -13,6 +13,10 @@
 		<vue-recaptcha v-if="$root.wiki && $root.wiki.recaptchaSiteKey" :sitekey="$root.wiki.recaptchaSiteKey" @verify="onVerify"></vue-recaptcha>
 		<kw-button v-t="'_signup.signup'" type="submit"></kw-button>
 	</form>
+
+	<template #footer>
+		<span v-t="'_signup.haveAccount'" style="margin-right: 16px;"></span><router-link to="/:signin" v-t="'login'"></router-link>
+	</template>
 </kw-container>
 </template>
 
