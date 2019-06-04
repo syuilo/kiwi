@@ -147,15 +147,15 @@ export default Vue.extend({
 	methods: {
 		fetch() {
 			Progress.start();
-			this.page = null;
-			this.notFound = false;
 			this.$root.api('pages/show', {
 				path: this.path ? this.path : 'home'
 			}).then(page => {
+				this.notFound = false;
 				this.page = page;
 				Progress.done();
 			}).catch(e => {
 				Progress.done();
+				this.page = null;
 				if (e.id === '1d5731c3-c4cd-4b32-a148-67c8fde1c181') {
 					this.notFound = true;
 				}
