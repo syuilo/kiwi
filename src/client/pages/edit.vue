@@ -7,7 +7,7 @@
 		<span v-else v-t="'_pageEdit.createPage'"></span>
 	</template>
 
-	<form onsubmit="event.preventDefault();">
+	<form @submit.prevent="submit()">
 		<kw-input v-model="title"><span v-t="'_pageEdit.title'"></span></kw-input>
 		<kw-input v-model="subTitle"><span v-t="'_pageEdit.subTitle'"></span></kw-input>
 		<kw-input v-model="path" pattern="^[^\.]+$">
@@ -26,8 +26,8 @@
 		</div>
 		<kw-input v-if="isEdit" v-model="commitMessage"><span v-t="'_pageEdit.commitMessage'"></span></kw-input>
 		<vue-recaptcha v-if="$root.wiki && $root.wiki.recaptchaSiteKey" :sitekey="$root.wiki.recaptchaSiteKey" @verify="onVerify"></vue-recaptcha>
-		<kw-button v-if="isEdit" v-t="'update'" @click="submit()"></kw-button>
-		<kw-button v-else v-t="'create'" @click="submit()"></kw-button>
+		<kw-button v-if="isEdit" v-t="'update'" type="submit" @click="submit()"></kw-button>
+		<kw-button v-else v-t="'create'" type="submit" @click="submit()"></kw-button>
 	</form>
 </kw-container>
 </template>

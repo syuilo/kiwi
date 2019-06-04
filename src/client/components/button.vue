@@ -1,12 +1,19 @@
 <template>
-<button class="ui-button" @click="$emit('click')">
+<button class="ui-button" @click="$emit('click')" :type="type">
 	<span><slot></slot></span>
 </button>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-export default Vue.extend({});
+export default Vue.extend({
+	props: {
+		type: {
+			type: String,
+			required: false
+		}
+	}
+});
 </script>
 
 <style lang="scss" scoped>
