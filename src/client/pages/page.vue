@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<div class="toc" v-if="toc.length > 0">
-		<header>{{ $t('tableOfContents') }}</header>
+		<header><fa :icon="faBookOpen" class="icon"/>{{ $t('tableOfContents') }}</header>
 		<div v-for="content in toc" class="item">
 			<a :href="'#' + content.id" aria-hidden="true"><span :style="'padding-left: '+ content.depth * 8 + 'px;'">{{ content.text }}</span></a>
 		</div>
@@ -46,7 +46,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight, faBookOpen } from '@fortawesome/free-solid-svg-icons';
 import Markdown from '../components/markdown';
 import KwContainer from '../components/container.vue';
 import Progress from '../scripts/progress';
@@ -69,7 +69,7 @@ export default Vue.extend({
 			toc: [],
 			templates: [],
 			notFound: false,
-			faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight,
+			faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight, faBookOpen,
 		};
 	},
 
@@ -220,11 +220,15 @@ $margin: 48px;
 		border-radius: 6px;
 		overflow: hidden;
 		display: table;
+		font-size: 95%;
 
 		> header {
 			background: #eee;
-			text-align: center;
-			padding: 8px;
+			padding: 8px 12px;
+
+			> .icon {
+				margin-right: 6px;
+			}
 		}
 
 		> .item {
