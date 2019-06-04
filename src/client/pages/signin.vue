@@ -5,8 +5,8 @@
 	</template>
 
 	<form @submit.prevent="submit()">
-		<kw-input v-model="name" pattern="^[a-z0-9_]+$" required><p v-t="'_login.name'"></p></kw-input>
-		<kw-input v-model="password" type="password" required><p v-t="'_login.password'"></p></kw-input>
+		<kw-input v-model="name" pattern="^[a-z0-9_]+$" required autocomplete="username"><p v-t="'_login.name'"></p></kw-input>
+		<kw-input v-model="password" type="password" required autocomplete="current-password"><p v-t="'_login.password'"></p></kw-input>
 		<kw-button v-t="'_login.login'" type="submit"></kw-button>
 	</form>
 
