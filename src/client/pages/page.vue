@@ -148,7 +148,8 @@ export default Vue.extend({
 		fetch() {
 			Progress.start();
 			this.$root.api('pages/show', {
-				path: this.path ? this.path : 'home'
+				path: this.path ? this.path : 'home',
+				raw: false
 			}).then(page => {
 				this.notFound = false;
 				this.page = page;

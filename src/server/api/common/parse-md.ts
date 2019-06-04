@@ -43,5 +43,20 @@ export function parseMd(md: string) {
 		return [res, cursor];
 	}
 
-	return x(ast.children as any[], 0, 0)[0];
+	const tokens = x(ast.children as any[], 0, 0)[0];
+
+	function clean(tokens: any[]): void {
+		for (const token of tokens) {
+			delete token.position;
+			if (token.children) clean(token.children);
+			if (token.heading) {
+				delete token.heading.position;
+				if (token.heading.children) clean(token.heading.children);
+			}
+		}
+	}
+
+	clean(tokens);
+
+	return tokens;
 }

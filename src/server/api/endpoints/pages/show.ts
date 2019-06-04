@@ -23,6 +23,11 @@ export const meta = {
 		detail: {
 			validator: $.optional.bool,
 			default: true
+		},
+
+		raw: {
+			validator: $.optional.bool,
+			default: true
 		}
 	},
 
@@ -62,5 +67,5 @@ export default define(meta, async (ps, user) => {
 		throw new ApiError(meta.errors.noSuchPage);
 	}
 
-	return await Pages.pack(page, ps.detail);
+	return await Pages.pack(page, ps.detail, ps.raw);
 });
