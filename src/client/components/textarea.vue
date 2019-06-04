@@ -1,7 +1,7 @@
 <template>
 <label class="ui-textarea">
 	<span class="label"><slot></slot></span>
-	<textarea :value="value" @input="$emit('input', $event.target.value)" :required="required"></textarea>
+	<textarea :value="value" @input="$emit('input', $event.target.value)" v-bind="$attrs"></textarea>
 	<span class="info"><slot name="info"></slot></span>
 </label>
 </template>
@@ -12,9 +12,6 @@ export default Vue.extend({
 	props: {
 		value: {
 			required: true
-		},
-		required: {
-			required: false
 		},
 	}
 });

@@ -83,7 +83,7 @@ export default Vue.extend({
 	},
 
 	created() {
-		this.$root.api('categories').then(categories => {
+		this.$root.api('categories-tree').then(categories => {
 			this.categories = categories;
 		});
 	}

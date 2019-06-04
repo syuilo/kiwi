@@ -14,9 +14,13 @@
 			<span v-t="'_pageEdit.url'"></span>
 			<template #info>{{ local }}/{{ path }}</template>
 		</kw-input>
-		<kw-input v-model="category"><span v-t="'_pageEdit.category'"></span>
+		<kw-input v-model="category" list="categories">
+			<span v-t="'_pageEdit.category'"></span>
 			<template #info>{{ $t('_pageEdit.categoryInfo') }}</template>
 		</kw-input>
+		<datalist id="categories">
+			<option v-for="category in categories" :value="category"/>
+		</datalist>
 		<kw-textarea v-model="content" required><span v-t="'_pageEdit.content'"></span></kw-textarea>
 		<kw-input v-model="tags" :debounce="true"><span v-t="'_pageEdit.tags'"></span>
 			<template #info>{{ $t('_pageEdit.tagsInfo') }}</template>
@@ -70,6 +74,7 @@ export default Vue.extend({
 			attributes: {},
 			commitMessage: '',
 			templates: [],
+			categories: [],
 			recaptcha: null,
 			submitting: false,
 			ieEdited: false,
@@ -110,6 +115,9 @@ export default Vue.extend({
 			});
 		}
 		this.fetch();
+		this.$root.api('categories').then(categories => {
+			this.categories = categories;
+		});
 	},
 
 	beforeMount() {

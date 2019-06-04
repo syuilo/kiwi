@@ -71,7 +71,7 @@ export default Vue.extend({
 			this.tags = Object.entries(tags);
 		});
 
-		this.$root.api('categories').then(categories => {
+		this.$root.api('categories-tree').then(categories => {
 			this.categories = Object.entries(categories);
 		});
 	}
