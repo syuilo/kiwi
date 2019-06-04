@@ -8,3 +8,4 @@ A modern, lightweight and powerful wiki app.
 * Templates (attributes)
 * User permission
 * Fully trackable & revertable history
+* Spam protection using reCAPTCHA
