@@ -216,7 +216,7 @@ $margin: 48px;
 			> header {
 				background: #eee;
 				text-align: center;
-				padding: 6px;
+				padding: 4px 6px 6px 6px;
 			}
 
 			> dl {
@@ -255,7 +255,7 @@ $margin: 48px;
 
 		> header {
 			background: #eee;
-			padding: 8px 12px;
+			padding: 6px 12px 8px 12px;
 
 			> .icon {
 				margin-right: 6px;
