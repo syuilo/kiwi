@@ -31,7 +31,7 @@ export const meta = {
 		},
 
 		path: {
-			validator: $.str.min(1).notInclude(['.', ':', '#']),
+			validator: Pages.pathValidator,
 		},
 
 		content: {

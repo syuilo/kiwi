@@ -1,3 +1,4 @@
+import $ from 'cafy';
 import { EntityRepository, Repository } from 'typeorm';
 import { Page } from '../entities/page';
 import { ensure } from '../../prelude/ensure';
@@ -7,6 +8,16 @@ export type PackedPage = any;
 
 @EntityRepository(Page)
 export class PageRepository extends Repository<Page> {
+	public pathValidator = $.str
+		.min(1)
+		.notInclude([':', '#'])
+		.pipe(x => !x.startsWith('.'))
+		.pipe(x => !x.endsWith('.'))
+		.pipe(x => !x.endsWith('/'))
+		.pipe(x => !x.endsWith('/'))
+		.pipe(x => !x.startsWith(' '))
+		.pipe(x => !x.endsWith(' '));
+
 	public async pack(
 		src: Page['id'] | Page,
 		detail = false,
