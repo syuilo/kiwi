@@ -221,7 +221,7 @@ $margin: 48px;
 	}
 
 	> .toc {
-		margin: 16px $margin;
+		margin: 16px 16px 16px $margin;
 		border: solid 2px #eee;
 		border-radius: 6px;
 		overflow: hidden;
