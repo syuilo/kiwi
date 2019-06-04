@@ -26,8 +26,8 @@
 		</div>
 		<kw-input v-if="isEdit" v-model="commitMessage"><span v-t="'_pageEdit.commitMessage'"></span></kw-input>
 		<vue-recaptcha v-if="$root.wiki && $root.wiki.recaptchaSiteKey" :sitekey="$root.wiki.recaptchaSiteKey" @verify="onVerify"></vue-recaptcha>
-		<kw-button v-if="isEdit" v-t="'update'" type="submit" @click="submit()"></kw-button>
-		<kw-button v-else v-t="'create'" type="submit" @click="submit()"></kw-button>
+		<kw-button v-if="isEdit" v-t="'update'" type="submit"></kw-button>
+		<kw-button v-else v-t="'create'" type="submit"></kw-button>
 	</form>
 </kw-container>
 </template>
@@ -67,6 +67,7 @@ export default Vue.extend({
 			commitMessage: '',
 			templates: [],
 			recaptcha: null,
+			submitting: false,
 			faEdit, faPlus,
 		};
 	},
@@ -111,6 +112,8 @@ export default Vue.extend({
 		},
 
 		submit() {
+			if (this.submitting) return;
+			this.submitting = true;
 			this.$root.api(this.isEdit ? 'pages/update' : 'pages/create', {
 				id: this.isEdit ? this.pageId : null,
 				path: this.path,
