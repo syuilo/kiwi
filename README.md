@@ -1,7 +1,7 @@
 # kiwi
 A modern, lightweight and powerful wiki app.
 
-# Features
+## Features
 * Markdown support
 * Automatic toc generation
 * Tags and categories
