@@ -1,7 +1,14 @@
 <template>
 <kw-container :fit="true">
 	<template #title>
-		<fa :icon="faTag" class="icon"/><span>{{ tag }}</span>
+		<div style="float:left;">
+			<fa :icon="faTag" class="icon"/><span>{{ tag }}</span>
+		</div>
+		<div style="float:right;">
+			<router-link v-if="template == null" :to="'/:new-template/' + tag" style="text-decoration: none;"><span style="font-size: .7em;"><fa :icon="faStickyNote"/> {{ $t('_templateEdit.createTemplate') }}</span></router-link>
+			<router-link v-else :to="'/:edit-template/' + template.id" style="text-decoration: none;"><span style="font-size: .7em;"><fa :icon="faStickyNote"/> {{ $t('_templateEdit.editTemplate') }}</span></router-link>
+		</div>
+		<div style="clear:both"></div>
 	</template>
 
 	<div style="overflow: auto;">
@@ -31,7 +38,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faHashtag, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faHashtag, faStickyNote, faTag } from '@fortawesome/free-solid-svg-icons';
 import { faClock, faCommentAlt } from '@fortawesome/free-regular-svg-icons';
 import KwContainer from '../components/container.vue';
 import KwInput from '../components/input.vue';
@@ -57,14 +64,32 @@ export default Vue.extend({
 			pager: new Pager(this.$root, 'pages/find-by-tag', () => ({
 				tag: this.tag
 			})),
-			faClock, faHashtag, faTag, faCommentAlt,
+			template: null,
+			faClock, faHashtag, faStickyNote, faTag, faCommentAlt,
 		};
 	},
 
 	watch: {
 		tag() {
+			this.fetchTemplate();
 			this.pager.init();
 		}
+	},
+
+	created() {
+		this.fetchTemplate();
+	},
+
+	methods: {
+		fetchTemplate() {
+			this.$root.api('templates/show', {
+				name: this.tag
+			}).then(template => {
+				this.template = template;
+			}).catch(() => {
+				this.template = null;
+			});
+		},
 	}
 });
 </script>
