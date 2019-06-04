@@ -4,6 +4,7 @@ import { Templates } from '../../../../models';
 import { Kwr } from '../../../../services/repository';
 import { ulid } from 'ulid';
 import { Template } from '../../../../models/entities/template';
+import {ApiError} from "../../error";
 
 export const meta = {
 	permission: 'create:template',
@@ -22,11 +23,26 @@ export const meta = {
 			default: 'Initial commit'
 		},
 	},
+
+	errors: {
+		alreadyExists: {
+			message: 'Template already exists.',
+			code: 'ALREADY_EXISTS',
+			id: 'f0153c93-a8e9-420d-bbd8-3de3b56d20fe'
+		}
+	}
 };
 
 export default define(meta, async (ps, user) => {
-	// todo: transaction
+	const exist = await Templates.findOne({
+		name: ps.name
+	});
 
+	if (exist) {
+		throw new ApiError(meta.errors.alreadyExists);
+	}
+
+	// todo: transaction
 	const template = await Templates.save(new Template({
 		id: ulid().toLowerCase(),
 		name: ps.name,

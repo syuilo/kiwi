@@ -55,6 +55,12 @@ _pageEdit:
   categoryInfo: "スラッシュ(/)で区切って階層構造を表せます"
   commitMessage: "編集の要約"
   content: "内容"
+_templateEdit:
+  createTemplate: "テンプレートを作成"
+  editTemplate: "テンプレートの編集"
+  name: "タグ"
+  attributes: "属性"
+  commitMessage: "編集の要約"
 _pageDelete:
   deletePage: "ページ「{page}」の削除"
   commitMessage: "削除の理由"

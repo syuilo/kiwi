@@ -11,6 +11,7 @@ export const router = new VueRouter({
 		{ path: '/\\:new', component: () => import('./pages/edit.vue').then(m => m.default) },
 		{ path: '/\\:new/:initPath*', component: () => import('./pages/edit.vue').then(m => m.default), props: true },
 		{ path: '/\\:new-template', component: () => import('./pages/edit-template.vue').then(m => m.default) },
+		{ path: '/\\:new-template/:initName', component: () => import('./pages/edit-template.vue').then(m => m.default), props: true },
 		{ path: '/\\:edit/:pageId', component: () => import('./pages/edit.vue').then(m => m.default), props: true },
 		{ path: '/\\:edit-template/:templateId', component: () => import('./pages/edit-template.vue').then(m => m.default), props: true },
 		{ path: '/\\:delete/:pageId', component: () => import('./pages/delete.vue').then(m => m.default), props: true },

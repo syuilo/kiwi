@@ -32,13 +32,17 @@ export default Vue.extend({
 		templateId: {
 			type: String,
 			required: false
+		},
+		initName: {
+			type: String,
+			required: false
 		}
 	},
 
 	data() {
 		return {
 			template: null,
-			name: '',
+			name: this.initName || '',
 			attributes: '',
 			commitMessage: '',
 			faEdit, faPlus,
@@ -79,8 +83,8 @@ export default Vue.extend({
 				name: this.name,
 				attributes: this.attributes.split('\n'),
 				commit: this.commitMessage || null
-			}).then(template => {
-				this.$router.push(`/${this.name}`);
+			}).then(() => {
+				this.$router.push(`/:tags/${this.name}`);
 			});
 		}
 	}
