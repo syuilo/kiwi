@@ -1,9 +1,7 @@
 <template>
 <kw-container :fit="true">
 	<template #title>
-		<div style="float:left;">
-			<fa :icon="faTag" class="icon"/><span>{{ tag }}</span>
-		</div>
+		<fa :icon="faTag" class="icon"/><span>{{ tag }}</span>
 		<div style="float:right;">
 			<router-link v-if="template == null" :to="'/:new-template/' + tag" style="text-decoration: none;"><span style="font-size: .7em;"><fa :icon="faStickyNote"/> {{ $t('_templateEdit.createTemplate') }}</span></router-link>
 			<router-link v-else :to="'/:edit-template/' + template.id" style="text-decoration: none;"><span style="font-size: .7em;"><fa :icon="faStickyNote"/> {{ $t('_templateEdit.editTemplate') }}</span></router-link>
