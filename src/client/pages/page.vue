@@ -182,15 +182,17 @@ $margin: 48px;
 
 	> .infoboxes {
 		> .infobox {
-			margin: 16px $margin;
+			margin: 16px $margin 16px 16px;
 			border: solid 2px #eee;
 			border-radius: 6px;
 			overflow: hidden;
+			float: right;
+			font-size: 95%;
 
 			> header {
 				background: #eee;
 				text-align: center;
-				padding: 8px;
+				padding: 6px;
 			}
 
 			> dl {
@@ -199,12 +201,16 @@ $margin: 48px;
 				> dt, > dd {
 					display: inline-block;
 					margin: 0;
+					word-break: break-all;
+					vertical-align: middle;
 				}
 
 				> dt {
 					width: 30%;
 					font-weight: bold;
 					text-align: center;
+					padding-right: 8px;
+					box-sizing: border-box;
 				}
 
 				> dd {

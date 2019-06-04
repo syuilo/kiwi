@@ -37,6 +37,8 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 section {
+	clear: both;
+
 	> .header {
 		position: relative;
 
