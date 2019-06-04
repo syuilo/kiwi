@@ -258,6 +258,12 @@ $margin: 48px;
 		padding: 16px 0;
 		border-bottom: solid 2px #eee;
 
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
 		> *:not(section) {
 			margin-left: $margin;
 			margin-right: $margin;
