@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueI18n from 'vue-i18n';
+import VueSwal from 'vue-swal';
 import VueTimeago from 'vue-timeago';
 import VueRecaptcha from 'vue-recaptcha';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -16,6 +17,7 @@ async function main() {
 
 	Vue.use(VueRouter);
 	Vue.use(VueI18n);
+	Vue.use(VueSwal);
 	Vue.use(VueTimeago, {
 		name: 'Timeago',
 		locale: lang,

@@ -100,6 +100,7 @@
 		"vue-loader": "15.7.0",
 		"vue-recaptcha": "1.1.1",
 		"vue-router": "3.0.6",
+		"vue-swal": "1.0.0",
 		"vue-template-compiler": "2.6.10",
 		"vue-timeago": "5.1.2",
 		"webpack": "4.32.2",

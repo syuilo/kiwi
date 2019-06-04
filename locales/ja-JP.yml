@@ -56,6 +56,11 @@ _pageEdit:
   categoryInfo: "スラッシュ(/)で区切って階層構造を表せます"
   commitMessage: "編集の要約"
   content: "内容"
+  _unsaved:
+    title: "編集中のデータがあります！"
+    text: "ページを移動すると編集中のデータが失くなります。"
+    confirm: "わかってる"
+    cancel: "あぶねー"
 _templateEdit:
   createTemplate: "テンプレートを作成"
   editTemplate: "テンプレートの編集"

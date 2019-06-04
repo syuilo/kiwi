@@ -98,6 +98,18 @@ export default Vue.extend({
 		this.fetch();
 	},
 
+	beforeMount() {
+		window.addEventListener('beforeunload', this.pageLeaveHandler);
+	},
+
+	beforeRouteUpdate(to, from, next) {
+		this.pageLeaveCheck(next);
+	},
+
+	beforeRouteLeave(to, from, next) {
+		this.pageLeaveCheck(next);
+	},
+
 	methods: {
 		fetch() {
 			if (this.pageId == null) return;
@@ -113,6 +125,42 @@ export default Vue.extend({
 				this.attributes = page.attributes;
 				this.tags = page.tags.join(' ');
 			});
+		},
+
+		pageLeaveHandler(event) {
+			if (!this.submitting) {
+				if (event.type === 'beforeunload') {
+					event.returnValue = 'true';
+				}
+			}
+		},
+
+		pageLeaveCheck(next) {
+			if (!this.submitting) {
+				const pageUnsavedTitle = this.$t('_pageEdit._unsaved.title');
+				const pageUnsavedText = this.$t('_pageEdit._unsaved.text');
+				const pageUnsavedConfirm = this.$t('_pageEdit._unsaved.confirm');
+				const pageUnsavedCancel = this.$t('_pageEdit._unsaved.cancel');
+
+				(async () => {
+					await this.$swal({
+						title: pageUnsavedTitle,
+						text: pageUnsavedText,
+						icon: 'warning',
+						buttons: [pageUnsavedCancel, pageUnsavedConfirm]
+						closeOnClickOutside: true,
+						dangerMode: true
+					}).then(answer => {
+						if (answer) {
+							next();
+						} else {
+							next(false);
+						}
+					});
+				})();
+			} else {
+				next();
+			}
 		},
 
 		submit() {
