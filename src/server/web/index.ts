@@ -10,7 +10,7 @@ import * as send from 'koa-send';
 import * as views from 'koa-views';
 const locales = require('../../../locales');
 import config from '../../config';
-import { Metas } from '../../models';
+import { Metas, Pages } from '../../models';
 
 // Init app
 const app = new Koa();
@@ -49,10 +49,20 @@ router.get('/_locales/:lang', async ctx => {
 
 // Render base html for all requests
 router.get('*', async ctx => {
-	const meta = await Metas.fetch();
-	await ctx.render('base', {
-		wiki: meta,
-	});
+	const [meta, page] = await Promise.all([
+		Metas.fetch(),
+		Pages.findOne({ path: ctx.path.substr(1) })
+	]);
+	if (page) {
+		await ctx.render('page', {
+			wiki: meta,
+			page: page,
+		});
+	} else {
+		await ctx.render('base', {
+			wiki: meta,
+		});
+	}
 	ctx.set('Cache-Control', 'public, max-age=300');
 });
 
