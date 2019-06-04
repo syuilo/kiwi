@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<div class="sections" v-if="toc.length > 0">
-		<header>{{ $t('toc') }}</header>
+		<header>{{ $t('tableOfContents') }}</header>
 		<div v-for="content in toc" class="section">
 			<a :href="'#' + content.id" aria-hidden="true"><span :style="'padding-left: '+ content.depth * 8 + 'px;'">{{ content.text }}</span></a>
 		</div>
