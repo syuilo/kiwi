@@ -72,6 +72,7 @@ export default Vue.extend({
 			templates: [],
 			recaptcha: null,
 			submitting: false,
+			ieEdited: false,
 			faEdit, faPlus,
 		};
 	},
@@ -91,6 +92,10 @@ export default Vue.extend({
 			Promise.all(this.tags.split(' ').map(tag => this.$root.api('templates/show', { name: tag }).catch(() => null))).then(templates => {
 				this.templates = templates.filter(x => x != null);
 			});
+		},
+
+		content() {
+			this.ieEdited = true;
 		}
 	},
 
@@ -128,15 +133,14 @@ export default Vue.extend({
 		},
 
 		pageLeaveHandler(event) {
-			if (!this.submitting) {
-				if (event.type === 'beforeunload') {
-					event.returnValue = 'true';
-				}
+			if (this.submitting || !this.ieEdited) return;
+			if (event.type === 'beforeunload') {
+				event.returnValue = 'true';
 			}
 		},
 
 		pageLeaveCheck(next) {
-			if (this.submitting) {
+			if (this.submitting || !this.ieEdited) {
 				next();
 				return;
 			}
