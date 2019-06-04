@@ -114,6 +114,9 @@ export default Vue.extend({
 
 	beforeMount() {
 		window.addEventListener('beforeunload', this.pageLeaveHandler);
+		this.$once('hook:destroyed', () => {
+			window.removeEventListener('beforeunload', this.pageLeaveHandler);
+		});
 	},
 
 	beforeRouteUpdate(to, from, next) {
