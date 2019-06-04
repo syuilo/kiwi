@@ -25,7 +25,7 @@ export const meta = {
 		noSuchTemplate: {
 			message: 'No such template.',
 			code: 'NO_SUCH_TEMPLATE',
-			id: 'd54be53e-3ca6-451b-989f-f5bbc25527b6\n'
+			id: 'd54be53e-3ca6-451b-989f-f5bbc25527b6'
 		},
 	}
 };

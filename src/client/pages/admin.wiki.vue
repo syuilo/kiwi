@@ -19,7 +19,6 @@ import Vue from 'vue';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import KwContainer from '../components/container.vue';
 import KwInput from '../components/input.vue';
-import KwTextarea from '../components/textarea.vue';
 import KwButton from '../components/button.vue';
 import KwPermissions from '../components/permissions.vue';
 

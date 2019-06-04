@@ -167,7 +167,7 @@ export default Vue.extend({
 					title: pageUnsavedTitle,
 					text: pageUnsavedText,
 					icon: 'warning',
-					buttons: [pageUnsavedCancel, pageUnsavedConfirm]
+					buttons: [pageUnsavedCancel, pageUnsavedConfirm],
 					closeOnClickOutside: true,
 					dangerMode: true
 				}).then(answer => {

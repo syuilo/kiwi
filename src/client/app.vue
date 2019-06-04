@@ -137,7 +137,7 @@ table.kiwi {
 	left: 0;
 	width: 100%;
 	line-height: $header-height;
-	box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;
+	box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px;
 	background: #a9b979;
 
 	> .title {

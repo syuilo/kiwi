@@ -1,4 +1,4 @@
-import { EntityRepository, Repository, getConnection } from 'typeorm';
+import { EntityRepository, getConnection, Repository } from 'typeorm';
 import { Meta } from '../entities/meta';
 
 export type PackedMeta = any;
@@ -25,7 +25,7 @@ export class MetaRepository extends Repository<Meta> {
 		meta: Meta,
 		secret = false
 	): Promise<PackedMeta> {
-		const packed = {
+		return {
 			name: meta.name,
 			description: meta.description,
 			defaultPermissions: meta.defaultPermissions,
@@ -34,7 +34,5 @@ export class MetaRepository extends Repository<Meta> {
 				recaptchaSecretKey: meta.recaptchaSecretKey
 			} : {})
 		};
-
-		return packed;
 	}
 }

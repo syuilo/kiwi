@@ -1,10 +1,10 @@
 import $ from 'cafy';
 import define from '../../define';
+import { ApiError } from "../../error";
 import { Templates } from '../../../../models';
 import { Kwr } from '../../../../services/repository';
 import { ulid } from 'ulid';
 import { Template } from '../../../../models/entities/template';
-import {ApiError} from "../../error";
 
 export const meta = {
 	permission: 'create:template',

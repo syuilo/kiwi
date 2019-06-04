@@ -37,7 +37,6 @@ import { faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { faClock, faFileImage, faCommentAlt } from '@fortawesome/free-regular-svg-icons';
 import KwContainer from '../components/container.vue';
 import KwInput from '../components/input.vue';
-import KwTextarea from '../components/textarea.vue';
 import KwButton from '../components/button.vue';
 import KwPermissions from '../components/permissions.vue';
 import { Pager } from '../scripts/pager';

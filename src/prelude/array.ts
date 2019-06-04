@@ -8,6 +8,7 @@ export function concat<T>(xss: T[][]): T[] {
 /**
  * Intersperse the element between the elements of the array
  * @param sep The element to be interspersed
+ * @param xs
  */
 export function intersperse<T>(sep: T, xs: T[]): T[] {
 	return concat(xs.map(x => [sep, x])).slice(1);
