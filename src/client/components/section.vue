@@ -1,7 +1,7 @@
 <template>
 <section>
-	<component :is="'h' + depth" class="header">
-		<div class="title"><slot name="heading"></slot></div>
+	<component :is="'h' + depth" :id="identifier" class="header">
+		<div class="title"><a :href="'#' + identifier" aria-hidden="true"><fa :icon="faLink" size="xs" style="padding-right: 8px;"/></a><slot name="heading"></slot></div>
 		<button @click="open = !open"><fa :icon="open ? faChevronUp : faChevronDown"/></button>
 	</component>
 	<div v-show="open">
@@ -12,10 +12,14 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faLink, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	props: {
+		identifier: {
+			type: String,
+			required: true
+		},
 		depth: {
 			type: Number,
 			required: true
@@ -25,7 +29,7 @@ export default Vue.extend({
 	data() {
 		return {
 			open: true,
-			faChevronUp, faChevronDown,
+			faLink, faChevronUp, faChevronDown,
 		};
 	}
 });

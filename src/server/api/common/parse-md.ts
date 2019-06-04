@@ -1,10 +1,13 @@
 import * as unified from 'unified';
 const markdown = require('remark-parse');
+const NodeToString = require('mdast-util-to-string');
+const slugger = require('github-slugger')();
 
 export function parseMd(md: string) {
 	const ast = unified()
 		.use(markdown)
 		.parse(md);
+	slugger.reset();
 
 	function x(tokens: any[], cursor: number, depth: number): any[] {
 		const res = [];
@@ -14,11 +17,15 @@ export function parseMd(md: string) {
 
 			if (token.type === 'heading') {
 				if (token.depth > depth) {
+					const text = NodeToString(token);
+					const id = slugger.slug(text);
 					const [children, _cursor] = x(tokens, cursor + 1, depth + 1);
 					res.push({
 						type: 'section',
 						heading: token,
 						children: children,
+						identifier: id,
+						content: text
 					});
 					cursor = _cursor;
 				} else {

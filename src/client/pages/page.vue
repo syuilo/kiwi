@@ -20,6 +20,12 @@
 			</dl>
 		</div>
 	</div>
+	<div class="sections" v-if="toc.length > 0">
+		<header>{{ $t('toc') }}</header>
+		<div v-for="content in toc" class="section">
+			<a :href="'#' + content.id" aria-hidden="true"><span :style="'padding-left: '+ content.depth * 8 + 'px;'">{{ content.text }}</span></a>
+		</div>
+	</div>
 	<markdown :ast="page.ast" class="content"/>
 	<ul class="tags" v-if="page.tags.length > 0">
 		<li v-for="tag in page.tags"><router-link :to="'/:tags/' + tag">{{ tag }}</router-link></li>
@@ -60,6 +66,7 @@ export default Vue.extend({
 	data() {
 		return {
 			page: null,
+			toc: [],
 			templates: [],
 			notFound: false,
 			faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight,
@@ -72,13 +79,38 @@ export default Vue.extend({
 		},
 
 		page() {
-			if (this.page == null || this.page.tags.length == 0) {
+			if (this.page == null) {
+				this.toc = [];
 				this.templates = [];
 				return;
 			}
-			Promise.all(this.page.tags.map(tag => this.$root.api('templates/show', { name: tag }).catch(() => null))).then(templates => {
-				this.templates = templates.filter(x => x != null);
-			});
+			if (this.page.ast == null) {
+				this.toc = [];
+			} else {
+				const flatHeadings = (nodes, depth) => {
+					return nodes.reduce((acc, r) => {
+						if (r.type === 'section') {
+							acc.push({
+								id: r.identifier,
+								text: r.content,
+								depth: depth
+							});
+							if (r.children && r.children.length) {
+								acc = acc.concat(flatHeadings(r.children, depth + 1));
+							}
+						}
+						return acc;
+					}, []);
+				};
+				this.toc = flatHeadings(this.page.ast, 0);
+			}
+			if (this.page.tags.length == 0) {
+				this.templates = [];
+			} else {
+				Promise.all(this.page.tags.map(tag => this.$root.api('templates/show', { name: tag }).catch(() => null))).then(templates => {
+					this.templates = templates.filter(x => x != null);
+				});
+			}
 		}
 	},
 
@@ -172,6 +204,25 @@ $margin: 48px;
 					width: 70%;
 				}
 			}
+		}
+	}
+
+	> .sections {
+		margin: 16px $margin;
+		border: solid 2px #eee;
+		border-radius: 6px;
+		overflow: hidden;
+		display: table;
+
+		> header {
+			background: #eee;
+			text-align: center;
+			padding: 8px;
+		}
+
+		> .section {
+			padding-left: 16px;
+			padding-right: 16px;
 		}
 	}
 

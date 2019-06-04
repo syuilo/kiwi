@@ -33,6 +33,7 @@ export default Vue.component('markdown', {
 				case 'section': {
 					return [createElement(KwSection, {
 						props: {
+							identifier: token.identifier,
 							depth: token.heading.depth
 						},
 						scopedSlots: {
