@@ -422,7 +422,7 @@ $margin: 48px;
 
 			> a {
 				display: inline-block;
-				padding: 16px;
+				padding: 20px;
 				color: inherit;
 				text-decoration: none;
 
