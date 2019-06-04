@@ -43,7 +43,7 @@
 		<span class="lastUpdated" :title="new Date(page.updatedAt).toLocaleString()"><span v-t="'lastUpdated'"></span>: <timeago :datetime="page.updatedAt"></timeago></span>
 	</footer>
 
-	<kw-defs :ast="page.ast" class="defs"/>
+	<kw-defs :ast="page.defAst" class="defs"/>
 
 	<ul class="links" v-if="links.length > 0">
 		<li v-for="link in links">

@@ -37,6 +37,7 @@ export class PageRepository extends Repository<Page> {
 			commitMessage: page.commitMessage,
 			content: detail && raw ? page.content : undefined,
 			ast: detail ? page.ast : undefined,
+			defAst: detail ? page.defAst : undefined,
 		};
 
 		return await awaitAll(packed);

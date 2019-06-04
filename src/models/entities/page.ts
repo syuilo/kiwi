@@ -89,6 +89,9 @@ export class Page {
 	@Column('jsonb')
 	public ast: any[];
 
+	@Column('jsonb')
+	public defAst: any[];
+
 	constructor(data: Partial<Page>) {
 		if (data == null) return;
 

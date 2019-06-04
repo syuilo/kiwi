@@ -86,8 +86,8 @@ export default define(meta, async (ps, user) => {
 		}
 	}
 
-	const ast = parseMd(ps.content);
-	const links = extractLinks(ps.path, ast);
+	const { ast, defAst } = parseMd(ps.content);
+	const links = extractLinks(ps.path, [...ast, ...defAst]);
 
 	const tags = ps.tags.filter(tag => tag.length > 0).map(tag => tag.trim());
 
@@ -100,6 +100,7 @@ export default define(meta, async (ps, user) => {
 		path: ps.path.trim(),
 		content: ps.content.trim(),
 		ast: ast,
+		defAst: defAst,
 		links: links,
 		tags: tags,
 		attributes: ps.attributes,

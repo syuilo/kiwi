@@ -60,10 +60,6 @@ export default Vue.component('kw-markdown', {
 					})];
 				}
 
-				case 'footnoteDefinition': {
-					return []; // noop
-				}
-
 				case 'strong': {
 					return [createElement('strong', genEl(token.children))];
 				}
