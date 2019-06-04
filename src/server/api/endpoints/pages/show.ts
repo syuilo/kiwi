@@ -4,6 +4,7 @@ import { ApiError } from '../../error';
 import { Pages } from '../../../../models';
 import { types, bool } from '../../../../misc/schema';
 import { Page } from '../../../../models/entities/page';
+import { resolvePath } from '../../common/resolve-path';
 
 export const meta = {
 	params: {
@@ -14,6 +15,15 @@ export const meta = {
 		path: {
 			validator: $.optional.str,
 		},
+
+		currentPath: {
+			validator: $.optional.nullable.str,
+		},
+
+		detail: {
+			validator: $.optional.bool,
+			default: true
+		}
 	},
 
 	res: {
@@ -37,14 +47,20 @@ export default define(meta, async (ps, user) => {
 	if (ps.id) {
 		page = await Pages.findOne(ps.id);
 	} else if (ps.path) {
-		page = await Pages.findOne({
-			path: ps.path
-		});
+		if (ps.currentPath !== undefined && ps.currentPath !== null) {
+			page = await Pages.findOne({
+				path: resolvePath(ps.path, ps.currentPath)
+			});
+		} else {
+			page = await Pages.findOne({
+				path: ps.path
+			});
+		}
 	}
 
 	if (page == null) {
 		throw new ApiError(meta.errors.noSuchPage);
 	}
 
-	return await Pages.pack(page, true);
+	return await Pages.pack(page, ps.detail);
 });

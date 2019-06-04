@@ -7,25 +7,28 @@
 		<span v-else v-t="'_pageEdit.createPage'"></span>
 	</template>
 
-	<kw-input v-model="title"><span v-t="'_pageEdit.title'"></span></kw-input>
-	<kw-input v-model="subTitle"><span v-t="'_pageEdit.subTitle'"></span></kw-input>
-	<kw-input v-model="path"><span v-t="'_pageEdit.url'"></span>
-		<template #info>{{ local }}/{{ path }}</template>
-	</kw-input>
-	<kw-input v-model="category"><span v-t="'_pageEdit.category'"></span>
-		<template #info>{{ $t('_pageEdit.categoryInfo') }}</template>
-	</kw-input>
-	<kw-textarea v-model="content"><span v-t="'_pageEdit.content'"></span></kw-textarea>
-	<kw-input v-model="tags" :debounce="true"><span v-t="'_pageEdit.tags'"></span>
-		<template #info>{{ $t('_pageEdit.tagsInfo') }}</template>
-	</kw-input>
-	<div v-for="template in templates">
-		<kw-input v-for="attr in template.attributes" v-model="attributes[template.name + '.' + attr]" :key="template.name + '.' + attr"><span>{{ template.name }}: {{ attr }}</span></kw-input>
-	</div>
-	<kw-input v-if="isEdit" v-model="commitMessage"><span v-t="'_pageEdit.commitMessage'"></span></kw-input>
-	<vue-recaptcha v-if="$root.wiki && $root.wiki.recaptchaSiteKey" :sitekey="$root.wiki.recaptchaSiteKey" @verify="onVerify"></vue-recaptcha>
-	<kw-button v-if="isEdit" v-t="'update'" @click="submit()"></kw-button>
-	<kw-button v-else v-t="'create'" @click="submit()"></kw-button>
+	<form>
+		<kw-input v-model="title"><span v-t="'_pageEdit.title'"></span></kw-input>
+		<kw-input v-model="subTitle"><span v-t="'_pageEdit.subTitle'"></span></kw-input>
+		<kw-input v-model="path" pattern="^[^\.]+$">
+			<span v-t="'_pageEdit.url'"></span>
+			<template #info>{{ local }}/{{ path }}</template>
+		</kw-input>
+		<kw-input v-model="category"><span v-t="'_pageEdit.category'"></span>
+			<template #info>{{ $t('_pageEdit.categoryInfo') }}</template>
+		</kw-input>
+		<kw-textarea v-model="content"><span v-t="'_pageEdit.content'"></span></kw-textarea>
+		<kw-input v-model="tags" :debounce="true"><span v-t="'_pageEdit.tags'"></span>
+			<template #info>{{ $t('_pageEdit.tagsInfo') }}</template>
+		</kw-input>
+		<div v-for="template in templates">
+			<kw-input v-for="attr in template.attributes" v-model="attributes[template.name + '.' + attr]" :key="template.name + '.' + attr"><span>{{ template.name }}: {{ attr }}</span></kw-input>
+		</div>
+		<kw-input v-if="isEdit" v-model="commitMessage"><span v-t="'_pageEdit.commitMessage'"></span></kw-input>
+		<vue-recaptcha v-if="$root.wiki && $root.wiki.recaptchaSiteKey" :sitekey="$root.wiki.recaptchaSiteKey" @verify="onVerify"></vue-recaptcha>
+		<kw-button v-if="isEdit" v-t="'update'" @click="submit()"></kw-button>
+		<kw-button v-else v-t="'create'" @click="submit()"></kw-button>
+	</form>
 </kw-container>
 </template>
 

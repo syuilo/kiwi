@@ -4,6 +4,7 @@ A modern, lightweight and powerful wiki app.
 ## Features
 * Markdown support
 * Automatic toc generation
+* Instant link preview
 * Tags and categories
 * Templates (attributes)
 * User permission

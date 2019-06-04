@@ -1,8 +1,8 @@
 <template>
 <label class="ui-input">
 	<span class="label"><slot></slot></span>
-	<input v-if="debounce" v-debounce="500" v-model.lazy="v" :type="type"/>
-	<input v-else v-model="v" :type="type"/>
+	<input v-if="debounce" v-debounce="500" v-model.lazy="v" :type="type" :pattern="pattern"/>
+	<input v-else v-model="v" :type="type" :pattern="pattern"/>
 	<span class="info"><slot name="info"></slot></span>
 </label>
 </template>
@@ -20,6 +20,9 @@ export default Vue.extend({
 			required: true
 		},
 		type: {
+			required: false
+		},
+		pattern: {
 			required: false
 		},
 		debounce: {
