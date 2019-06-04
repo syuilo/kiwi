@@ -32,6 +32,6 @@ export const router = new VueRouter({
 		{ path: '/\\:admin', component: () => import('./pages/admin.vue').then(m => m.default) },
 		{ path: '/\\:admin/wiki', component: () => import('./pages/admin.wiki.vue').then(m => m.default) },
 		{ path: '/\\:admin/commits', component: () => import('./pages/admin.commits.vue').then(m => m.default) },
-		{ path: '/:path*', component: Page, props: true },
+		{ path: '/:path([^#]*)', component: Page, props: true },
 	]
 });

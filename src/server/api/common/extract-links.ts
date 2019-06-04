@@ -6,7 +6,8 @@ export function extractLinks(pagePath: string, ast: any[]): string[] {
 	function x(tokens: any[]) {
 		for (const token of tokens) {
 			if (token.type === 'link') {
-				const url = token.url;
+				let url = token.url as string;
+				if (url.includes('#')) url = url.substr(0, url.indexOf('#'));
 				try {
 					const link = resolvePath(url, pagePath);
 					if ((link !== pagePath) && !links.includes(link)) links.push(link);
