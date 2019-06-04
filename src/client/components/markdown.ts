@@ -2,7 +2,7 @@ import Vue, { VNode } from 'vue';
 import KwUrl from './url.vue';
 import KwImage from './image.vue';
 import KwSection from './section.vue';
-import { concat, sum } from '../../prelude/array';
+import { concat } from '../../prelude/array';
 
 export default Vue.component('markdown', {
 	props: {
@@ -33,7 +33,7 @@ export default Vue.component('markdown', {
 				case 'section': {
 					return [createElement(KwSection, {
 						props: {
-							identifier: token.identifier,
+							identifier: token.id,
 							depth: token.heading.depth
 						},
 						scopedSlots: {

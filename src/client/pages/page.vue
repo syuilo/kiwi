@@ -1,7 +1,7 @@
 <template>
 <div v-if="page" class="page">
 	<header>
-		<h1 class="title">{{ page.title }}</h1>
+		<h1 class="title"><router-link :to="page.path">{{ page.title }}</router-link></h1>
 		<p class="subTitle" v-if="page.subTitle.length > 0">{{ page.subTitle }}</p>
 	</header>
 	<div class="category" v-if="page.category">
@@ -20,9 +20,9 @@
 			</dl>
 		</div>
 	</div>
-	<div class="sections" v-if="toc.length > 0">
+	<div class="toc" v-if="toc.length > 0">
 		<header>{{ $t('tableOfContents') }}</header>
-		<div v-for="content in toc" class="section">
+		<div v-for="content in toc" class="item">
 			<a :href="'#' + content.id" aria-hidden="true"><span :style="'padding-left: '+ content.depth * 8 + 'px;'">{{ content.text }}</span></a>
 		</div>
 	</div>
@@ -84,6 +84,7 @@ export default Vue.extend({
 				this.templates = [];
 				return;
 			}
+
 			if (this.page.ast == null) {
 				this.toc = [];
 			} else {
@@ -91,7 +92,7 @@ export default Vue.extend({
 					return nodes.reduce((acc, r) => {
 						if (r.type === 'section') {
 							acc.push({
-								id: r.identifier,
+								id: r.id,
 								text: r.content,
 								depth: depth
 							});
@@ -104,6 +105,7 @@ export default Vue.extend({
 				};
 				this.toc = flatHeadings(this.page.ast, 0);
 			}
+
 			if (this.page.tags.length == 0) {
 				this.templates = [];
 			} else {
@@ -154,6 +156,11 @@ $margin: 48px;
 
 		> .title {
 			margin: 0;
+
+			> a {
+				color: inherit;
+				text-decoration: none;
+			}
 		}
 
 		> .subTitle {
@@ -207,7 +214,7 @@ $margin: 48px;
 		}
 	}
 
-	> .sections {
+	> .toc {
 		margin: 16px $margin;
 		border: solid 2px #eee;
 		border-radius: 6px;
@@ -220,9 +227,19 @@ $margin: 48px;
 			padding: 8px;
 		}
 
-		> .section {
+		> .item {
+			margin: 8px 0;
 			padding-left: 16px;
 			padding-right: 16px;
+
+			> a {
+				color: inherit;
+				text-decoration: none;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 
