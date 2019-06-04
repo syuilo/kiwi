@@ -35,6 +35,12 @@ export default Vue.extend({
 		box-sizing: border-box;
 		border: solid 1px #ddd;
 		border-radius: 4px;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
+
+		&:focus {
+			outline: none;
+			border-color: #ccc;
+		}
 	}
 }
 </style>
