@@ -15,4 +15,4 @@ A modern, lightweight and powerful wiki app.
 
 ## Demo
 There is no demo site yet, but you can visit sites that use kiwi.
-here: https://misskey.io
+here: https://misskey.wiki
