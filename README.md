@@ -12,3 +12,7 @@ A modern, lightweight and powerful wiki app.
 * Spam protection using reCAPTCHA
 * OGP support
 * and more...
+
+## Demo
+There is no demo site yet, but you can visit sites that use kiwi.
+here: https://misskey.wiki
