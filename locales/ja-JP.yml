@@ -84,12 +84,15 @@ _files:
     size: "サイズ"
     type: "種類"
     comment: "説明"
+_upload:
+  upload: "アップロード"
 _pages:
   _page:
     date: "日時"
     path: "パス"
     title: "タイトル"
     subTitle: "説明"
+    comment: "編集の要約"
 _notFound:
   notFound: "ページが見つかりません"
   createThatPage: "このページを作成する"
