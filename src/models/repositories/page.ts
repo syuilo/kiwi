@@ -11,6 +11,7 @@ export class PageRepository extends Repository<Page> {
 	public pathValidator = $.str
 		.min(1)
 		.notInclude([':', '#'])
+		.pipe(x => !x.startsWith('_'))
 		.pipe(x => !x.startsWith('.'))
 		.pipe(x => !x.endsWith('.'))
 		.pipe(x => !x.endsWith('/'))
