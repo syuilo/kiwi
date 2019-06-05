@@ -20,6 +20,11 @@ export class Meta {
 	})
 	public logoUrl: string;
 
+	@Column('text', {
+		default: '',
+	})
+	public customHtml: string;
+
 	@Column('varchar', {
 		length: 512, array: true, default: '{}'
 	})

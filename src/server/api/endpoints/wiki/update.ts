@@ -18,6 +18,10 @@ export const meta = {
 			validator: $.str,
 		},
 
+		customHtml: {
+			validator: $.str,
+		},
+
 		defaultPermissions: {
 			validator: $.arr($.str),
 		},
@@ -37,6 +41,7 @@ export default define(meta, async (ps, user) => {
 		name: ps.name,
 		description: ps.description,
 		logoUrl: ps.logoUrl,
+		customHtml: ps.customHtml,
 		defaultPermissions: ps.defaultPermissions,
 		recaptchaSiteKey: ps.recaptchaSiteKey,
 		recaptchaSecretKey: ps.recaptchaSecretKey,

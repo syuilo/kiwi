@@ -99,6 +99,7 @@ _adminPage:
     wikiName: "Wikiの名前"
     wikiDescription: "Wikiの説明"
     wikiLogoUrl: "ロゴ画像URL"
+    customHtml: "カスタムHTML"
     defaultPermissions: "デフォルトの権限"
   commits: "ログ"
   _commits:

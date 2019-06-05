@@ -32,6 +32,7 @@ export class MetaRepository extends Repository<Meta> {
 			defaultPermissions: meta.defaultPermissions,
 			recaptchaSiteKey: meta.recaptchaSiteKey,
 			...(secret ? {
+				customHtml: meta.customHtml,
 				recaptchaSecretKey: meta.recaptchaSecretKey
 			} : {})
 		};
