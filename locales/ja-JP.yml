@@ -98,6 +98,7 @@ _adminPage:
   _wikiSettings:
     wikiName: "Wikiの名前"
     wikiDescription: "Wikiの説明"
+    wikiLogoUrl: "ロゴ画像URL"
     defaultPermissions: "デフォルトの権限"
   commits: "ログ"
   _commits:

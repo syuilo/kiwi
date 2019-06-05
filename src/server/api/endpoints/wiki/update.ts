@@ -14,6 +14,10 @@ export const meta = {
 			validator: $.str,
 		},
 
+		logoUrl: {
+			validator: $.str,
+		},
+
 		defaultPermissions: {
 			validator: $.arr($.str),
 		},
@@ -32,6 +36,7 @@ export default define(meta, async (ps, user) => {
 	await Metas.update({}, {
 		name: ps.name,
 		description: ps.description,
+		logoUrl: ps.logoUrl,
 		defaultPermissions: ps.defaultPermissions,
 		recaptchaSiteKey: ps.recaptchaSiteKey,
 		recaptchaSecretKey: ps.recaptchaSecretKey,

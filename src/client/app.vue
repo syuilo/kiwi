@@ -4,6 +4,9 @@
 		<router-link class="title" to="/">{{ $root.wiki ? $root.wiki.name : '' }}</router-link>
 	</header>
 	<nav class="ui-nav">
+		<router-link to="/" class="logo" v-if="$root.wiki && $root.wiki.logoUrl">
+			<img :src="$root.wiki.logoUrl" :alt="$root.wiki.name"/>
+		</router-link>
 		<section>
 			<p><fa :icon="faBars" class="icon" fixed-width/> {{ $t('menu') }}</p>
 			<ul>
@@ -158,6 +161,15 @@ table.kiwi {
 	overflow: auto;
 	background: #353432;
 	font-size: 14px;
+
+	> .logo {
+		display: block;
+
+		> img {
+			display: block;
+			max-width: 100%;
+		}
+	}
 
 	> section {
 		> p {

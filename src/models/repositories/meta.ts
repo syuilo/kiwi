@@ -28,6 +28,7 @@ export class MetaRepository extends Repository<Meta> {
 		return {
 			name: meta.name,
 			description: meta.description,
+			logoUrl: meta.logoUrl,
 			defaultPermissions: meta.defaultPermissions,
 			recaptchaSiteKey: meta.recaptchaSiteKey,
 			...(secret ? {

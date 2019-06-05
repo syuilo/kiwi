@@ -16,6 +16,11 @@ export class Meta {
 	public description: string;
 
 	@Column('varchar', {
+		length: 1024, default: '',
+	})
+	public logoUrl: string;
+
+	@Column('varchar', {
 		length: 512, array: true, default: '{}'
 	})
 	public defaultPermissions: string[];
