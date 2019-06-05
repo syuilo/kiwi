@@ -1,9 +1,13 @@
 <template>
 <div>
-	<header class="ui-header">
-		<router-link class="title" to="/">{{ $root.wiki ? $root.wiki.name : '' }}</router-link>
+	<header class="header">
+		<div>
+			<input type="search" ref="search" v-model="query" v-if="searchMode" @keydown.enter="search()"/>
+			<router-link v-else class="title" to="/">{{ $root.wiki ? $root.wiki.name : '' }}</router-link>
+			<button class="search" @click="searchMode = !searchMode"><fa :icon="faSearch"/></button>
+		</div>
 	</header>
-	<nav class="ui-nav">
+	<nav class="nav">
 		<router-link to="/" class="logo" v-if="$root.wiki && $root.wiki.logoUrl">
 			<img :src="$root.wiki.logoUrl" :alt="$root.wiki.name"/>
 		</router-link>
@@ -46,10 +50,10 @@
 			</ul>
 		</section>
 	</nav>
-	<main class="ui-main">
+	<main class="main">
 		<router-view></router-view>
 	</main>
-	<footer class="ui-footer">
+	<footer class="footer">
 		<small>Powerd by <a href="https://github.com/syuilo/kiwi">Kiwi</a></small>
 	</footer>
 </div>
@@ -65,8 +69,23 @@ export default Vue.extend({
 		return {
 			tags: [],
 			categories: [],
+			searchMode: false,
+			query: '',
 			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faFileImage, faTag, faTags, faFolderOpen, faBars, faFolder,
 		};
+	},
+
+	watch: {
+		searchMode(mode) {
+			this.$nextTick(() => {
+				if (mode) this.$refs.search.focus();
+			});
+		},
+
+		$route() {
+			this.searchMode = false;
+			this.query = '';
+		}
 	},
 
 	created() {
@@ -77,6 +96,12 @@ export default Vue.extend({
 		this.$root.api('categories-tree').then(categories => {
 			this.categories = Object.entries(categories);
 		});
+	},
+
+	methods: {
+		search() {
+			this.$router.push(`/:search/${this.query}`);
+		}
 	}
 });
 </script>
@@ -84,6 +109,7 @@ export default Vue.extend({
 <style lang="scss">
 $header-height: 50px;
 $nav-width: 250px;
+$content-width: 900px;
 
 * {
 	-webkit-overflow-scrolling: touch;
@@ -133,7 +159,7 @@ table.kiwi {
 	}
 }
 
-.ui-header {
+.header {
 	position: fixed;
 	z-index: 1001;
 	top: 0;
@@ -143,15 +169,37 @@ table.kiwi {
 	box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px;
 	background: #a9b979;
 
-	> .title {
-		padding: 0 16px;
-		color: #fff;
-		font-weight: bold;
-		text-decoration: none;
+	> div {
+		max-width: $nav-width + $content-width;
+		position: relative;
+
+		> .title {
+			padding: 0 16px;
+			color: #fff;
+			font-weight: bold;
+			text-decoration: none;
+		}
+
+		> input {
+			margin: 0 16px;
+		}
+
+		> .search {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: $header-height;
+			height: $header-height;
+			appearance: none;
+			-webkit-appearance: none;
+			background: transparent;
+			border: none;
+			cursor: pointer;
+		}
 	}
 }
 
-.ui-nav {
+.nav {
 	position: fixed;
 	z-index: 1000;
 	top: $header-height;
@@ -214,12 +262,12 @@ table.kiwi {
 	}
 }
 
-.ui-main {
+.main {
 	margin: $header-height 0 0 $nav-width;
-	max-width: 900px;
+	max-width: $content-width;
 }
 
-.ui-footer {
+.footer {
 	margin: 0 0 0 $nav-width;
 	padding: 32px;
 	background: #eee;

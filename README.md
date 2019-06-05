@@ -7,8 +7,9 @@ A modern, lightweight and powerful wiki app.
 * Instant link preview
 * Tags and categories
 * Templates (attributes)
-* User permission
+* Full text search
 * Fully trackable & revertable history
+* User permission
 * Spam protection using reCAPTCHA
 * OGP support
 * and more...

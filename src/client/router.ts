@@ -29,6 +29,7 @@ export const router = new VueRouter({
 		{ path: '/\\:tags/:tag', component: () => import('./pages/tag.vue').then(m => m.default), props: true },
 		{ path: '/\\:categories/:category*', component: () => import('./pages/category.vue').then(m => m.default), props: true },
 		{ path: '/\\:diff/:commitId', component: () => import('./pages/diff.vue').then(m => m.default), props: true },
+		{ path: '/\\:search/:query*', component: () => import('./pages/search.vue').then(m => m.default), props: true },
 		{ path: '/\\:admin', component: () => import('./pages/admin.vue').then(m => m.default) },
 		{ path: '/\\:admin/wiki', component: () => import('./pages/admin.wiki.vue').then(m => m.default) },
 		{ path: '/\\:admin/commits', component: () => import('./pages/admin.commits.vue').then(m => m.default) },
