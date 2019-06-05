@@ -24,6 +24,7 @@ revert: "取り消し"
 pages: "ページ"
 files: "ファイル"
 loadMore: "さらに読み込む"
+joinNowText: "アカウントを作成して{wiki}の編集に参加しよう"
 joinNow: "参加する"
 loginRequired: "この操作を行うにはログインしてください。"
 _permissions:

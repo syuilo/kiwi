@@ -53,6 +53,11 @@
 			</router-link>
 		</li>
 	</ul>
+
+	<div class="join-now" v-if="$root.wiki && !$root.isLoggedin && page.path === 'home'">
+		<p v-t="{ path: 'joinNowText', args: { wiki: $root.wiki.name }}"></p>
+		<router-link to="/:signup"><span v-t="'joinNow'"></span></router-link>
+	</div>
 </div>
 
 <kw-container v-else-if="notFound">
@@ -460,6 +465,25 @@ $margin: 48px;
 					line-height: 14px;
 				}
 			}
+		}
+	}
+
+	> .join-now {
+		padding: 32px;
+		text-align: center;
+		background: #a9b979;
+		color: #fff;
+
+		> p {
+			margin: 0 0 16px 0;
+		}
+
+		> a {
+			display: inline-block;
+			padding: 8px 14px;
+			background: #fff;
+			color: #a9b979;
+			text-decoration: none;
 		}
 	}
 }
