@@ -10,12 +10,12 @@ html
 		meta(charset='utf-8')
 		meta(name='application-name' content='Kiwi')
 		meta(name='referrer' content='origin')
-		meta(property='og:site_name' content= wikiName)
+		meta(property='og:site_name' content= wiki.name)
 		link(rel='icon' href= icon || '/favicon.ico')
 
 		title
 			block title
-				= title || wikiName
+				= title || wiki.name
 
 		block desc
 			meta(name='description' content= desc)
@@ -23,7 +23,7 @@ html
 		block meta
 
 		block og
-			meta(property='og:image' content=img)
+			meta(property='og:image' content= wiki.logoUrl)
 
 		script(src='/_assets/app.js' defer)
 		script(src='https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit' async defer)
