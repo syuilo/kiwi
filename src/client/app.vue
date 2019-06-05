@@ -61,7 +61,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faTag, faTags, faFolderOpen, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faTag, faTags, faFolderOpen, faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faFileImage, faFolder } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
@@ -71,7 +71,7 @@ export default Vue.extend({
 			categories: [],
 			searchMode: false,
 			query: '',
-			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faFileImage, faTag, faTags, faFolderOpen, faBars, faFolder,
+			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faFileImage, faTag, faTags, faFolderOpen, faBars, faFolder, faSearch,
 		};
 	},
 
@@ -231,6 +231,7 @@ $content-width: 900px;
 			background: transparent;
 			border: none;
 			cursor: pointer;
+			color: #fff;
 		}
 	}
 }
