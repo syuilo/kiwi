@@ -51,7 +51,7 @@ export default define(meta, async (ps, user) => {
 
 	if (ps.id) {
 		page = await Pages.findOne(ps.id);
-	} else if (ps.path) {
+	} else if (ps.path != null) {
 		if (ps.currentPath !== undefined && ps.currentPath !== null) {
 			page = await Pages.findOne({
 				path: resolvePath(ps.path, ps.currentPath)

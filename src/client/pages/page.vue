@@ -54,7 +54,7 @@
 		</li>
 	</ul>
 
-	<div class="join-now" v-if="$root.wiki && !$root.isLoggedin && page.path === 'home'">
+	<div class="join-now" v-if="$root.wiki && !$root.isLoggedin && page.path === ''">
 		<p v-t="{ path: 'joinNowText', args: { wiki: $root.wiki.name }}"></p>
 		<router-link to="/:signup"><span v-t="'joinNow'"></span></router-link>
 	</div>
@@ -156,7 +156,7 @@ export default Vue.extend({
 		fetch() {
 			Progress.start();
 			this.$root.api('pages/show', {
-				path: this.path ? this.path : 'home',
+				path: this.path || '',
 				raw: false
 			}).then(page => {
 				this.notFound = false;

@@ -31,7 +31,7 @@ export default Vue.extend({
 
 		this.$root.api('pages/show', {
 			currentPath: this.$route.path.substr(1),
-			path: this.path ? this.path : 'home',
+			path: this.path || '',
 			detail: false
 		}).then(page => {
 			this.page = page;

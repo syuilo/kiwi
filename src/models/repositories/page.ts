@@ -9,7 +9,7 @@ export type PackedPage = any;
 @EntityRepository(Page)
 export class PageRepository extends Repository<Page> {
 	public pathValidator = $.str
-		.min(1)
+		.max(256)
 		.notInclude([':', '#'])
 		.pipe(x => !x.startsWith('_'))
 		.pipe(x => !x.startsWith('.'))

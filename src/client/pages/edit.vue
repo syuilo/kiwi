@@ -10,7 +10,7 @@
 	<form @submit.prevent="submit()">
 		<kw-input v-model="title" required><span v-t="'_pageEdit.title'"></span></kw-input>
 		<kw-input v-model="subTitle"><span v-t="'_pageEdit.subTitle'"></span></kw-input>
-		<kw-input v-model="path" pattern="^[^:#]+$" required>
+		<kw-input v-model="path" pattern="^[^:#]*$">
 			<span v-t="'_pageEdit.url'"></span>
 			<template #info>{{ local }}/{{ path.toLowerCase() }}</template>
 		</kw-input>
