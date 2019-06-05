@@ -11,11 +11,11 @@ export const meta = {
 		},
 
 		sinceId: {
-			validator: $.optional.num,
+			validator: $.optional.str,
 		},
 
 		untilId: {
-			validator: $.optional.num,
+			validator: $.optional.str,
 		},
 
 		sinceDate: {
