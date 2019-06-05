@@ -26,6 +26,21 @@ export class Meta {
 	public customHtml: string;
 
 	@Column('varchar', {
+		length: 128, default: '',
+	})
+	public adClient: string;
+
+	@Column('varchar', {
+		length: 128, default: '',
+	})
+	public adSlot1: string;
+
+	@Column('varchar', {
+		length: 128, default: '',
+	})
+	public adSlot2: string;
+
+	@Column('varchar', {
 		length: 512, array: true, default: '{}'
 	})
 	public defaultPermissions: string[];

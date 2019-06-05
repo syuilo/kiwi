@@ -7,11 +7,19 @@
 	<kw-input v-model="name"><span v-t="'_adminPage._wikiSettings.wikiName'"></span></kw-input>
 	<kw-input v-model="description"><span v-t="'_adminPage._wikiSettings.wikiDescription'"></span></kw-input>
 	<kw-input v-model="logoUrl" type="url"><span v-t="'_adminPage._wikiSettings.wikiLogoUrl'"></span></kw-input>
+
 	<span v-t="'_adminPage._wikiSettings.defaultPermissions'"></span>
 	<kw-permissions v-model="defaultPermissions"/>
+
 	<kw-input v-model="recaptchaSiteKey"><span v-t="'_adminPage._wikiSettings.recaptchaSiteKey'"></span></kw-input>
 	<kw-input v-model="recaptchaSecretKey"><span v-t="'_adminPage._wikiSettings.recaptchaSecretKey'"></span></kw-input>
+
+	<kw-input v-model="adClient"><span v-t="'_adminPage._wikiSettings.adClient'"></span></kw-input>
+	<kw-input v-model="adSlot1"><span v-t="'_adminPage._wikiSettings.adSlot1'"></span></kw-input>
+	<kw-input v-model="adSlot2"><span v-t="'_adminPage._wikiSettings.adSlot2'"></span></kw-input>
+
 	<kw-textarea v-model="customHtml"><span v-t="'_adminPage._wikiSettings.customHtml'"></span></kw-textarea>
+
 	<kw-button v-t="'update'" @click="update()"></kw-button>
 </kw-container>
 </template>
@@ -37,6 +45,9 @@ export default Vue.extend({
 			description: '',
 			logoUrl: '',
 			customHtml: '',
+			adClient: '',
+			adSlot1: '',
+			adSlot2: '',
 			defaultPermissions: [],
 			recaptchaSiteKey: '',
 			recaptchaSecretKey: '',
@@ -51,6 +62,9 @@ export default Vue.extend({
 			this.description = wiki.description;
 			this.logoUrl = wiki.logoUrl;
 			this.customHtml = wiki.customHtml;
+			this.adClient = wiki.adClient;
+			this.adSlot1 = wiki.adSlot1;
+			this.adSlot2 = wiki.adSlot2;
 			this.defaultPermissions = wiki.defaultPermissions;
 			this.recaptchaSiteKey = wiki.recaptchaSiteKey;
 			this.recaptchaSecretKey = wiki.recaptchaSecretKey;
@@ -64,6 +78,9 @@ export default Vue.extend({
 				description: this.description,
 				logoUrl: this.logoUrl,
 				customHtml: this.customHtml,
+				adClient: this.adClient,
+				adSlot1: this.adSlot1,
+				adSlot2: this.adSlot2,
 				defaultPermissions: this.defaultPermissions,
 				recaptchaSiteKey: this.recaptchaSiteKey,
 				recaptchaSecretKey: this.recaptchaSecretKey,

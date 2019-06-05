@@ -4,6 +4,7 @@ import VueI18n from 'vue-i18n';
 import VueSwal from 'vue-swal';
 import VueTimeago from 'vue-timeago';
 import VueRecaptcha from 'vue-recaptcha';
+import Ads from 'vue-google-adsense';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './app.vue';
 import { api } from './scripts/api';
@@ -26,6 +27,9 @@ async function main() {
 			'ja-JP': require('date-fns/locale/ja')
 		}
 	});
+	Vue.use(require('vue-script2'));
+	Vue.use(Ads.Adsense);
+	Vue.use(Ads.InArticleAdsense);
 	Vue.component('vue-recaptcha', VueRecaptcha);
 	Vue.component('fa', FontAwesomeIcon);
 
