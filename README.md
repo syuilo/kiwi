@@ -1,5 +1,5 @@
 # <img src="/kiwi.svg" width="300px" alt="Kiwi"/>
-A modern, lightweight and powerful wiki app.
+A modern, lightweight and powerful wiki engine.
 
 ## Features
 * Markdown support
