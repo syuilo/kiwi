@@ -7,6 +7,7 @@
 	<form @submit.prevent="submit()">
 		<kw-input v-model="name" pattern="^[a-z0-9_]+$" required autocomplete="username"><p v-t="'_login.name'"></p></kw-input>
 		<kw-input v-model="password" type="password" required autocomplete="current-password"><p v-t="'_login.password'"></p></kw-input>
+		<vue-recaptcha v-if="$root.wiki && $root.wiki.recaptchaSiteKey" :sitekey="$root.wiki.recaptchaSiteKey" @verify="onVerify"></vue-recaptcha>
 		<kw-button v-t="'_login.login'" type="submit"></kw-button>
 	</form>
 
@@ -31,6 +32,7 @@ export default Vue.extend({
 		return {
 			name: '',
 			password: '',
+			recaptcha: null,
 		};
 	},
 
@@ -39,10 +41,15 @@ export default Vue.extend({
 			this.$root.api('signin', {
 				name: this.name,
 				password: this.password,
+				_recaptcha: this.recaptcha,
 			}).then(({ token }) => {
 				localStorage.setItem('i', token);
 				location.href = '/';
 			});
+		},
+
+		onVerify(res) {
+			this.recaptcha = res;
 		}
 	}
 });

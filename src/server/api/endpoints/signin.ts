@@ -5,6 +5,8 @@ import { Users } from '../../../models';
 import { ApiError } from '../error';
 
 export const meta = {
+	requireRecaptcha: true,
+
 	params: {
 		name: {
 			validator: $.str,
