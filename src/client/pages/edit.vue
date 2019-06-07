@@ -111,7 +111,7 @@ export default Vue.extend({
 	created() {
 		if (!this.$root.isLoggedin) {
 			this.$swal(this.$t('loginRequired')).then(() => {
-				this.$router.push(`/:signin`);
+				this.$router.push(`/:signin?callback=${this.$route.path}`);
 			});
 		}
 		this.fetch();

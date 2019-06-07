@@ -12,7 +12,7 @@
 	</form>
 
 	<template #footer>
-		<span v-t="'_login.haveNoAccount'" style="margin-right: 16px;"></span><router-link to="/:signup" v-t="'signup'"></router-link>
+		<span v-t="'_login.haveNoAccount'" style="margin-right: 16px;"></span><router-link :to="$route.query.callback ? `/:signup?callback=${$route.query.callback}` : '/:signup'" v-t="'signup'"></router-link>
 	</template>
 </kw-container>
 </template>
@@ -44,7 +44,7 @@ export default Vue.extend({
 				_recaptcha: this.recaptcha,
 			}).then(({ token }) => {
 				localStorage.setItem('i', token);
-				location.href = '/';
+				location.href = this.$route.query.callback || '/';
 			});
 		},
 
