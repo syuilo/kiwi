@@ -11,11 +11,17 @@ export const meta = {
 };
 
 export default define(meta, async (ps, user) => {
+	const q = ps.query.toLowerCase();
+
 	const pages = await Pages.createQueryBuilder('page')
-		.select(['page.content', 'page.id'])
+		.select(['page.content', 'page.title', 'page.subTitle', 'page.id'])
 		.getMany();
 
-	const matches = pages.filter(page => page.content.includes(ps.query)).map(page => page.id);
+	const matches = pages.filter(page =>
+		page.content.toLowerCase().includes(q) ||
+		page.title.toLowerCase().includes(q) ||
+		page.subTitle.toLowerCase().includes(q)
+	).map(page => page.id);
 
 	return await Pages.packMany(matches);
 });
