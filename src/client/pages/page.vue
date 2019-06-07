@@ -29,8 +29,8 @@
 	</div>
 
 	<div class="toc" v-if="toc.length > 0">
-		<header><fa :icon="faBookOpen" class="icon"/>{{ $t('tableOfContents') }}</header>
-		<div v-for="content in toc" class="item">
+		<header><fa :icon="faBookOpen" class="icon"/>{{ $t('tableOfContents') }}<button @click="tocOpen = !tocOpen"><fa :icon="tocOpen ? faChevronUp : faChevronDown"/></button></header>
+		<div v-for="content in toc" class="item" v-show="tocOpen">
 			<a :href="'#' + content.id" aria-hidden="true"><span :style="'padding-left: '+ content.depth * 8 + 'px;'">{{ content.text }}</span></a>
 		</div>
 	</div>
@@ -85,7 +85,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight, faBookOpen, faThumbtack, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight, faBookOpen, faThumbtack, faLock, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Markdown from '../components/markdown';
 import KwDefs from '../components/defs';
 import KwContainer from '../components/container.vue';
@@ -107,10 +107,11 @@ export default Vue.extend({
 		return {
 			page: null,
 			toc: [],
+			tocOpen: true,
 			templates: [],
 			links: [],
 			notFound: false,
-			faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight, faBookOpen, faThumbtack, faLock,
+			faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight, faBookOpen, faThumbtack, faLock, faChevronUp, faChevronDown,
 		};
 	},
 
@@ -293,13 +294,25 @@ $margin: 48px;
 		display: table;
 		font-size: 95%;
 		float: left;
+		min-width: 130px;
 
 		> header {
+			position: relative;
 			background: #eee;
 			padding: 6px 12px 8px 12px;
 
 			> .icon {
 				margin-right: 6px;
+			}
+
+			> button {
+				position: absolute;
+				top: 0;
+				right: 0;
+				padding: 10px;
+				border: none;
+				background: none;
+				cursor: pointer;
 			}
 		}
 
