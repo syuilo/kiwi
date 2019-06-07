@@ -39,6 +39,8 @@ export class PageRepository extends Repository<Page> {
 			content: detail && raw ? page.content : undefined,
 			ast: detail ? page.ast : undefined,
 			defAst: detail ? page.defAst : undefined,
+			isLocked: detail && page.isLocked ? page.isLocked : undefined,
+			isPinned: detail && page.isPinned ? page.isPinned : undefined,
 		};
 
 		return await awaitAll(packed);

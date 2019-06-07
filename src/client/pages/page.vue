@@ -47,7 +47,11 @@
 	</ul>
 
 	<footer>
-		<router-link :to="`/:edit/${page.id}`"><fa :icon="faEdit"/><span v-t="'editThisPage'"></span></router-link>
+		<router-link v-if="($root.user && $root.user.isAdmin) || !page.isLocked" :to="`/:edit/${page.id}`"><fa :icon="faEdit"/><span v-t="'editThisPage'"></span></router-link>
+		<template v-if="$root.user && $root.user.isAdmin">
+			<a @click="togglePin()"><fa :icon="faThumbtack"/><span v-t="page.isPinned ? 'unpinThisPage' : 'pinThisPage'"></span></a>
+			<a @click="toggleLock()"><fa :icon="faLock"/><span v-t="page.isLocked ? 'unlockThisPage' : 'lockThisPage'"></span></a>
+		</template>
 		<router-link :to="`/:source/${page.id}`"><fa :icon="faCode"/><span v-t="'viewSource'"></span></router-link>
 		<router-link :to="`/:history/${page.id}`"><fa :icon="faHistory"/><span v-t="'viewHistory'"></span></router-link>
 		<span class="lastUpdated" :title="new Date(page.updatedAt).toLocaleString()"><span v-t="'lastUpdated'"></span>: <timeago :datetime="page.updatedAt"></timeago></span>
@@ -81,7 +85,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight, faBookOpen } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight, faBookOpen, faThumbtack, faLock } from '@fortawesome/free-solid-svg-icons';
 import Markdown from '../components/markdown';
 import KwDefs from '../components/defs';
 import KwContainer from '../components/container.vue';
@@ -106,7 +110,7 @@ export default Vue.extend({
 			templates: [],
 			links: [],
 			notFound: false,
-			faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight, faBookOpen,
+			faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight, faBookOpen, faThumbtack, faLock,
 		};
 	},
 
@@ -179,7 +183,25 @@ export default Vue.extend({
 					this.notFound = true;
 				}
 			});
-		}
+		},
+
+		togglePin() {
+			this.$root.api('pages/pin', {
+				id: this.page.id,
+				pinned: !this.page.isPinned
+			}).then(page => {
+				Vue.set(this.page, 'isPinned', !this.page.isPinned);
+			});
+		},
+
+		toggleLock() {
+			this.$root.api('pages/lock', {
+				id: this.page.id,
+				locked: !this.page.isLocked
+			}).then(page => {
+				Vue.set(this.page, 'isLocked', !this.page.isLocked);
+			});
+		},
 	}
 });
 </script>
@@ -405,6 +427,7 @@ $margin: 48px;
 		a {
 			color: inherit;
 			text-decoration: none;
+			cursor: pointer;
 
 			&:hover {
 				text-decoration: underline;

@@ -37,6 +37,12 @@
 				</template>
 			</ul>
 		</section>
+		<section v-if="pinnedPages.length > 0">
+			<p><fa :icon="faThumbtack" class="icon" fixed-width/> {{ $t('pinned') }}</p>
+			<ul>
+				<li v-for="p in pinnedPages"><router-link :to="'/' + p.path"><fa :icon="faFileAlt" class="icon" fixed-width/><span>{{ p.title }}</span></router-link></li>
+			</ul>
+		</section>
 		<section v-if="categories.length > 0">
 			<p><fa :icon="faFolderOpen" class="icon" fixed-width/> {{ $t('categories') }}</p>
 			<ul>
@@ -61,17 +67,18 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faTag, faTags, faFolderOpen, faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faFileImage, faFolder } from '@fortawesome/free-regular-svg-icons';
+import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faTag, faTags, faFolderOpen, faBars, faSearch, faThumbtack } from '@fortawesome/free-solid-svg-icons';
+import { faFileImage, faFolder, faFileAlt } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	data() {
 		return {
+			pinnedPages: [],
 			tags: [],
 			categories: [],
 			searchMode: false,
 			query: '',
-			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faFileImage, faTag, faTags, faFolderOpen, faBars, faFolder, faSearch,
+			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faFileImage, faTag, faTags, faFolderOpen, faBars, faFolder, faSearch, faFileAlt, faThumbtack,
 		};
 	},
 
@@ -89,6 +96,10 @@ export default Vue.extend({
 	},
 
 	created() {
+		this.$root.api('pages/pinned').then(pages => {
+			this.pinnedPages = pages;
+		});
+
 		this.$root.api('tags').then(tags => {
 			this.tags = Object.entries(tags);
 		});

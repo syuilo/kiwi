@@ -68,6 +68,12 @@ export const meta = {
 			code: 'NO_SUCH_FILE',
 			id: '42071042-025e-4ae0-b54c-169af6d02c33'
 		},
+
+		accessDenied: {
+			message: 'Access denied.',
+			code: 'ACCESS_DENIED',
+			id: '010006a9-3590-40d9-ad08-7cda42e5ec67'
+		},
 	}
 };
 
@@ -75,6 +81,10 @@ export default define(meta, async (ps, user) => {
 	const page = await Pages.findOne(ps.id);
 	if (page == null) {
 		throw new ApiError(meta.errors.noSuchPage);
+	}
+
+	if (page.isLocked && !user.isAdmin) {
+		throw new ApiError(meta.errors.accessDenied);
 	}
 
 	let eyeCatchingImage = null;

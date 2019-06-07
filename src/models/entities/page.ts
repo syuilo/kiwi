@@ -92,6 +92,16 @@ export class Page {
 	@Column('jsonb')
 	public defAst: any[];
 
+	@Column('boolean', {
+		default: false
+	})
+	public isLocked: boolean;
+
+	@Column('boolean', {
+		default: false
+	})
+	public isPinned: boolean;
+
 	constructor(data: Partial<Page>) {
 		if (data == null) return;
 

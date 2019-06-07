@@ -10,6 +10,7 @@ A modern, lightweight and powerful wiki engine.
 * Full text search
 * Fully trackable & revertable history
 * User permission
+* Page lock
 * Spam protection using reCAPTCHA
 * OGP support
 * and more...
