@@ -1,5 +1,5 @@
 # <img src="/kiwi.svg" width="300px" alt="Kiwi"/>
-A modern, lightweight and powerful wiki engine.
+A modern, powerful and sweet wiki engine
 
 ## Features
 * Markdown support
