@@ -1,0 +1,20 @@
+$tab: 1100px;
+$sp: 480px;
+
+@mixin mobile {
+	@media (max-width: ($tab)) {
+		@content;
+	}
+}
+
+@mixin tab {
+	@media (max-width: ($tab)) {
+		@content;
+	}
+}
+
+@mixin sp {
+	@media (max-width: ($sp)) {
+		@content;
+	}
+}

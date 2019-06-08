@@ -2,65 +2,78 @@
 <div>
 	<header class="header">
 		<div>
+			<button class="menu" v-if="$root.isMobile" @click="isDrawerOpening = !isDrawerOpening"><fa :icon="faBars"/></button>
 			<input type="search" ref="search" v-model="query" v-if="searchMode" @keydown.enter="search()"/>
 			<router-link v-else class="title" to="/">{{ $root.wiki ? $root.wiki.name : '' }}</router-link>
 			<button class="search" @click="searchMode = !searchMode"><fa :icon="faSearch"/></button>
 		</div>
 	</header>
-	<nav class="nav">
-		<router-link to="/" class="logo" v-if="$root.wiki && $root.wiki.logoUrl">
-			<img :src="$root.wiki.logoUrl" :alt="$root.wiki.name"/>
-		</router-link>
-		<section>
-			<p><fa :icon="faBars" class="icon" fixed-width/> {{ $t('menu') }}</p>
-			<ul>
-				<li><router-link to="/"><fa :icon="faHome" class="icon" fixed-width/><span v-t="'home'"></span></router-link></li>
-				<li><router-link to="/:pages"><fa :icon="faBook" class="icon" fixed-width/><span v-t="'pages'"></span></router-link></li>
-				<li><router-link to="/:files"><fa :icon="faFileImage" class="icon" fixed-width/><span v-t="'files'"></span></router-link></li>
-				<li><router-link to="/:recently"><fa :icon="faHistory" class="icon" fixed-width/><span v-t="'recentlyUpdatedPages'"></span></router-link></li>
-			</ul>
-			<ul v-if="$root.isLoggedin">
-				<li><router-link to="/:new"><fa :icon="faPlus" class="icon" fixed-width/><span v-t="'createPage'"></span></router-link></li>
-				<li><router-link to="/:new-template"><fa :icon="faPlus" class="icon" fixed-width/><span v-t="'createTemplate'"></span></router-link></li>
-				<li><router-link to="/:upload"><fa :icon="faUpload" class="icon" fixed-width/><span v-t="'uploadFile'"></span></router-link></li>
-			</ul>
-			<ul v-if="$root.user && $root.user.isAdmin">
-				<li><router-link to="/:admin"><fa :icon="faCog" class="icon" fixed-width/><span v-t="'adminPage'"></span></router-link></li>
-			</ul>
-			<ul>
-				<template v-if="$root.isLoggedin">
-					<li><router-link to="/:signout"><fa :icon="faPowerOff" class="icon" fixed-width/><span v-t="'logout'"></span></router-link></li>
-				</template>
-				<template v-else>
-					<li><router-link to="/:signin"><fa :icon="faSignInAlt" class="icon" fixed-width/><span v-t="'login'"></span></router-link></li>
-					<li><router-link to="/:signup"><fa :icon="faUserPlus" class="icon" fixed-width/><span v-t="'signup'"></span></router-link></li>
-				</template>
-			</ul>
-		</section>
-		<section v-if="pinnedPages.length > 0">
-			<p><fa :icon="faThumbtack" class="icon" fixed-width/> {{ $t('pinned') }}</p>
-			<ul>
-				<li v-for="p in pinnedPages"><router-link :to="'/' + p.path"><fa :icon="faFileAlt" class="icon" fixed-width/><span>{{ p.title }}</span></router-link></li>
-			</ul>
-		</section>
-		<section v-if="categories.length > 0">
-			<p><fa :icon="faFolderOpen" class="icon" fixed-width/> {{ $t('categories') }}</p>
-			<ul>
-				<li v-for="category in categories"><router-link :to="'/:categories/' + category[0]"><fa :icon="faFolder" class="icon" fixed-width/><span>{{ category[0] }}</span><small>({{ category[1].pages }})</small></router-link></li>
-			</ul>
-		</section>
-		<section v-if="tags.length > 0">
-			<p><fa :icon="faTags" class="icon" fixed-width/> {{ $t('tags') }}</p>
-			<ul>
-				<li v-for="tag in tags"><router-link :to="'/:tags/' + tag[0]"><fa :icon="faTag" class="icon" fixed-width/><span>{{ tag[0] }}</span><small>({{ tag[1] }})</small></router-link></li>
-			</ul>
-		</section>
-	</nav>
+
+	<transition name="back">
+		<div class="nav-back"
+			v-if="isDrawerOpening && $root.isMobile"
+			@click="isDrawerOpening = false"
+			@touchstart="isDrawerOpening = false"
+		></div>
+	</transition>
+	<transition name="nav">
+		<nav class="nav" v-show="isDrawerOpening">
+			<router-link to="/" class="logo" v-if="$root.wiki && $root.wiki.logoUrl">
+				<img :src="$root.wiki.logoUrl" :alt="$root.wiki.name"/>
+			</router-link>
+			<section>
+				<p><fa :icon="faBars" class="icon" fixed-width/> {{ $t('menu') }}</p>
+				<ul>
+					<li><router-link to="/"><fa :icon="faHome" class="icon" fixed-width/><span v-t="'home'"></span></router-link></li>
+					<li><router-link to="/:pages"><fa :icon="faBook" class="icon" fixed-width/><span v-t="'pages'"></span></router-link></li>
+					<li><router-link to="/:files"><fa :icon="faFileImage" class="icon" fixed-width/><span v-t="'files'"></span></router-link></li>
+					<li><router-link to="/:recently"><fa :icon="faHistory" class="icon" fixed-width/><span v-t="'recentlyUpdatedPages'"></span></router-link></li>
+				</ul>
+				<ul v-if="$root.isLoggedin">
+					<li><router-link to="/:new"><fa :icon="faPlus" class="icon" fixed-width/><span v-t="'createPage'"></span></router-link></li>
+					<li><router-link to="/:new-template"><fa :icon="faPlus" class="icon" fixed-width/><span v-t="'createTemplate'"></span></router-link></li>
+					<li><router-link to="/:upload"><fa :icon="faUpload" class="icon" fixed-width/><span v-t="'uploadFile'"></span></router-link></li>
+				</ul>
+				<ul v-if="$root.user && $root.user.isAdmin">
+					<li><router-link to="/:admin"><fa :icon="faCog" class="icon" fixed-width/><span v-t="'adminPage'"></span></router-link></li>
+				</ul>
+				<ul>
+					<template v-if="$root.isLoggedin">
+						<li><router-link to="/:signout"><fa :icon="faPowerOff" class="icon" fixed-width/><span v-t="'logout'"></span></router-link></li>
+					</template>
+					<template v-else>
+						<li><router-link to="/:signin"><fa :icon="faSignInAlt" class="icon" fixed-width/><span v-t="'login'"></span></router-link></li>
+						<li><router-link to="/:signup"><fa :icon="faUserPlus" class="icon" fixed-width/><span v-t="'signup'"></span></router-link></li>
+					</template>
+				</ul>
+			</section>
+			<section v-if="pinnedPages.length > 0">
+				<p><fa :icon="faThumbtack" class="icon" fixed-width/> {{ $t('pinned') }}</p>
+				<ul>
+					<li v-for="p in pinnedPages"><router-link :to="'/' + p.path"><fa :icon="faFileAlt" class="icon" fixed-width/><span>{{ p.title }}</span></router-link></li>
+				</ul>
+			</section>
+			<section v-if="categories.length > 0">
+				<p><fa :icon="faFolderOpen" class="icon" fixed-width/> {{ $t('categories') }}</p>
+				<ul>
+					<li v-for="category in categories"><router-link :to="'/:categories/' + category[0]"><fa :icon="faFolder" class="icon" fixed-width/><span>{{ category[0] }}</span><small>({{ category[1].pages }})</small></router-link></li>
+				</ul>
+			</section>
+			<section v-if="tags.length > 0">
+				<p><fa :icon="faTags" class="icon" fixed-width/> {{ $t('tags') }}</p>
+				<ul>
+					<li v-for="tag in tags"><router-link :to="'/:tags/' + tag[0]"><fa :icon="faTag" class="icon" fixed-width/><span>{{ tag[0] }}</span><small>({{ tag[1] }})</small></router-link></li>
+				</ul>
+			</section>
+		</nav>
+	</transition>
+
 	<main class="main">
 		<router-view></router-view>
 	</main>
+
 	<footer class="footer">
-		<small>Powerd by <a href="https://github.com/syuilo/kiwi">Kiwi</a></small>
+		<small>Powerd by <a href="https://github.com/syuilo/kiwi">Kiwi</a><span class="ver">ver {{ version }}</span></small>
 	</footer>
 </div>
 </template>
@@ -69,6 +82,7 @@
 import Vue from 'vue';
 import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faTag, faTags, faFolderOpen, faBars, faSearch, faThumbtack } from '@fortawesome/free-solid-svg-icons';
 import { faFileImage, faFolder, faFileAlt } from '@fortawesome/free-regular-svg-icons';
+import { version } from './env';
 
 export default Vue.extend({
 	data() {
@@ -78,6 +92,8 @@ export default Vue.extend({
 			categories: [],
 			searchMode: false,
 			query: '',
+			isDrawerOpening: !this.$root.isMobile,
+			version,
 			faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faFileImage, faTag, faTags, faFolderOpen, faBars, faFolder, faSearch, faFileAlt, faThumbtack,
 		};
 	},
@@ -92,6 +108,9 @@ export default Vue.extend({
 		$route() {
 			this.searchMode = false;
 			this.query = '';
+			if (this.$root.isMobile) {
+				this.isDrawerOpening = false;
+			}
 		}
 	},
 
@@ -172,13 +191,13 @@ table.kiwi {
 	pointer-events: none;
 
 	position: absolute;
-	z-index: 65536;
+	z-index: 3000;
 
 	.bar {
 		background: $color;
 
 		position: fixed;
-		z-index: 65537;
+		z-index: 3001;
 		top: 0;
 		left: 0;
 
@@ -202,13 +221,15 @@ table.kiwi {
 </style>
 
 <style lang="scss" scoped>
+@import './style.scss';
+
 $header-height: 50px;
 $nav-width: 250px;
 $content-width: 900px;
 
 .header {
 	position: fixed;
-	z-index: 1001;
+	z-index: 2000;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -231,10 +252,7 @@ $content-width: 900px;
 			margin: 0 16px;
 		}
 
-		> .search {
-			position: absolute;
-			top: 0;
-			right: 0;
+		> .menu, > .search {
 			width: $header-height;
 			height: $header-height;
 			appearance: none;
@@ -244,12 +262,28 @@ $content-width: 900px;
 			cursor: pointer;
 			color: #fff;
 		}
+
+		> .search {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
 	}
+}
+
+.nav-back {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.2);
 }
 
 .nav {
 	position: fixed;
-	z-index: 1000;
+	z-index: 1001;
 	top: $header-height;
 	left: 0;
 	width: $nav-width;
@@ -313,6 +347,10 @@ $content-width: 900px;
 .main {
 	margin: $header-height 0 0 $nav-width;
 	max-width: $content-width;
+
+	@include mobile {
+		margin: $header-height 0 0 0;
+	}
 }
 
 .footer {
@@ -320,12 +358,44 @@ $content-width: 900px;
 	padding: 32px;
 	background: #eee;
 
+	@include mobile {
+		margin: 0 0 0 0;
+	}
+
 	> small {
 		opacity: 0.6;
 
 		> a {
 			color: inherit;
 		}
+
+		> .ver {
+			margin-left: 16px;
+		}
 	}
+}
+
+// Transitions
+
+.nav-enter-active,
+.nav-leave-active {
+	opacity: 1;
+	transform: translateX(0);
+	transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.nav-enter,
+.nav-leave-active {
+	opacity: 0;
+	transform: translateX(-240px);
+}
+
+.back-enter-active,
+.back-leave-active {
+	opacity: 1;
+	transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.back-enter,
+.back-leave-active {
+	opacity: 0;
 }
 </style>

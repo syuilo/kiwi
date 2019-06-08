@@ -12,6 +12,21 @@ import { detectLang } from './scripts/detect-lang';
 import { fetchLocale } from './scripts/fetch-locale';
 import { router } from './router';
 
+// Detect the user agent
+const ua = navigator.userAgent.toLowerCase();
+const isMobile = /mobile|iphone|ipad|android/.test(ua);
+
+// Get the <head> element
+const head = document.getElementsByTagName('head')[0];
+
+// If mobile, insert the viewport meta tag
+if (isMobile) {
+	const meta = document.createElement('meta');
+	meta.setAttribute('name', 'viewport');
+	meta.setAttribute('content', 'width=device-width, initial-scale=1');
+	head.appendChild(meta);
+}
+
 async function main() {
 	const lang = await detectLang();
 	const locale = await fetchLocale(lang);
@@ -44,7 +59,8 @@ async function main() {
 			return {
 				wiki: null,
 				user: null,
-				isLoggedin: localStorage.getItem('i') != null
+				isLoggedin: localStorage.getItem('i') != null,
+				isMobile
 			};
 		},
 		created() {

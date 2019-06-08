@@ -208,17 +208,31 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-$margin: 48px;
+@import '../style.scss';
 
 .page {
 	color: #54514e;
 	background: #fff;
 	overflow: hidden;
 
+	--lrMargin: 48px;
+
+	@include tab {
+		--lrMargin: 32px;
+	}
+
+	@include sp {
+		--lrMargin: 16px;
+	}
+
 	> header {
-		padding: 32px $margin;
+		padding: 32px var(--lrMargin);
 		color: #92827c;
 		border-bottom: solid 1px #eee;
+
+		@include sp {
+			padding: 16px var(--lrMargin);
+		}
 
 		> .title {
 			margin: 0;
@@ -237,7 +251,7 @@ $margin: 48px;
 
 	> .category {
 		margin-top: -1px;
-		padding: 8px $margin;
+		padding: 8px var(--lrMargin);
 		background: #eee;
 
 		> * {
@@ -248,7 +262,7 @@ $margin: 48px;
 
 	> .infoboxes {
 		> .infobox {
-			margin: 16px $margin 16px 16px;
+			margin: 16px var(--lrMargin) 16px 16px;
 			border: solid 2px #eee;
 			border-radius: 6px;
 			overflow: hidden;
@@ -287,7 +301,7 @@ $margin: 48px;
 	}
 
 	> .toc {
-		margin: 16px 16px 16px $margin;
+		margin: 16px 16px 16px var(--lrMargin);
 		border: solid 2px #eee;
 		border-radius: 6px;
 		overflow: hidden;
@@ -295,6 +309,11 @@ $margin: 48px;
 		font-size: 95%;
 		float: left;
 		min-width: 130px;
+
+		@include mobile {
+			display: block;
+			float: none;
+		}
 
 		> header {
 			position: relative;
@@ -343,21 +362,25 @@ $margin: 48px;
 		}
 
 		> *:not(section) {
-			margin-left: $margin;
-			margin-right: $margin;
+			margin-left: var(--lrMargin);
+			margin-right: var(--lrMargin);
 		}
 
 		> section > *:not(.header) {
-			margin-left: $margin;
-			margin-right: $margin;
+			margin-left: var(--lrMargin);
+			margin-right: var(--lrMargin);
 		}
 
 		h1 {
-			padding: 16px $margin;
+			padding: 16px var(--lrMargin);
 			margin-bottom: 26px;
 			font-size: 1.5em;
 			font-weight: normal;
 			border-bottom: solid 1px #eee;
+
+			@include sp {
+				font-size: 1.25em;
+			}
 		}
 
 		h2 {
@@ -375,9 +398,13 @@ $margin: 48px;
 	> .tags {
 		display: block;
 		margin: 0;
-		padding: 32px $margin;
+		padding: 32px var(--lrMargin);
 		list-style: none;
 		border-bottom: solid 1px #eee;
+
+		@include sp {
+			padding: 16px var(--lrMargin);
+		}
 
 		> li {
 			display: inline-block;
@@ -430,8 +457,12 @@ $margin: 48px;
 	}
 
 	> footer {
-		padding: 32px $margin;
+		padding: 32px var(--lrMargin);
 		font-size: 14px;
+
+		@include sp {
+			padding: 16px var(--lrMargin);
+		}
 
 		> * {
 			margin-right: 28px;
@@ -459,7 +490,7 @@ $margin: 48px;
 	> .defs {
 		display: block;
 		margin: 0;
-		padding: 16px $margin;
+		padding: 16px var(--lrMargin);
 		background: #eee;
 		border-bottom: solid 1px #ddd;
 		font-size: 90%;
@@ -476,12 +507,16 @@ $margin: 48px;
 	> .links {
 		display: block;
 		margin: 0;
-		padding: 32px $margin;
+		padding: 32px var(--lrMargin);
 		list-style: none;
 		background: #eee;
 		border-bottom: solid 1px #ddd;
 		overflow: auto;
 		white-space: nowrap;
+
+		@include sp {
+			padding: 16px var(--lrMargin);
+		}
 
 		> li {
 			display: inline-block;
