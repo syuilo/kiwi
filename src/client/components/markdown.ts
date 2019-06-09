@@ -3,6 +3,7 @@ import KwUrl from './url.vue';
 import KwImage from './image.vue';
 import KwSection from './section.vue';
 import KwRef from './ref.vue';
+import KwHtml from './html.vue';
 import { concat } from '../../prelude/array';
 
 export default Vue.component('kw-markdown', {
@@ -141,6 +142,14 @@ export default Vue.component('kw-markdown', {
 
 				case 'blockquote': {
 					return [createElement('blockquote', genEl(token.children))];
+				}
+
+				case 'html': {
+					return [createElement(KwHtml, {
+						props: {
+							html: token.value
+						},
+					})];
 				}
 
 				default: {
