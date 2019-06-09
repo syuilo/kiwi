@@ -68,8 +68,8 @@
 		</li>
 	</ul>
 
-	<div class="join-now" v-if="$root.wiki && !$root.isLoggedin && page.path === ''">
-		<p v-t="{ path: 'joinNowText', args: { wiki: $root.wiki.name }}"></p>
+	<div class="join-now" v-if="!$root.isLoggedin && page.path === ''">
+		<p v-t="{ path: 'joinNowText', args: { wiki: wikiName }}"></p>
 		<router-link to="/:signup"><span v-t="'joinNow'"></span></router-link>
 	</div>
 </div>
@@ -90,6 +90,7 @@ import Markdown from '../components/markdown';
 import KwDefs from '../components/defs';
 import KwContainer from '../components/container.vue';
 import Progress from '../scripts/progress';
+import { wikiName } from '../env';
 
 export default Vue.extend({
 	components: {
@@ -105,6 +106,7 @@ export default Vue.extend({
 
 	data() {
 		return {
+			wikiName,
 			page: null,
 			toc: [],
 			tocOpen: true,
@@ -112,6 +114,12 @@ export default Vue.extend({
 			links: [],
 			notFound: false,
 			faEdit, faCode, faHistory, faExclamationTriangle, faTag, faAngleRight, faBookOpen, faThumbtack, faLock, faChevronUp, faChevronDown,
+		};
+	},
+
+	metaInfo() {
+		return {
+			title: this.page ? this.page.path == '' ? null : this.page.title : null;
 		};
 	},
 

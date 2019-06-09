@@ -4,7 +4,7 @@
 		<div>
 			<button class="menu" v-if="$root.isMobile" @click="isDrawerOpening = !isDrawerOpening"><fa :icon="faBars"/></button>
 			<input type="search" ref="search" v-model="query" v-if="searchMode" @keydown.enter="search()"/>
-			<router-link v-else class="title" to="/">{{ $root.wiki ? $root.wiki.name : '' }}</router-link>
+			<router-link v-else class="title" to="/">{{ wikiName }}</router-link>
 			<button class="search" @click="searchMode = !searchMode"><fa :icon="faSearch"/></button>
 		</div>
 	</header>
@@ -19,7 +19,7 @@
 	<transition name="nav">
 		<nav class="nav" v-show="isDrawerOpening">
 			<router-link to="/" class="logo" v-if="$root.wiki && $root.wiki.logoUrl">
-				<img :src="$root.wiki.logoUrl" :alt="$root.wiki.name"/>
+				<img :src="$root.wiki.logoUrl" :alt="wikiName"/>
 			</router-link>
 			<section>
 				<p><fa :icon="faBars" class="icon" fixed-width/> {{ $t('menu') }}</p>
@@ -82,11 +82,16 @@
 import Vue from 'vue';
 import { faHome, faPowerOff, faSignInAlt, faUserPlus, faPlus, faHistory, faUpload, faCog, faBook, faTag, faTags, faFolderOpen, faBars, faSearch, faThumbtack } from '@fortawesome/free-solid-svg-icons';
 import { faFileImage, faFolder, faFileAlt } from '@fortawesome/free-regular-svg-icons';
-import { version } from './env';
+import { version, wikiName } from './env';
 
 export default Vue.extend({
+	metaInfo: {
+		titleTemplate: titleChunk => titleChunk ? `${titleChunk} - ${wikiName}` : wikiName
+	},
+
 	data() {
 		return {
+			wikiName,
 			pinnedPages: [],
 			tags: [],
 			categories: [],

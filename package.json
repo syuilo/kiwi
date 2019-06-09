@@ -98,6 +98,7 @@
 		"vue-google-adsense": "1.6.0",
 		"vue-i18n": "8.11.2",
 		"vue-loader": "15.7.0",
+		"vue-meta": "1.6.0",
 		"vue-recaptcha": "1.1.1",
 		"vue-router": "3.0.6",
 		"vue-script2": "2.0.3",
