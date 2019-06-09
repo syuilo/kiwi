@@ -96,7 +96,7 @@ export default Vue.extend({
 					tags: this.prev.data.tags,
 					category: this.prev.data.category,
 					_recaptcha: this.recaptcha,
-					commit: `This commit reverts #${this.commit.id}`
+					commit: `This reverts #${this.commit.id}`
 				}).then(page => {
 					this.$router.push(`/${this.prev.data.path}`);
 				});
@@ -109,7 +109,7 @@ export default Vue.extend({
 					tags: this.prev.data.tags,
 					category: this.prev.data.category,
 					_recaptcha: this.recaptcha,
-					commit: `This commit reverts #${this.commit.id}`
+					commit: `This reverts #${this.commit.id}`
 				}).then(page => {
 					this.$router.push(`/${this.prev.data.path}`);
 				});
