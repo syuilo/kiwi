@@ -168,6 +168,8 @@ export default Vue.extend({
 			this.$root.api('pages/links', { id: this.page.id }).then(links => {
 				this.links = links;
 			});
+
+			this.$nextTick(this.followId);
 		}
 	},
 
@@ -210,6 +212,13 @@ export default Vue.extend({
 			}).then(page => {
 				Vue.set(this.page, 'isLocked', !this.page.isLocked);
 			});
+		},
+
+		followId() {
+			const id = this.$route.hash.match(/^[^:#]*#(.+)$/);
+			if (id && id[1]) {
+				document.getElementById(decodeURIComponent(id[1])).scrollIntoView();
+			}
 		},
 	}
 });
