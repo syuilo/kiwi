@@ -35,7 +35,7 @@
 		</div>
 	</div>
 
-	<markdown :ast="page.ast" class="content"/>
+	<markdown :ast="page.ast" class="content" :key="page.id"/>
 
 	<InArticleAdsense v-if="$root.wiki && $root.wiki.adClient"
 		:data-ad-client="$root.wiki.adClient"
