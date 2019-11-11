@@ -4,7 +4,7 @@
 
 import * as Koa from 'koa';
 import * as cors from '@koa/cors';
-import * as Router from 'koa-router';
+import * as Router from '@koa/router';
 import { Files } from '../../models';
 import { Kwfs } from '../../services/fs';
 

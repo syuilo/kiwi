@@ -13,11 +13,6 @@
 		</template>
 	</div>
 
-	<InArticleAdsense v-if="$root.wiki && $root.wiki.adClient"
-		:data-ad-client="$root.wiki.adClient"
-		:data-ad-slot="$root.wiki.adSlot1">
-	</InArticleAdsense>
-
 	<div class="infoboxes" v-if="templates.length > 0">
 		<div v-for="template in templates" class="infobox">
 			<header><router-link :to="'/:tags/' + template.name">{{ template.name }}</router-link></header>
@@ -36,11 +31,6 @@
 	</div>
 
 	<markdown :ast="page.ast" class="content" :key="page.id"/>
-
-	<InArticleAdsense v-if="$root.wiki && $root.wiki.adClient"
-		:data-ad-client="$root.wiki.adClient"
-		:data-ad-slot="$root.wiki.adSlot2">
-	</InArticleAdsense>
 
 	<ul class="tags" v-if="page.tags.length > 0">
 		<li v-for="tag in page.tags"><router-link :to="'/:tags/' + tag">{{ tag }}</router-link></li>

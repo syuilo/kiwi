@@ -22,18 +22,6 @@ export const meta = {
 			validator: $.str,
 		},
 
-		adClient: {
-			validator: $.str,
-		},
-
-		adSlot1: {
-			validator: $.str,
-		},
-
-		adSlot2: {
-			validator: $.str,
-		},
-
 		defaultPermissions: {
 			validator: $.arr($.str),
 		},
@@ -54,9 +42,6 @@ export default define(meta, async (ps, user) => {
 		description: ps.description,
 		logoUrl: ps.logoUrl,
 		customHtml: ps.customHtml,
-		adClient: ps.adClient,
-		adSlot1: ps.adSlot1,
-		adSlot2: ps.adSlot2,
 		defaultPermissions: ps.defaultPermissions,
 		recaptchaSiteKey: ps.recaptchaSiteKey,
 		recaptchaSecretKey: ps.recaptchaSecretKey,

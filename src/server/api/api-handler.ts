@@ -1,11 +1,9 @@
-import * as Koa from 'koa';
-
 import { IEndpoint } from './endpoints';
 import authenticate from './authenticate';
 import call from './call';
 import { ApiError } from './error';
 
-export default (endpoint: IEndpoint, ctx: Koa.BaseContext) => new Promise((res) => {
+export default (endpoint: IEndpoint, ctx: any) => new Promise((res) => {
 	const body = ctx.is('multipart/form-data') ? (ctx.req as any).body : ctx.request.body;
 
 	const reply = (x?: any, y?: ApiError) => {

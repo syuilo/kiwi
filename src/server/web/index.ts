@@ -4,7 +4,7 @@
 
 import ms = require('ms');
 import * as Koa from 'koa';
-import * as Router from 'koa-router';
+import * as Router from '@koa/router';
 import * as send from 'koa-send';
 //import * as favicon from 'koa-favicon';
 import * as views from 'koa-views';
@@ -54,12 +54,12 @@ router.get('*', async ctx => {
 		Pages.findOne({ path: ctx.path.substr(1) })
 	]);
 	if (page) {
-		await ctx.render('page', {
+		await (ctx as any).render('page', {
 			wiki: meta,
 			page: page,
 		});
 	} else {
-		await ctx.render('base', {
+		await (ctx as any).render('base', {
 			wiki: meta,
 		});
 	}

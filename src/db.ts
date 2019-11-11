@@ -9,6 +9,16 @@ import { FileFolder } from './models/entities/file-folder';
 import { Template } from './models/entities/template';
 import { Commit } from './models/entities/commit';
 
+export const entities = [
+	Meta,
+	User,
+	Page,
+	File,
+	FileFolder,
+	Template,
+	Commit,
+];
+
 export function initDb(justBorrow = false, sync = false, log = false) {
 	try {
 		const conn = getConnection();
